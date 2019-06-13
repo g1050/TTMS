@@ -1,7 +1,7 @@
 /*
 * Copyright(C), 2007-2008, XUPT Univ.	 
 * File name: Main_Menu.c			 	 
-* Description : TTMS ÏµÍ³Ö÷²Ëµ¥	
+* Description : TTMS ÏµÍ³ï¿½ï¿½ï¿½Ëµï¿½	
 * Author:   XUPT  		 
 * Version:  v.1 	 
 * Da
@@ -14,14 +14,14 @@
 #include <stdlib.h>
 #include "../View/Studio_UI.h"
 
-//ÏµÍ³Ö÷²Ëµ¥ 
+//ÏµÍ³ï¿½ï¿½ï¿½Ëµï¿½ 
 void Main_Menu(void) {
 	char choice;
 	do { 
 		system("clear");
 		printf("\n==================================================================\n");
-		printf("**************** Theater Ticket Management System ****************\n");
-		printf("[S]tudio Management.\n");
+		printf("**************** å‰§é™¢ç¥¨åŠ¡ç®¡ç†ç³»ç»Ÿ ****************\n");
+		printf("[S]æ¼”å‡ºå…ç®¡ç†\n");
 		printf("[P]lay Management.\n");
 		printf("[T]icket Sale.\n");
 		printf("[R]eturn Ticket.\n");
@@ -32,8 +32,10 @@ void Main_Menu(void) {
 		printf("\n==================================================================\n");
 		printf("Please input your choice:");
 		
-		fflush(stdin);//Çå¿ÕÊäÈë»º³åÇø·ÀÖ¹Ó°ÏìÏÂ´ÎÊäÈë,µ«ÊÇlinuxÏÂÃ»°ì·¨ÓÃ
+		fflush(stdin);//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ë»ºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¹Ó°ï¿½ï¿½ï¿½Â´ï¿½ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½linuxï¿½ï¿½Ã»ï¿½ì·¨ï¿½ï¿½
+		setbuf(stdin,NULL);
 		choice = getchar();
+		setbuf(stdin,NULL);
         fflush(stdin);
 		switch (choice)
 		 {

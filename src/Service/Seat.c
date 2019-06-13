@@ -1,144 +1,191 @@
 /*
 * Copyright(C), 2007-2008, XUPT Univ.	
-* ÓÃÀý±àºÅ£ºTTMS_UC_02 
+* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å£ï¿½TTMS_UC_02 
 * File name: Seat.c		  
-* Description : ÉèÖÃ×ùÎ»ÓÃÀýÒµÎñÂß¼­²ã	
+* Description : ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½Òµï¿½ï¿½ï¿½ß¼ï¿½ï¿½ï¿½	
 * Author:   XUPT  		 
 * Version:  v.1 	 
-* Date: 	2015Äê4ÔÂ22ÈÕ	
+* Date: 	2015ï¿½ï¿½4ï¿½ï¿½22ï¿½ï¿½	
 */
 
 #include <stdlib.h>
 #include "../Common/List.h"
 #include "Seat.h"
+#include "../Persistence/Seat_Persist.h"
 
 /*
-º¯Êý¹¦ÄÜ£ºÓÃÓÚÌí¼ÓÒ»¸öÐÂ×ùÎ»Êý¾Ý¡£
-²ÎÊýËµÃ÷£ºdataÎªseat_tÀàÐÍÖ¸Õë£¬±íÊ¾ÐèÒªÌí¼ÓµÄ×ùÎ»Êý¾Ý½áµã¡£
-·µ »Ø Öµ£ºÕûÐÍ£¬±íÊ¾ÊÇ·ñ³É¹¦Ìí¼ÓÁË×ùÎ»µÄ±êÖ¾¡£
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½ï¿½Ý¡ï¿½
+ï¿½ï¿½ï¿½ï¿½Ëµï¿½ï¿½ï¿½ï¿½dataÎªseat_tï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ë£¬ï¿½ï¿½Ê¾ï¿½ï¿½Òªï¿½ï¿½ï¿½Óµï¿½ï¿½ï¿½Î»ï¿½ï¿½ï¿½Ý½ï¿½ã¡£
+ï¿½ï¿½ ï¿½ï¿½ Öµï¿½ï¿½ï¿½ï¿½ï¿½Í£ï¿½ï¿½ï¿½Ê¾ï¿½Ç·ï¿½É¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½Ä±ï¿½Ö¾ï¿½ï¿½
 */
 int Seat_Srv_Add(const seat_t *data){
-	// Çë²¹³äÍêÕû
+	// ï¿½ë²¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
        return 0;
 }
 
 /*
-º¯Êý¹¦ÄÜ£ºÅúÁ¿Ìí¼Ó×ùÎ»Êý¾Ý¡£
-²ÎÊýËµÃ÷£ºlistÎªseat_list_tÀàÐÍÖ¸Õë£¬±íÊ¾ÐèÒªÌí¼ÓµÄÅúÁ¿×ùÎ»Êý¾ÝÐÎ³ÉµÄÁ´±í¡£
-·µ »Ø Öµ£ºÕûÐÍ£¬±íÊ¾ÊÇ·ñ³É¹¦Ìí¼ÓÁËÅúÁ¿×ùÎ»µÄ±êÖ¾¡£
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½ï¿½Ý¡ï¿½
+ï¿½ï¿½ï¿½ï¿½Ëµï¿½ï¿½ï¿½ï¿½listÎªseat_list_tï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ë£¬ï¿½ï¿½Ê¾ï¿½ï¿½Òªï¿½ï¿½ï¿½Óµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½ï¿½Î³Éµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+ï¿½ï¿½ ï¿½ï¿½ Öµï¿½ï¿½ï¿½ï¿½ï¿½Í£ï¿½ï¿½ï¿½Ê¾ï¿½Ç·ï¿½É¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½Ä±ï¿½Ö¾ï¿½ï¿½
 */
 int Seat_Srv_AddBatch(seat_list_t list){
-	// Çë²¹³äÍêÕû
+	// ï¿½ë²¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
        return 0;
 }
 
 /*
-º¯Êý¹¦ÄÜ£ºÓÃÓÚÐÞ¸ÄÒ»¸ö×ùÎ»Êý¾Ý¡£
-²ÎÊýËµÃ÷£ºdataÎªseat_tÀàÐÍÖ¸Õë£¬±íÊ¾ÐèÒªÐÞ¸ÄµÄ×ùÎ»Êý¾Ý½áµã¡£
-·µ »Ø Öµ£ºÕûÐÍ£¬±íÊ¾ÊÇ·ñ³É¹¦ÐÞ¸ÄÁË×ùÎ»µÄ±êÖ¾¡£
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Þ¸ï¿½Ò»ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½ï¿½Ý¡ï¿½
+ï¿½ï¿½ï¿½ï¿½Ëµï¿½ï¿½ï¿½ï¿½dataÎªseat_tï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ë£¬ï¿½ï¿½Ê¾ï¿½ï¿½Òªï¿½Þ¸Äµï¿½ï¿½ï¿½Î»ï¿½ï¿½ï¿½Ý½ï¿½ã¡£
+ï¿½ï¿½ ï¿½ï¿½ Öµï¿½ï¿½ï¿½ï¿½ï¿½Í£ï¿½ï¿½ï¿½Ê¾ï¿½Ç·ï¿½É¹ï¿½ï¿½Þ¸ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½Ä±ï¿½Ö¾ï¿½ï¿½
 */
 int Seat_Srv_Modify(const seat_t *data){
-	// Çë²¹³äÍêÕû
+	// ï¿½ë²¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
        return 0;
 }
 
 /*
-º¯Êý¹¦ÄÜ£º¸ù¾Ý×ùÎ»IDÉ¾³ýÒ»¸ö×ùÎ»¡£
-²ÎÊýËµÃ÷£ºIDÎªÕûÐÍ£¬±íÊ¾ÐèÒªÉ¾³ýµÄ×ùÎ»Êý¾Ý½áµã¡£
-·µ »Ø Öµ£ºÕûÐÍ£¬±íÊ¾ÊÇ·ñ³É¹¦É¾³ýÁË×ùÎ»µÄ±êÖ¾¡£
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»IDÉ¾ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½
+ï¿½ï¿½ï¿½ï¿½Ëµï¿½ï¿½ï¿½ï¿½IDÎªï¿½ï¿½ï¿½Í£ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ÒªÉ¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½ï¿½Ý½ï¿½ã¡£
+ï¿½ï¿½ ï¿½ï¿½ Öµï¿½ï¿½ï¿½ï¿½ï¿½Í£ï¿½ï¿½ï¿½Ê¾ï¿½Ç·ï¿½É¹ï¿½É¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½Ä±ï¿½Ö¾ï¿½ï¿½
 */
 int Seat_Srv_DeleteByID(int ID){
-	// Çë²¹³äÍêÕû
+	// ï¿½ë²¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
        return 1;
 }
 
 /*
-º¯Êý¹¦ÄÜ£º¸ù¾Ý×ùÎ»ID»ñÈ¡×ùÎ»Êý¾Ý¡£
-²ÎÊýËµÃ÷£ºµÚÒ»¸ö²ÎÊýIDÎªÕûÐÍ£¬±íÊ¾×ùÎ»ID£¬µÚ¶þ¸ö²ÎÊýbufÎªseat_tÖ¸Õë£¬Ö¸Ïò´ý»ñÈ¡µÄ×ùÎ»Êý¾Ý½áµã¡£
-·µ »Ø Öµ£ºÕûÐÍ£¬±íÊ¾ÊÇ·ñ³É¹¦»ñÈ¡ÁË×ùÎ»µÄ±êÖ¾¡£
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»IDï¿½ï¿½È¡ï¿½ï¿½Î»ï¿½ï¿½ï¿½Ý¡ï¿½
+ï¿½ï¿½ï¿½ï¿½Ëµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½IDÎªï¿½ï¿½ï¿½Í£ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½Î»IDï¿½ï¿½ï¿½Ú¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½bufÎªseat_tÖ¸ï¿½ë£¬Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½ï¿½Ý½ï¿½ã¡£
+ï¿½ï¿½ ï¿½ï¿½ Öµï¿½ï¿½ï¿½ï¿½ï¿½Í£ï¿½ï¿½ï¿½Ê¾ï¿½Ç·ï¿½É¹ï¿½ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½Î»ï¿½Ä±ï¿½Ö¾ï¿½ï¿½
 */
 int Seat_Srv_FetchByID(int ID, seat_t *buf){
-	// Çë²¹³äÍêÕû
+	// ï¿½ë²¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
        return 0;
 }
 
 /*
-º¯Êý¹¦ÄÜ£º¸ù¾ÝÑÝ³öÌüIDÉ¾³ýËùÓÐ×ùÎ»¡£
-²ÎÊýËµÃ÷£ºroomIDÎªÕûÐÍ£¬±íÊ¾ÐèÒªÉ¾³ýËùÓÐ×ùÎ»µÄÑÝ³öÌüID¡£
-·µ »Ø Öµ£ºÕûÐÍ£¬±íÊ¾ÊÇ·ñ³É¹¦É¾³ýÁËÑÝ³öÌüËùÓÐ×ùÎ»µÄ±êÖ¾¡£
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý³ï¿½ï¿½ï¿½IDÉ¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½
+ï¿½ï¿½ï¿½ï¿½Ëµï¿½ï¿½ï¿½ï¿½roomIDÎªï¿½ï¿½ï¿½Í£ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ÒªÉ¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½ï¿½Ý³ï¿½ï¿½ï¿½IDï¿½ï¿½
+ï¿½ï¿½ ï¿½ï¿½ Öµï¿½ï¿½ï¿½ï¿½ï¿½Í£ï¿½ï¿½ï¿½Ê¾ï¿½Ç·ï¿½É¹ï¿½É¾ï¿½ï¿½ï¿½ï¿½ï¿½Ý³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½Ä±ï¿½Ö¾ï¿½ï¿½
 */
 inline int Seat_Srv_DeleteAllByRoomID(int roomID){
-	// Çë²¹³äÍêÕû
+	// ï¿½ë²¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
        return 0;
 }
 
 /*
-º¯Êý¹¦ÄÜ£º¸ù¾Ý¸ø¶¨ÑÝ³öÌüµÄÐÐ¡¢ÁÐÊý³õÊ¼»¯ÑÝ³öÌüµÄËùÓÐ×ùÎ»Êý¾Ý£¬²¢½«Ã¿¸ö×ùÎ»½áµã°´ÐÐ²åÈë×ùÎ»Á´±í¡£
-²ÎÊýËµÃ÷£ºµÚÒ»¸ö²ÎÊýlistÎªseat_list_tÀàÐÍÖ¸Õë£¬Ö¸Ïò×ùÎ»Á´±íÍ·Ö¸Õë£¬µÚ¶þ¸ö²ÎÊýrowsCountÎªÕûÐÍ£¬±íÊ¾×ùÎ»ËùÔÚÐÐºÅ£¬µÚÈý¸ö²ÎÊýcolsCountÎªÕûÐÍ£¬±íÊ¾×ùÎ»ËùÔÚÁÐºÅ¡£
-·µ »Ø Öµ£ºÕûÐÍ£¬±íÊ¾ÊÇ·ñ³É¹¦³õÊ¼»¯ÁËÑÝ³öÌüµÄËùÓÐ×ùÎ»¡£
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü£ï¿½ï¿½ï¿½ï¿½Ý¸ï¿½ï¿½ï¿½ï¿½Ý³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½Ý³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½ï¿½Ý£ï¿½ï¿½ï¿½ï¿½ï¿½Ã¿ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½ã°´ï¿½Ð²ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+ï¿½ï¿½ï¿½ï¿½Ëµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½listÎªseat_list_tï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ë£¬Ö¸ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½Í·Ö¸ï¿½ë£¬ï¿½Ú¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½rowsCountÎªï¿½ï¿½ï¿½Í£ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½ï¿½ÐºÅ£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½colsCountÎªï¿½ï¿½ï¿½Í£ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½ï¿½ÐºÅ¡ï¿½
+ï¿½ï¿½ ï¿½ï¿½ Öµï¿½ï¿½ï¿½ï¿½ï¿½Í£ï¿½ï¿½ï¿½Ê¾ï¿½Ç·ï¿½É¹ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½Ý³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½
 */
 int Seat_Srv_FetchByRoomID(seat_list_t list, int roomID){
-       // Çë²¹³äÍêÕû
-       return 0;
+       // ï¿½ë²¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+       int seatCount = 0;
+       seatCount = Seat_Perst_SelectByRoomID(list,roomID);
+       //Seat_Srv_SortSeatList(list);
+       return seatCount;
 }
 
 /*
-º¯Êý¹¦ÄÜ£º¸ù¾ÝÑÝ³öÌüID»ñµÃ¸ÃÑÝ³öÌüµÄÓÐÐ§×ùÎ»¡£
-²ÎÊýËµÃ÷£ºµÚÒ»¸ö²ÎÊýlistÎªseat_list_tÀàÐÍ£¬±íÊ¾»ñÈ¡µ½µÄÓÐÐ§×ùÎ»Á´±íÍ·Ö¸Õë£¬µÚ¶þ¸ö²ÎÊýroomIDÎªÕûÐÍ£¬±íÊ¾ÐèÒªÌáÈ¡ÓÐÐ§×ùÎ»µÄÑÝ³öÌüID¡£
-·µ »Ø Öµ£ºÕûÐÍ£¬±íÊ¾ÑÝ³öÌüµÄÓÐÐ§×ùÎ»¸öÊý¡£
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý³ï¿½ï¿½ï¿½IDï¿½ï¿½Ã¸ï¿½ï¿½Ý³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð§ï¿½ï¿½Î»ï¿½ï¿½
+ï¿½ï¿½ï¿½ï¿½Ëµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½listÎªseat_list_tï¿½ï¿½ï¿½Í£ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð§ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½Í·Ö¸ï¿½ë£¬ï¿½Ú¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½roomIDÎªï¿½ï¿½ï¿½Í£ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½Òªï¿½ï¿½È¡ï¿½ï¿½Ð§ï¿½ï¿½Î»ï¿½ï¿½ï¿½Ý³ï¿½ï¿½ï¿½IDï¿½ï¿½
+ï¿½ï¿½ ï¿½ï¿½ Öµï¿½ï¿½ï¿½ï¿½ï¿½Í£ï¿½ï¿½ï¿½Ê¾ï¿½Ý³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð§ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 */
 int Seat_Srv_FetchValidByRoomID(seat_list_t list, int roomID)
 {
-       // Çë²¹³äÍêÕû
+       // ï¿½ë²¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
        return 0;
 }
 
 /*
-º¯Êý¹¦ÄÜ£º¸ù¾Ý¸ø¶¨ÑÝ³öÌüµÄÐÐ¡¢ÁÐÊý³õÊ¼»¯ÑÝ³öÌüµÄËùÓÐ×ùÎ»Êý¾Ý£¬²¢½«Ã¿¸ö×ùÎ»½áµã°´ÐÐ²åÈë×ùÎ»Á´±í¡£
-²ÎÊýËµÃ÷£ºµÚÒ»¸ö²ÎÊýlistÎªseat_list_tÀàÐÍÖ¸Õë£¬Ö¸Ïò×ùÎ»Á´±íÍ·Ö¸Õë£¬µÚ¶þ¸ö²ÎÊýrowsCountÎªÕûÐÍ£¬±íÊ¾×ùÎ»ËùÔÚÐÐºÅ£¬µÚÈý¸ö²ÎÊýcolsCountÎªÕûÐÍ£¬±íÊ¾×ùÎ»ËùÔÚÁÐºÅ¡£
-·µ »Ø Öµ£ºÕûÐÍ£¬±íÊ¾ÊÇ·ñ³É¹¦³õÊ¼»¯ÁËÑÝ³öÌüµÄËùÓÐ×ùÎ»¡£
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü£ï¿½ï¿½ï¿½ï¿½Ý¸ï¿½ï¿½ï¿½ï¿½Ý³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½Ý³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½ï¿½Ý£ï¿½ï¿½ï¿½ï¿½ï¿½Ã¿ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½ã°´ï¿½Ð²ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+ï¿½ï¿½ï¿½ï¿½Ëµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½listÎªseat_list_tï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ë£¬Ö¸ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½Í·Ö¸ï¿½ë£¬ï¿½Ú¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½rowsCountÎªï¿½ï¿½ï¿½Í£ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½ï¿½ÐºÅ£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½colsCountÎªï¿½ï¿½ï¿½Í£ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½ï¿½ÐºÅ¡ï¿½
+ï¿½ï¿½ ï¿½ï¿½ Öµï¿½ï¿½ï¿½ï¿½ï¿½Í£ï¿½ï¿½ï¿½Ê¾ï¿½Ç·ï¿½É¹ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½Ý³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½
 */
-int Seat_Srv_RoomInit(seat_list_t list, int roomID, int rowsCount,
-		int colsCount) {
-	// Çë²¹³äÍêÕû
-       return 0;
+int Seat_Srv_RoomInit(seat_list_t list, int roomID, int rowsCount,int colsCount)
+ {
+	// ï¿½ë²¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+       int i,j;
+       seat_list_t p;
+       for(i = 1;i<=rowsCount;i++)
+       {
+              for(j = 1;j<=colsCount;j++)
+              {
+                     p = (seat_list_t)malloc(sizeof(seat_node_t));
+                     p->data.roomID = roomID;
+                     p->data.row = i;
+                     p->data.column = j;
+                     p->data.status = 1;
+                     List_AddTail(list,p);
+                   
+              }
+       }
+        Seat_Perst_InsertBatch(list);//Seat_Perst_InsertBatch(seat_list_t list)
+       return 1;
 }
 
 /*
-º¯Êý¹¦ÄÜ£º¶Ô×ùÎ»Á´±ílist°´×ùÎ»ÐÐºÅ¡¢ÁÐºÅ½øÐÐÅÅÐò¡£
-²ÎÊýËµÃ÷£ºlistÎªseat_list_tÀàÐÍ£¬±íÊ¾´ýÅÅÐò×ùÎ»Á´±íÍ·Ö¸Õë¡£
-·µ »Ø Öµ£ºÎÞ¡£
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü£ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½listï¿½ï¿½ï¿½ï¿½Î»ï¿½ÐºÅ¡ï¿½ï¿½ÐºÅ½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+ï¿½ï¿½ï¿½ï¿½Ëµï¿½ï¿½ï¿½ï¿½listÎªseat_list_tï¿½ï¿½ï¿½Í£ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½Í·Ö¸ï¿½ë¡£
+ï¿½ï¿½ ï¿½ï¿½ Öµï¿½ï¿½ï¿½Þ¡ï¿½
 */
 void Seat_Srv_SortSeatList(seat_list_t list) {
-       // Çë²¹³äÍêÕû
+       seat_list_t listLeft,p;
+       if(list == NULL) return ;
+       list->prev->next = NULL;//æ–­å¼€å¾ªçŽ¯é“¾è¡¨
+       listLeft = list->next;
+       list->next = list->prev = list;
+       if(listLeft == NULL) return ;
+       else
+       {
+              p = listLeft;
+              listLeft = listLeft->next;
+              Seat_Srv_AddToSoftedList(list,p);
+       }
+       return ;
+       // ï¿½ë²¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 }
 
 /*
-º¯Êý¹¦ÄÜ£º½«Ò»¸ö×ùÎ»½áµã¼ÓÈëµ½ÒÑÅÅÐòµÄ×ùÎ»Á´±íÖÐ¡£
-²ÎÊýËµÃ÷£ºµÚÒ»¸ö²ÎÊýlistÎªseat_list_tÀàÐÍ£¬±íÊ¾´ý²åÈë½áµãµÄ×ùÎ»Á´±íÍ·Ö¸Õë£¬µÚ¶þ¸ö²ÎÊýnodeÎªseat_node_tÖ¸Õë£¬±íÊ¾ÐèÒª²åÈëµÄ×ùÎ»Êý¾Ý½áµã¡£
-·µ »Ø Öµ£ºÎÞ¡£
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü£ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½ï¿½ëµ½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½ï¿½Ð¡ï¿½
+ï¿½ï¿½ï¿½ï¿½Ëµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½listÎªseat_list_tï¿½ï¿½ï¿½Í£ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½Í·Ö¸ï¿½ë£¬ï¿½Ú¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½nodeÎªseat_node_tÖ¸ï¿½ë£¬ï¿½ï¿½Ê¾ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½ï¿½Ý½ï¿½ã¡£
+ï¿½ï¿½ ï¿½ï¿½ Öµï¿½ï¿½ï¿½Þ¡ï¿½
 */
 void Seat_Srv_AddToSoftedList(seat_list_t list, seat_node_t *node) {
-       // Çë²¹³äÍêÕû
+       // ï¿½ë²¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+       seat_list_t p  = list->next;//å¯èƒ½æœ‰é—®é¢˜
+       if(list == NULL) 
+       {
+              List_AddTail(list,node);
+       }
+       else
+       {
+              while(p!= list && (p->data.row < node->data.row || (p->data.row == node->data.row && p->data.column < node->data.column)))
+              {
+                     p = p->next;
+              }
+              List_AddHead(p,node);
+       }
+       return ;
 }
 
 /*
-º¯Êý¹¦ÄÜ£º¸ù¾Ý×ùÎ»µÄÐÐ¡¢ÁÐºÅ»ñÈ¡×ùÎ»Êý¾Ý¡£
-²ÎÊýËµÃ÷£ºµÚÒ»¸ö²ÎÊýlistÎªseat_list_tÀàÐÍ£¬±íÊ¾×ùÎ»Á´±íÍ·Ö¸Õë£¬
-         µÚ¶þ¸ö²ÎÊýrowÎªÕûÐÍ£¬±íÊ¾´ý»ñÈ¡×ùÎ»µÄÐÐºÅ£¬µÚÈý¸ö²ÎÊýcolumnÎªÕûÐÍ£¬±íÊ¾´ý»ñÈ¡×ùÎ»µÄÁÐºÅ¡£
-·µ »Ø Öµ£ºÎªseat_node_tÖ¸Õë£¬±íÊ¾»ñÈ¡µ½µÄ×ùÎ»Êý¾Ý¡£
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½ï¿½Ð¡ï¿½ï¿½ÐºÅ»ï¿½È¡ï¿½ï¿½Î»ï¿½ï¿½ï¿½Ý¡ï¿½
+ï¿½ï¿½ï¿½ï¿½Ëµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½listÎªseat_list_tï¿½ï¿½ï¿½Í£ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½Í·Ö¸ï¿½ë£¬
+         ï¿½Ú¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½rowÎªï¿½ï¿½ï¿½Í£ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½È¡ï¿½ï¿½Î»ï¿½ï¿½ï¿½ÐºÅ£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½columnÎªï¿½ï¿½ï¿½Í£ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½È¡ï¿½ï¿½Î»ï¿½ï¿½ï¿½ÐºÅ¡ï¿½
+ï¿½ï¿½ ï¿½ï¿½ Öµï¿½ï¿½Îªseat_node_tÖ¸ï¿½ë£¬ï¿½ï¿½Ê¾ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½ï¿½Ý¡ï¿½
 */
 seat_node_t * Seat_Srv_FindByRowCol(seat_list_t list, int row, int column) {
-       // Çë²¹³äÍêÕû
+       // ï¿½ë²¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
        return NULL;
 }
 
 /*
-º¯Êý¹¦ÄÜ£º¸ù¾Ý×ùÎ»IDÔÚÁ´±íÖÐ»ñÈ¡×ùÎ»Êý¾Ý¡£
-²ÎÊýËµÃ÷£ºµÚÒ»¸ö²ÎÊýlistÎªseat_list_tÀàÐÍ£¬Ö¸Ïò×ùÎ»Êý¾ÝÁ´±í£¬µÚ¶þ¸ö²ÎÊýIDÎªÕûÐÍ£¬±íÊ¾×ùÎ»ID¡£
-·µ »Ø Öµ£ºseat_node_tÀàÐÍ£¬±íÊ¾»ñÈ¡µÄ×ùÎ»Êý¾Ý¡£
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»IDï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð»ï¿½È¡ï¿½ï¿½Î»ï¿½ï¿½ï¿½Ý¡ï¿½
+ï¿½ï¿½ï¿½ï¿½Ëµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½listÎªseat_list_tï¿½ï¿½ï¿½Í£ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½IDÎªï¿½ï¿½ï¿½Í£ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½Î»IDï¿½ï¿½
+ï¿½ï¿½ ï¿½ï¿½ Öµï¿½ï¿½seat_node_tï¿½ï¿½ï¿½Í£ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½ï¿½Ý¡ï¿½
 */
 seat_node_t * Seat_Srv_FindByID(seat_list_t list, int rowID) {
-       // Çë²¹³äÍêÕû
+       // ï¿½ë²¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
        return NULL;
 }

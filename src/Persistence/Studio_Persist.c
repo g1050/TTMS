@@ -146,7 +146,7 @@ int Studio_Perst_DeleteByID(int ID) {
 ����˵������һ������IDΪ���ͣ���ʾ��Ҫ�������ݵ��ݳ���ID���ڶ�������bufΪstudio_tָ�룬ָ�������ݳ������ݵ�ָ�롣
 �� �� ֵ�����ͣ���ʾ�Ƿ�ɹ��������ݳ����ı�־��
 */
-int Studio_Perst_SelectByID(int ID, studio_t *buf) {
+int Studio_Perst_SelectByID(int ID, studio_t *buf) {//找到返回１，找不到返回０并且将演出厅信息放在buf中
 	assert(NULL!=buf);
 
 	FILE *fp = fopen(STUDIO_DATA_FILE, "rb");

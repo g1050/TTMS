@@ -1,119 +1,119 @@
 /*
 * Copyright(C), 2007-2008, XUPT Univ.
-* 用例编号：TTMS_UC_02	 
+* 锟斤拷锟斤拷锟斤拷牛锟絋TMS_UC_02	 
 * File name: Seat.h	  
-* Description : 设置座位用例业务逻辑层头文件	
+* Description : 锟斤拷锟斤拷锟斤拷位锟斤拷锟斤拷业锟斤拷锟竭硷拷锟斤拷头锟侥硷拷	
 * Author:   XUPT  		 
 * Version:  v.1 	 
-* Date: 	2015年4月22日	
+* Date: 	2015锟斤拷4锟斤拷22锟斤拷	
 */
 
 #ifndef SEAT_H_
 #define SEAT_H_
 
-//座位状态 
+//锟斤拷位状态 
 typedef enum{
-	SEAT_NONE=0,			//空位
-	SEAT_GOOD=1,			//有座位
-	SEAT_BROKEN=9			//损坏的座位
+	SEAT_NONE=0,			//锟斤拷位
+	SEAT_GOOD=1,			//锟斤拷锟斤拷位
+	SEAT_BROKEN=9			//锟金坏碉拷锟斤拷位
 }seat_status_t;
 
-//座位数据结构 
+//锟斤拷位锟斤拷锟捷结构 
 typedef struct {
-	int id;					//座位id
-	int roomID;				//所在演出厅id
-	int row;           		//座位行号
-    int column;        		//座位列号
-    seat_status_t status;	//座位在该行的状态，0表示没有座位，1表示有座位。扩展2可表示座位坏了
+	int id;					//锟斤拷位id
+	int roomID;				//锟斤拷锟斤拷锟捷筹拷锟斤拷id
+	int row;           		//锟斤拷位锟叫猴拷
+    int column;        		//锟斤拷位锟叫猴拷
+   int status;	//锟斤拷位锟节革拷锟叫碉拷状态锟斤拷0锟斤拷示没锟斤拷锟斤拷位锟斤拷1锟斤拷示锟斤拷锟斤拷位锟斤拷锟斤拷展2锟缴憋拷示锟斤拷位锟斤拷锟斤拷
 } seat_t;
 
 
-//双向链表
+//双锟斤拷锟斤拷锟斤拷
 typedef struct seat_node {
 	seat_t data;
 	struct seat_node *next, *prev;
 } seat_node_t, *seat_list_t;
 
 /*
-标识符：TTMS_SCU_Seat_Srv_RoomInit
-功能：根据行、列数初始化演出厅的座位
+锟斤拷识锟斤拷锟斤拷TTMS_SCU_Seat_Srv_RoomInit
+锟斤拷锟杰ｏ拷锟斤拷锟斤拷锟叫★拷锟斤拷锟斤拷锟斤拷始锟斤拷锟捷筹拷锟斤拷锟斤拷锟斤拷位
 */ 
 int Seat_Srv_RoomInit(seat_list_t list, int roomID,int rowsCount,int colsCount);
 
 /*
-标识符：TTMS_SCU_Seat_Srv_SortSeatList 
-功能：对座位链表list进行排序
+锟斤拷识锟斤拷锟斤拷TTMS_SCU_Seat_Srv_SortSeatList 
+锟斤拷锟杰ｏ拷锟斤拷锟斤拷位锟斤拷锟斤拷list锟斤拷锟斤拷锟斤拷锟斤拷
 */
 void Seat_Srv_SortSeatList(seat_list_t list );
 
 /*
-标识符：TTMS_SCU_Seat_Srv_AddSortedList
-功能：将结点node加入到已排序链表list中*/
+锟斤拷识锟斤拷锟斤拷TTMS_SCU_Seat_Srv_AddSortedList
+锟斤拷锟杰ｏ拷锟斤拷锟斤拷锟絥ode锟斤拷锟诫到锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷list锟斤拷*/
 void Seat_Srv_AddToSoftedList(seat_list_t list , seat_node_t *node);
 
 /*
-标识符：TTMS_SCU_Seat_Srv_Add
-功能：单个添加座位
+锟斤拷识锟斤拷锟斤拷TTMS_SCU_Seat_Srv_Add
+锟斤拷锟杰ｏ拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷位
 */
 int Seat_Srv_Add(const seat_t *data);
 
 /*
-标识符：TTMS_SCU_Seat_Srv_AddBatch 
-功能：批量添加座位
+锟斤拷识锟斤拷锟斤拷TTMS_SCU_Seat_Srv_AddBatch 
+锟斤拷锟杰ｏ拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷位
 */
 int Seat_Srv_AddBatch(seat_list_t list);
 
 /*
-标识符：TTMS_SCU_Seat_ Srv_Mod 
-功能：修改座位
+锟斤拷识锟斤拷锟斤拷TTMS_SCU_Seat_ Srv_Mod 
+锟斤拷锟杰ｏ拷锟睫革拷锟斤拷位
 */
 int Seat_Srv_Modify(const seat_t *data);
 
 /*
-标识符：TTMS_SCU_Seat_Srv_DelByID 
-功能：删除座位
+锟斤拷识锟斤拷锟斤拷TTMS_SCU_Seat_Srv_DelByID 
+锟斤拷锟杰ｏ拷删锟斤拷锟斤拷位
 */
 int Seat_Srv_DeleteByID(int ID);
 
 /*
-标识符：TTMS_SCU_Seat_Srv_DeleteAllByRoomID 
-功能：批量删除座位
+锟斤拷识锟斤拷锟斤拷TTMS_SCU_Seat_Srv_DeleteAllByRoomID 
+锟斤拷锟杰ｏ拷锟斤拷锟斤拷删锟斤拷锟斤拷位
 */
 int Seat_Srv_DeleteAllByRoomID(int roomID);
 
 /*
-标识符：TTMS_SCU_Seat_Srv_ FetchValidByRoomID 
-功能：根据放映厅ID提取有效的座位
+锟斤拷识锟斤拷锟斤拷TTMS_SCU_Seat_Srv_ FetchValidByRoomID 
+锟斤拷锟杰ｏ拷锟斤拷锟捷凤拷映锟斤拷ID锟斤拷取锟斤拷效锟斤拷锟斤拷位
 */
 int Seat_Srv_FetchValidByRoomID(seat_list_t list, int roomID);
 
 /*
-标识符：TTMS_SCU_Seat_Srv_FetchByID 
-功能：根据ID获取座位服务
+锟斤拷识锟斤拷锟斤拷TTMS_SCU_Seat_Srv_FetchByID 
+锟斤拷锟杰ｏ拷锟斤拷锟斤拷ID锟斤拷取锟斤拷位锟斤拷锟斤拷
 */ 
 int Seat_Srv_FetchByID(int ID, seat_t *buf);
 
 /*
-标识符：标识符：TTMS_SCU_Seat_Srv_FetchByRoomID 
-功能：根据演出厅ID获取所有座位服务
+锟斤拷识锟斤拷锟斤拷锟斤拷识锟斤拷锟斤拷TTMS_SCU_Seat_Srv_FetchByRoomID 
+锟斤拷锟杰ｏ拷锟斤拷锟斤拷锟捷筹拷锟斤拷ID锟斤拷取锟斤拷锟斤拷锟斤拷位锟斤拷锟斤拷
 */
 int Seat_Srv_FetchByRoomID(seat_list_t list, int roomID);
 
 /*
-标识符：TTMS_SCU_Seat_Srv_FetchByRoomID
-功能：根据放映厅ID提取有效的座位
+锟斤拷识锟斤拷锟斤拷TTMS_SCU_Seat_Srv_FetchByRoomID
+锟斤拷锟杰ｏ拷锟斤拷锟捷凤拷映锟斤拷ID锟斤拷取锟斤拷效锟斤拷锟斤拷位
 */
 int Seat_Srv_FetchValidByRoomID(seat_list_t list, int roomID);
 
 /*
-标识符：TTMS_SCU_Seat_Srv_FindByRC
-功能：根据行列号获取座位服务
+锟斤拷识锟斤拷锟斤拷TTMS_SCU_Seat_Srv_FindByRC
+锟斤拷锟杰ｏ拷锟斤拷锟斤拷锟斤拷锟叫号伙拷取锟斤拷位锟斤拷锟斤拷
 */
 seat_node_t * Seat_Srv_FindByRowCol(seat_list_t list, int row, int column);
 
 /*
-标识符：TTMS_SCU_Studio_Srv_FindByID
-功能：根据ID在链表中获取座位服务*/ 
+锟斤拷识锟斤拷锟斤拷TTMS_SCU_Studio_Srv_FindByID
+锟斤拷锟杰ｏ拷锟斤拷锟斤拷ID锟斤拷锟斤拷锟斤拷锟叫伙拷取锟斤拷位锟斤拷锟斤拷*/ 
 seat_node_t * Seat_Srv_FindByID(seat_list_t list, int seatID);
 
 

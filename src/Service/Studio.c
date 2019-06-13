@@ -1,11 +1,11 @@
 /*
 * Copyright(C), 2007-2008, XUPT Univ.
-* ÓÃÀý±àºÅ£ºTTMS_UC_01		 
+* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å£ï¿½TTMS_UC_01		 
 * File name: Studio_c		  
-* Description : ÑÝ³öÌüÓÃÀýÒµÎñÂß¼­²ã	
+* Description : ï¿½Ý³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òµï¿½ï¿½ï¿½ß¼ï¿½ï¿½ï¿½	
 * Author:   XUPT  		 
 * Version:  v.1 	 
-* Date: 	2015Äê4ÔÂ22ÈÕ	
+* Date: 	2015ï¿½ï¿½4ï¿½ï¿½22ï¿½ï¿½	
 */
 
 #include "Studio.h"
@@ -14,62 +14,61 @@
 #include <assert.h>
 
 /*
-±êÊ¶·û£ºTTMS_SCU_Studio_Srv_Add 
-º¯Êý¹¦ÄÜ£ºÓÃÓÚÌí¼ÓÒ»¸öÐÂÑÝ³öÌüÊý¾Ý¡£
-²ÎÊýËµÃ÷£ºdataÎªstudio_tÀàÐÍÖ¸Õë£¬ÊÇÐèÒªÌí¼ÓµÄÑÝ³öÌüÊý¾Ý½áµã¡£
-·µ »Ø Öµ£ºÕûÐÍ£¬±íÊ¾ÊÇ·ñ³É¹¦Ìí¼ÓÁËÑÝ³öÌüµÄ±êÖ¾¡£
+ï¿½ï¿½Ê¶ï¿½ï¿½ï¿½ï¿½TTMS_SCU_Studio_Srv_Add 
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½Ý³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý¡ï¿½
+ï¿½ï¿½ï¿½ï¿½Ëµï¿½ï¿½ï¿½ï¿½dataÎªstudio_tï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ë£¬ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½Óµï¿½ï¿½Ý³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý½ï¿½ã¡£
+ï¿½ï¿½ ï¿½ï¿½ Öµï¿½ï¿½ï¿½ï¿½ï¿½Í£ï¿½ï¿½ï¿½Ê¾ï¿½Ç·ï¿½É¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý³ï¿½ï¿½ï¿½ï¿½Ä±ï¿½Ö¾ï¿½ï¿½
 */
 int Studio_Srv_Add(studio_t *data) {
 	return Studio_Perst_Insert(data);
 }
 
 /*
-±êÊ¶·û£ºTTMS_SCU_Studio_ Srv _Mod 
-º¯Êý¹¦ÄÜ£ºÓÃÓÚÐÞ¸ÄÒ»¸öÑÝ³öÌüÊý¾Ý¡£
-²ÎÊýËµÃ÷£ºdataÎªstudio_tÀàÐÍÖ¸Õë£¬ÊÇÐèÒªÐÞ¸ÄµÄÑÝ³öÌüÊý¾Ý½áµã¡£
-·µ »Ø Öµ£ºÕûÐÍ£¬±íÊ¾ÊÇ·ñ³É¹¦ÐÞ¸ÄÁËÑÝ³öÌüµÄ±êÖ¾¡£
+ï¿½ï¿½Ê¶ï¿½ï¿½ï¿½ï¿½TTMS_SCU_Studio_ Srv _Mod 
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Þ¸ï¿½Ò»ï¿½ï¿½ï¿½Ý³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý¡ï¿½
+ï¿½ï¿½ï¿½ï¿½Ëµï¿½ï¿½ï¿½ï¿½dataÎªstudio_tï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ë£¬ï¿½ï¿½ï¿½ï¿½Òªï¿½Þ¸Äµï¿½ï¿½Ý³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý½ï¿½ã¡£
+ï¿½ï¿½ ï¿½ï¿½ Öµï¿½ï¿½ï¿½ï¿½ï¿½Í£ï¿½ï¿½ï¿½Ê¾ï¿½Ç·ï¿½É¹ï¿½ï¿½Þ¸ï¿½ï¿½ï¿½ï¿½Ý³ï¿½ï¿½ï¿½ï¿½Ä±ï¿½Ö¾ï¿½ï¿½
 */
 int Studio_Srv_Modify(const studio_t *data) {
 	return Studio_Perst_Update(data);
 }
 
 /*
-±êÊ¶·û£ºTTMS_SCU_Studio_Srv_DelByID 
-º¯ÊýÉùÃ÷£ºint Studio_Srv_DeleteByID(int id)¡£
-º¯Êý¹¦ÄÜ£ºÓÃÓÚÉ¾³ýÒ»¸öÑÝ³öÌüµÄÊý¾Ý¡£
-²ÎÊýËµÃ÷£ºidÎªÕûÐÍ£¬ÊÇÐèÒªÉ¾³ýµÄÑÝ³öÌüID¡£
-·µ »Ø Öµ£ºÕûÐÍ£¬±íÊ¾ÊÇ·ñ³É¹¦É¾³ýÁËÑÝ³öÌüµÄ±êÖ¾¡£
+ï¿½ï¿½Ê¶ï¿½ï¿½ï¿½ï¿½TTMS_SCU_Studio_Srv_DelByID 
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½int Studio_Srv_DeleteByID(int id)ï¿½ï¿½
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü£ï¿½ï¿½ï¿½ï¿½ï¿½É¾ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Ý³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý¡ï¿½
+ï¿½ï¿½ï¿½ï¿½Ëµï¿½ï¿½ï¿½ï¿½idÎªï¿½ï¿½ï¿½Í£ï¿½ï¿½ï¿½ï¿½ï¿½ÒªÉ¾ï¿½ï¿½ï¿½ï¿½ï¿½Ý³ï¿½ï¿½ï¿½IDï¿½ï¿½
+ï¿½ï¿½ ï¿½ï¿½ Öµï¿½ï¿½ï¿½ï¿½ï¿½Í£ï¿½ï¿½ï¿½Ê¾ï¿½Ç·ï¿½É¹ï¿½É¾ï¿½ï¿½ï¿½ï¿½ï¿½Ý³ï¿½ï¿½ï¿½ï¿½Ä±ï¿½Ö¾ï¿½ï¿½
 */
 int Studio_Srv_DeleteByID(int ID) {
 	return Studio_Perst_DeleteByID(ID);
 }
 
 /*
-±êÊ¶·û£ºTTMS_SCU_Studio_Srv_FetchByID
-º¯Êý¹¦ÄÜ£º¸ù¾ÝÑÝ³öÌüID»ñÈ¡Ò»¸öÑÝ³öÌüµÄÊý¾Ý¡£
-²ÎÊýËµÃ÷£ºµÚÒ»¸ö²ÎÊýIDÎªÕûÐÍ£¬ÊÇÐèÒª»ñÈ¡Êý¾ÝµÄÑÝ³öÌüID£»µÚ¶þ¸ö²ÎÊýbufÎªstudio_tÀàÐÍÖ¸Õë£¬Ö¸Ïò»ñÈ¡µÄÑÝ³öÌüÊý¾Ý¡£
-·µ »Ø Öµ£ºÕûÐÍ£¬±íÊ¾ÊÇ·ñ³É¹¦»ñÈ¡ÁËÑÝ³öÌüÊý¾ÝµÄ±êÖ¾¡£
+ï¿½ï¿½Ê¶ï¿½ï¿½ï¿½ï¿½TTMS_SCU_Studio_Srv_FetchByID
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý³ï¿½ï¿½ï¿½IDï¿½ï¿½È¡Ò»ï¿½ï¿½ï¿½Ý³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý¡ï¿½
+ï¿½ï¿½ï¿½ï¿½Ëµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½IDÎªï¿½ï¿½ï¿½Í£ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½È¡ï¿½ï¿½ï¿½Ýµï¿½ï¿½Ý³ï¿½ï¿½ï¿½IDï¿½ï¿½ï¿½Ú¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½bufÎªstudio_tï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ë£¬Ö¸ï¿½ï¿½ï¿½È¡ï¿½ï¿½ï¿½Ý³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý¡ï¿½
+ï¿½ï¿½ ï¿½ï¿½ Öµï¿½ï¿½ï¿½ï¿½ï¿½Í£ï¿½ï¿½ï¿½Ê¾ï¿½Ç·ï¿½É¹ï¿½ï¿½ï¿½È¡ï¿½ï¿½ï¿½Ý³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÝµÄ±ï¿½Ö¾ï¿½ï¿½
 */
 int Studio_Srv_FetchByID(int ID, studio_t *buf) {
 	return Studio_Perst_SelectByID(ID, buf);
-
 }
 
 /*
-±êÊ¶·û£ºTTMS_SCU_Studio_Srv_FetchAll 
-º¯Êý¹¦ÄÜ£º»ñÈ¡ËùÓÐÑÝ³öÌüµÄÊý¾Ý£¬ÐÎ³ÉÒÔlistÎªÍ·Ö¸ÕëµÄÑÝ³öÌüÁ´±í¡£
-²ÎÊýËµÃ÷£ºlistÊÇstudio_list_tÀàÐÍÖ¸Õë£¬Ö¸ÏòÑÝ³öÌüÁ´±íµÄÍ·Ö¸Õë¡£
-·µ »Ø Öµ£ºÕûÐÍ£¬±íÊ¾ÊÇ·ñ³É¹¦»ñÈ¡ÁËËùÓÐÑÝ³öÌüµÄ±êÖ¾¡£
+ï¿½ï¿½Ê¶ï¿½ï¿½ï¿½ï¿½TTMS_SCU_Studio_Srv_FetchAll 
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü£ï¿½ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½Ý³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý£ï¿½ï¿½Î³ï¿½ï¿½ï¿½listÎªÍ·Ö¸ï¿½ï¿½ï¿½ï¿½Ý³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+ï¿½ï¿½ï¿½ï¿½Ëµï¿½ï¿½ï¿½ï¿½listï¿½ï¿½studio_list_tï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ë£¬Ö¸ï¿½ï¿½ï¿½Ý³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í·Ö¸ï¿½ë¡£
+ï¿½ï¿½ ï¿½ï¿½ Öµï¿½ï¿½ï¿½ï¿½ï¿½Í£ï¿½ï¿½ï¿½Ê¾ï¿½Ç·ï¿½É¹ï¿½ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý³ï¿½ï¿½ï¿½ï¿½Ä±ï¿½Ö¾ï¿½ï¿½
 */
 int Studio_Srv_FetchAll(studio_list_t list) {
 	return Studio_Perst_SelectAll(list);
 }
 
 /*
-±êÊ¶·û£ºTTMS_SCU_Studio_Srv_FindByID
-º¯Êý¹¦ÄÜ£º¸ù¾ÝÑÝ³öÌüIDºÍÁ´±íÍ·Ö¸Õë»ñÈ¡¸ÃÁ´±íÉÏÏàÓ¦ÑÝ³öÌüµÄÊý¾Ý¡£
-²ÎÊýËµÃ÷£ºµÚÒ»¸ö²ÎÊýlistÎªstudio_list_tÀàÐÍÖ¸Õë£¬Ö¸ÏòÑÝ³öÌüÁ´±íµÄÍ·Ö¸Õë£»µÚ¶þ¸ö²ÎÊýIDÎªÕûÐÍ£¬±íÊ¾ÐèÒª»ñÈ¡Êý¾ÝµÄÑÝ³öÌüID¡£
-·µ »Ø Öµ£ºstudio_node_tÖ¸Õë£¬±íÊ¾»ñÈ¡ÏàÓ¦IDµÄÑÝ³öÌüÊý¾Ý¡£
+ï¿½ï¿½Ê¶ï¿½ï¿½ï¿½ï¿½TTMS_SCU_Studio_Srv_FindByID
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý³ï¿½ï¿½ï¿½IDï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í·Ö¸ï¿½ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½Ý³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý¡ï¿½
+ï¿½ï¿½ï¿½ï¿½Ëµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½listÎªstudio_list_tï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ë£¬Ö¸ï¿½ï¿½ï¿½Ý³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í·Ö¸ï¿½ë£»ï¿½Ú¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½IDÎªï¿½ï¿½ï¿½Í£ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½Òªï¿½ï¿½È¡ï¿½ï¿½ï¿½Ýµï¿½ï¿½Ý³ï¿½ï¿½ï¿½IDï¿½ï¿½
+ï¿½ï¿½ ï¿½ï¿½ Öµï¿½ï¿½studio_node_tÖ¸ï¿½ë£¬ï¿½ï¿½Ê¾ï¿½ï¿½È¡ï¿½ï¿½Ó¦IDï¿½ï¿½ï¿½Ý³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý¡ï¿½
 */
 studio_node_t *Studio_Srv_FindByID(studio_list_t list, int ID){
 	assert(NULL!=list);

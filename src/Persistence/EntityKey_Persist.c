@@ -1,10 +1,10 @@
 /*
 * Copyright(C), 2007-2008, XUPT Univ.	 
 * File name: EntityKey_Persit.c			  
-* Description :  Ö÷¼ü·þÎñ½öÓÃÓÚÔÚ³Ö¾Ã»¯²ãÖÐÌí¼ÓÒ»¸öÐÂµÄÒµÎñÊµÌåÊý¾ÝÊ±£¬ÎªÆä·ÖÅäÎ¨Ò»Ö÷¼ü¡£ 
+* Description :  ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú³Ö¾Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Âµï¿½Òµï¿½ï¿½Êµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½ï¿½Î¨Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
 * Author:   XUPT  		 
 * Version:  v.1 	 
-* Date: 	2015Äê4ÔÂ22ÈÕ	
+* Date: 	2015ï¿½ï¿½4ï¿½ï¿½22ï¿½ï¿½	
 */
 
 #include "EntityKey_Persist.h"
@@ -15,7 +15,7 @@
 #include<unistd.h>
 #include <assert.h>
 
-//¶¨Òå´æ´¢ËùÓÐÊµÌåÖ÷¼üµÄÎÄ¼þÃûÎªEntityKey.dat
+//ï¿½ï¿½ï¿½ï¿½æ´¢ï¿½ï¿½ï¿½ï¿½Êµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ÎªEntityKey.dat
 static const char ENTITY_KEY_FILE[] = "EntityKey.dat";
 
 typedef struct {
@@ -25,9 +25,9 @@ typedef struct {
 
 
 /*
-±êÊ¶·û£ºTTMS_SCU_EntKey_Perst_GetNewKeys
-¹¦ÄÜ£º¸ù¾Ý´«ÈëµÄÊµÌåÃûentName¼°ÊµÌå¸öÊýcount£¬ÎªÕâ¸öcount¸öÐÂÊµÌå·ÖÅäÒ»¸ö³¤¶ÈÎªcountµÄÖ÷¼üÖµÇø¼ä£¬
-     Ê¹µÃÃ¿¸öÐÂÊµÌåÔÚ¸ÃÇø¼äÄÚ¶¼¿ÉÒÔ·ÖÅäµ½ Î¨Ò»µÄ Ö÷¼ü¡£·µ»ØÖµÎª¸ÃÖ÷¼üÇø¼äµÄ×îÐ¡Öµ
+ï¿½ï¿½Ê¶ï¿½ï¿½ï¿½ï¿½TTMS_SCU_EntKey_Perst_GetNewKeys
+ï¿½ï¿½ï¿½Ü£ï¿½ï¿½ï¿½ï¿½Ý´ï¿½ï¿½ï¿½ï¿½Êµï¿½ï¿½ï¿½ï¿½entNameï¿½ï¿½Êµï¿½ï¿½ï¿½ï¿½ï¿½countï¿½ï¿½Îªï¿½ï¿½ï¿½countï¿½ï¿½ï¿½ï¿½Êµï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªcountï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½ä£¬
+     Ê¹ï¿½ï¿½Ã¿ï¿½ï¿½ï¿½ï¿½Êµï¿½ï¿½ï¿½Ú¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú¶ï¿½ï¿½ï¿½ï¿½Ô·ï¿½ï¿½äµ½ Î¨Ò»ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÖµÎªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¡Öµ
 */
 long EntKey_Perst_GetNewKeys(const char entName[], int count) {
 	entity_key_t ent;
@@ -40,15 +40,15 @@ long EntKey_Perst_GetNewKeys(const char entName[], int count) {
 		return 0;
 	}
 
-	//ÅÐ¶ÏÎÄ¼þÊÇ·ñ´æÔÚ
+	//ï¿½Ð¶ï¿½ï¿½Ä¼ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½
 	if (access(ENTITY_KEY_FILE, 0)) {
-		//ÐÂ½¨ÎÄ¼þ
+		//ï¿½Â½ï¿½ï¿½Ä¼ï¿½
 		fp = fopen(ENTITY_KEY_FILE, "wb+");
 		if (NULL == fp) {
 			return 0;
 		}
 	} else {
-		//ÒÔ¸üÐÂÄ£Ê½´ò¿ª
+		//ï¿½Ô¸ï¿½ï¿½ï¿½Ä£Ê½ï¿½ï¿½
 		fp = fopen(ENTITY_KEY_FILE, "rb+");
 		if (NULL == fp) {
 			return 0;
@@ -57,7 +57,7 @@ long EntKey_Perst_GetNewKeys(const char entName[], int count) {
 
 	while (!feof(fp)) {
 		if (fread(&ent, sizeof(entity_key_t), 1, fp)) {
-			if (0 == strcmp(ent.entyName, entName)) {	//ÕÒµ½Ö÷¼ü¼ÇÂ¼
+			if (0 == strcmp(ent.entyName, entName)) {	//ï¿½Òµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â¼
 				fseek(fp, -((int)sizeof(entity_key_t)), SEEK_CUR);
 				newEntKey = ent.key + 1;
 				ent.key += count;
@@ -68,7 +68,7 @@ long EntKey_Perst_GetNewKeys(const char entName[], int count) {
 		}
 	}
 
-	//Î´ÕÒµ½ÊµÌåµÄÖ÷¼ü¼ÇÂ¼£¬ÐÂ¼ÓÖ÷¼ü¼ÇÂ¼µ½ÎÄ¼þÄ©Î²£¬
+	//Î´ï¿½Òµï¿½Êµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â¼ï¿½ï¿½ï¿½Â¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â¼ï¿½ï¿½ï¿½Ä¼ï¿½Ä©Î²ï¿½ï¿½
 	if (!found) {
 		strcpy(ent.entyName, entName);
 		newEntKey = 1;

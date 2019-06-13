@@ -1,11 +1,11 @@
 /*
 * Copyright(C), 2007-2008, XUPT Univ.
-* ÓÃÀý±àºÅ£ºTTMS_UC_02		 
+* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å£ï¿½TTMS_UC_02		 
 * File name: Seat_UI.h			  
-* Description : ÉèÖÃ×ùÎ»ÓÃÀý½çÃæ²ãÍ·ÎÄ¼þ	
+* Description : ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í·ï¿½Ä¼ï¿½	
 * Author:   XUPT  		 
 * Version:  v.1 	 
-* Date: 	2015Äê4ÔÂ22ÈÕ	
+* Date: 	2015ï¿½ï¿½4ï¿½ï¿½22ï¿½ï¿½	
 */
 
 #ifndef SEAT_UI_H_
@@ -13,28 +13,28 @@
 #include "../Common/List.h"
 #include "../Service/Seat.h"
 
-//±êÊ¶·û£ºTTMS_SCU_Seat_UI_MgtEnt 
-//¹¦ÄÜ£º¹ÜÀí×ùÎ»½çÃæ
+//ï¿½ï¿½Ê¶ï¿½ï¿½ï¿½ï¿½TTMS_SCU_Seat_UI_MgtEnt 
+//ï¿½ï¿½ï¿½Ü£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½
 void Seat_UI_MgtEntry(int roomID);
 
-//±êÊ¶·û£ºTTMS_SCU_Seat_UI_S2C 
-//¹¦ÄÜ£º¸ù¾Ý×ùÎ»×´Ì¬»ñÈ¡½çÃæÏÔÊ¾·ûºÅ½çÃæ
+//ï¿½ï¿½Ê¶ï¿½ï¿½ï¿½ï¿½TTMS_SCU_Seat_UI_S2C 
+//ï¿½ï¿½ï¿½Ü£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»×´Ì¬ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½Å½ï¿½ï¿½ï¿½
 char Seat_UI_Status2Char(seat_status_t status);
 
-//±êÊ¶·û£ºTTMS_SCU_Seat_UI_C2S
-//¹¦ÄÜ£º¸ù¾ÝÊäÈë·ûºÅ»ñÈ¡×ùÎ»×´Ì¬½çÃæ
+//ï¿½ï¿½Ê¶ï¿½ï¿½ï¿½ï¿½TTMS_SCU_Seat_UI_C2S
+//ï¿½ï¿½ï¿½Ü£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å»ï¿½È¡ï¿½ï¿½Î»×´Ì¬ï¿½ï¿½ï¿½ï¿½
 seat_status_t Seat_UI_Char2Status(char statusChar);
 
-//±êÊ¶·û£ºTTMS_SCU_Seat_UI_Add
-//¹¦ÄÜ£ºÌí¼ÓÐÂ×ùÎ»½çÃæ 
+//ï¿½ï¿½Ê¶ï¿½ï¿½ï¿½ï¿½TTMS_SCU_Seat_UI_Add
+//ï¿½ï¿½ï¿½Ü£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½ 
 int Seat_UI_Add(seat_list_t list, int roomID, int rowsCount,int colsCount);
 
-//±êÊ¶·û£ºTTMS_SCU_Seat_UI_Mod 
-//¹¦ÄÜ£ºÐÞ¸Ä×ùÎ»½çÃæ
+//ï¿½ï¿½Ê¶ï¿½ï¿½ï¿½ï¿½TTMS_SCU_Seat_UI_Mod 
+//ï¿½ï¿½ï¿½Ü£ï¿½ï¿½Þ¸ï¿½ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½
 int Seat_UI_Modify(seat_list_t list, int rowsCount, int colsCount);
 
-//±êÊ¶·û£ºTTMS_SCU_Seat_UI_Del
-//¹¦ÄÜ£º¸ùÉ¾³ý×ùÎ»½çÃæ
+//ï¿½ï¿½Ê¶ï¿½ï¿½ï¿½ï¿½TTMS_SCU_Seat_UI_Del
+//ï¿½ï¿½ï¿½Ü£ï¿½ï¿½ï¿½É¾ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½
 int Seat_UI_Delete(seat_list_t list, int rowsCount, int colsCount);
 
 

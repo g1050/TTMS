@@ -28,7 +28,7 @@ static const int STUDIO_PAGE_SIZE = 5;
 */
 void Studio_UI_MgtEntry(void) {
 	int i, id;
-	char choice;
+	int choice;
 
 	studio_list_t head;
 	studio_node_t *pos;
@@ -48,9 +48,9 @@ void Studio_UI_MgtEntry(void) {
 		printf(
 				"\n==================================================================\n");
 		printf(
-				"********************** Projection Room List **********************\n");
-		printf("%5s  %18s  %10s  %10s  %10s\n", "ID", "Name", "Rows Count",
-				"Columns Count", "Seats Count");
+				"********************** 演出厅信息 **********************\n");
+		printf("%5s  %18s  %10s  %10s  %10s\n", "ID", "名字", "行",
+				"列", "座位数量");
 		printf(
 				"------------------------------------------------------------------\n");
 		    //��ʾ����
@@ -61,7 +61,7 @@ void Studio_UI_MgtEntry(void) {
 		}
 
 		printf(
-				"------- Total Records:%2d ----------------------- Page %2d/%2d ----\n",
+				"------- 共:%2d页 ----------------------- 页数 :%2d/%2d ----\n",
 				paging.totalRecords, Pageing_CurPage(paging),
 				Pageing_TotalPages(paging));
 		
@@ -73,21 +73,21 @@ void Studio_UI_MgtEntry(void) {
         printf(
 				"******************************************************************\n");
 		printf(
-				"[P]revPage|[N]extPage | [A]dd|[D]elete|[U]pdate | [S]eat | [R]eturn");
+				"[1]上一页|[2]下一页 | [3]添加演出厅|[4]删除演出厅|[5]修改演出厅 | [6]座位管理 | [0]返回上层");
 		printf(
 				"\n\n\n\n==================================================================\n");
-        printf("Your Choice:");//ѡ��
+        printf("请输入您要进行的操作:");//ѡ��
 		fflush(stdin);
-        while(getchar() != '\n');
-		scanf("%c", &choice);
-        //printf("%c",choice);
+        setbuf(stdin,NULL);
+		scanf("%d", &choice);
+		setbuf(stdin,NULL);
+        printf("choice = %c",choice);
 		fflush(stdin);
 
 
         //����ѡ�������Ӧ�ĺ���
 		switch (choice) {
-		case 'a':
-		case 'A':
+		case 3:
             system("clear");
 			if (Studio_UI_Add()) //�����ӳɹ����������һҳ��ʾ
 			{
@@ -95,52 +95,47 @@ void Studio_UI_MgtEntry(void) {
 				Paging_Locate_LastPage(head, paging, studio_node_t);
 			}
 			break;
-		case 'd':
-		case 'D':
+		case 4:
             system("clear");
-			printf("Input the ID:");
+			printf("请输入要删除的演出厅ID:");
 			scanf("%d", &id);
 			if (Studio_UI_Delete(id)) {	//������������
 				paging.totalRecords = Studio_Srv_FetchAll(head);
 				List_Paging(head, paging, studio_node_t);
 			}
 			break;
-		case 'u':
-		case 'U':
+		case 5:
             system("clear");
-			printf("Input the ID:");
+			printf("请输入要修改的演出厅ID");
 			scanf("%d", &id);
 			if (Studio_UI_Modify(id)) {	//������������
 				paging.totalRecords = Studio_Srv_FetchAll(head);
 				List_Paging(head, paging, studio_node_t);
 			}
 			break;
-		case 's':
-		case 'S':
+		case 6:
             system("clear");
-			printf("Input the ID:");
+			printf("请输入要管理座位的演出厅:");
 			scanf("%d", &id);
-			//Seat_UI_MgtEntry(id);
+			Seat_UI_MgtEntry(id);
 			paging.totalRecords = Studio_Srv_FetchAll(head);
 			List_Paging(head, paging, studio_node_t)
 			;
 			break;
-		case 'p':
-		case 'P':
+		case 1:
             system("clear");
 			if (!Pageing_IsFirstPage(paging)) {
 				Paging_Locate_OffsetPage(head, paging, -1, studio_node_t);
 			}
 			break;
-		case 'n':
-		case 'N':
+		case 2:
             system("clear");
 			if (!Pageing_IsLastPage(paging)) {
 				Paging_Locate_OffsetPage(head, paging, 1, studio_node_t);
 			}
 			break;
 		}
-	} while (choice != 'r' && choice != 'R');
+	} while (choice != 0);
 	//�ͷ������ռ�
 	List_Destroy(head, studio_node_t);
 }
@@ -164,7 +159,7 @@ int Studio_UI_Add(void) {
 		//ѯ�ʷ�ӳ����Ϣ
 		printf("Room Name:");
 		fflush(stdin);
-		while(getchar() != '\n');
+		setbuf(stdin,NULL);
 		gets(rec.name);
 
 		printf("Row Count of Seats:");
@@ -173,7 +168,7 @@ int Studio_UI_Add(void) {
 		printf("Column Count of Seats:");
 		scanf("%d", &(rec.colsCount));
 		
-		rec.seatsCount = rec.rowsCount*rec.colsCount;
+		rec.seatsCount = 0;
 		printf("=======================================================\n");
 
 		if (Studio_Srv_Add(&rec)) {
@@ -269,14 +264,14 @@ int Studio_UI_Delete(int id) {
 	if (Studio_Srv_DeleteByID(id)) {
 		//��ɾ����ӳ��ʱ��ͬʱ���ݷ�ӳ��idɾ����λ�ļ��е���λ
 		if (Seat_Srv_DeleteAllByRoomID(id))
-			printf("The seats of the room deleted successfully!\n");
+			printf("成功删除该演出厅座位!!\n");
 		printf(
-				"The room deleted successfully!\nPress [Enter] key to return!\n");
+				"成功删除该演出厅!\n按下[Enter] 返回上层!\n");
 		rtn = 1;
 	} else {
-		printf("The room does not exist!\nPress [Enter] key to return!\n");
+		printf("该演出厅不存在!\n按下 [Enter] 返回上层!\n");
 	}
-
+	setbuf(stdin,NULL);
 	getchar();
 	return rtn;
 }

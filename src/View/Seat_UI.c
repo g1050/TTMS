@@ -1,11 +1,11 @@
 /*
 * Copyright(C), 2007-2008, XUPT Univ.	 
-* ÓÃÀý±àºÅ£ºTTMS_UC_02
+* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å£ï¿½TTMS_UC_02
 * File name: Seat_UI.c			  
-* Description : ÉèÖÃ×ùÎ»ÓÃÀý½çÃæ²ã	
+* Description : ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½	
 * Author:   XUPT  		 
 * Version:  v.1 	 
-* Date: 	2015Äê4ÔÂ22ÈÕ	
+* Date: 	2015ï¿½ï¿½4ï¿½ï¿½22ï¿½ï¿½	
 */
 
 #include "Seat_UI.h"
@@ -16,10 +16,10 @@
 #include <stdio.h>
 
 /*
-±íÊ¶·û£ºTTMS_SCU_Seat_UI_S2C 
-º¯Êý¹¦ÄÜ£º¸ù¾Ý×ùÎ»×´Ì¬»ñÈ¡½çÃæÏÔÊ¾·ûºÅ¡£
-²ÎÊýËµÃ÷£ºstatusÎªseat_status_tÀàÐÍ£¬±íÊ¾×ùÎ»×´Ì¬¡£
-·µ »Ø Öµ£º×Ö·ûÐÍ£¬±íÊ¾×ùÎ»µÄ½çÃæÏÔÊ¾·ûºÅ¡£
+ï¿½ï¿½Ê¶ï¿½ï¿½ï¿½ï¿½TTMS_SCU_Seat_UI_S2C 
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»×´Ì¬ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½Å¡ï¿½
+ï¿½ï¿½ï¿½ï¿½Ëµï¿½ï¿½ï¿½ï¿½statusÎªseat_status_tï¿½ï¿½ï¿½Í£ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½Î»×´Ì¬ï¿½ï¿½
+ï¿½ï¿½ ï¿½ï¿½ Öµï¿½ï¿½ï¿½Ö·ï¿½ï¿½Í£ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½Î»ï¿½Ä½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½Å¡ï¿½
 */
 inline char Seat_UI_Status2Char(seat_status_t status) {
 
@@ -27,42 +27,70 @@ inline char Seat_UI_Status2Char(seat_status_t status) {
 }
 
 /*
-±êÊ¶·û£ºTTMS_SCU_Seat_UI_C2S
-º¯Êý¹¦ÄÜ£º¸ù¾ÝÊäÈë·ûºÅ»ñÈ¡×ùÎ»×´Ì¬¡£
-²ÎÊýËµÃ÷£ºstatusCharÎª×Ö·ûÐÍ£¬±íÊ¾ÉèÖÃ×ùÎ»µÄÊäÈë·ûºÅ¡£
-·µ »Ø Öµ£ºseat_status_tÀàÐÍ£¬±íÊ¾×ùÎ»µÄ×´Ì¬¡£
+ï¿½ï¿½Ê¶ï¿½ï¿½ï¿½ï¿½TTMS_SCU_Seat_UI_C2S
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å»ï¿½È¡ï¿½ï¿½Î»×´Ì¬ï¿½ï¿½
+ï¿½ï¿½ï¿½ï¿½Ëµï¿½ï¿½ï¿½ï¿½statusCharÎªï¿½Ö·ï¿½ï¿½Í£ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å¡ï¿½
+ï¿½ï¿½ ï¿½ï¿½ Öµï¿½ï¿½seat_status_tï¿½ï¿½ï¿½Í£ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½Î»ï¿½ï¿½×´Ì¬ï¿½ï¿½
 */
 inline seat_status_t Seat_UI_Char2Status(char statusChar) {
 	return SEAT_NONE;
 }
 
 /*
-±êÊ¶·û£ºTTMS_SCU_Seat_UI_MgtEnt
-º¯Êý¹¦ÄÜ£º½çÃæ²ã¹ÜÀí×ùÎ»µÄÈë¿Úº¯Êý£¬ÏÔÊ¾µ±Ç°µÄ×ùÎ»Êý¾Ý£¬²¢Ìá¹©×ùÎ»Êý¾ÝÌí¼Ó¡¢ÐÞ¸Ä¡¢É¾³ý¹¦ÄÜ²Ù×÷µÄÈë¿Ú¡£
-²ÎÊýËµÃ÷£ºroomIDÎªÕûÐÍ£¬ÊÇÐèÒªÉèÖÃ×ùÎ»µÄÑÝ³öÌüID¡£
-·µ »Ø Öµ£ºÎÞ¡£
+ï¿½ï¿½Ê¶ï¿½ï¿½ï¿½ï¿½TTMS_SCU_Seat_UI_MgtEnt
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½Úºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½ï¿½Ý£ï¿½ï¿½ï¿½ï¿½á¹©ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¡ï¿½ï¿½Þ¸Ä¡ï¿½É¾ï¿½ï¿½ï¿½ï¿½ï¿½Ü²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú¡ï¿½
+ï¿½ï¿½ï¿½ï¿½Ëµï¿½ï¿½ï¿½ï¿½roomIDÎªï¿½ï¿½ï¿½Í£ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½ï¿½Ý³ï¿½ï¿½ï¿½IDï¿½ï¿½
+ï¿½ï¿½ ï¿½ï¿½ Öµï¿½ï¿½ï¿½Þ¡ï¿½
 */ 
 void Seat_UI_MgtEntry(int roomID) {
-
+	studio_t buf;
+	if(Studio_Srv_FetchByID(roomID,&buf))
+	{
+		//printf("æ¼”å‡ºåŽ…å­˜åœ¨!\n");
+				seat_list_t list;
+				List_Init(list,seat_node_t);
+				int q = Seat_Srv_FetchByRoomID(list,roomID);
+				printf("q == %d\n",q);
+				if( q== 0)//listç”¨äºŽå­˜æ”¾åº§ä½ä¿¡æ¯
+				{//ä¸å­˜åœ¨åº§ä½
+					printf("è°ƒç”¨initåˆå§‹åŒ–åº§ä½!\n");
+					printf("%d %d\n",buf.colsCount,buf.rowsCount);
+					Seat_Srv_RoomInit(list,roomID,buf.rowsCount,buf.colsCount);
+					buf.seatsCount = buf.colsCount*buf.rowsCount;
+					Studio_Srv_Modify(&buf);
+				}
+				else
+				{
+						printf("è¾“å‡ºåº§ä½!\n");
+				}
+		
+	}
+	else
+	{
+		printf("æ¼”å‡ºåŽ…ä¸å­˜åœ¨!\n");
+		return ;
+	}
+	
+	//å±•ç¤ºèœå•
 }
 
 /*
-Ê¶·û£ºTTMS_SCU_Seat_UI_Add
-º¯Êý¹¦ÄÜ£ºÓÃÓÚÌí¼ÓÒ»¸öÐÂµÄ×ùÎ»Êý¾Ý¡£
-²ÎÊýËµÃ÷£ºµÚÒ»¸ö²ÎÊýlistÎªseat_list_tÀàÐÍÖ¸Õë£¬Ö¸Ïò×ùÎ»Á´±íÍ·Ö¸Õë£¬
-         µÚ¶þ¸ö²ÎÊýrowsCountÎªÕûÐÍ£¬±íÊ¾×ùÎ»ËùÔÚÐÐºÅ£¬µÚÈý¸ö²ÎÊýcolsCountÎªÕûÐÍ£¬±íÊ¾×ùÎ»ËùÔÚÁÐºÅ¡£
-·µ »Ø Öµ£ºÕûÐÍ£¬±íÊ¾ÊÇ·ñ³É¹¦Ìí¼ÓÁË×ùÎ»µÄ±êÖ¾¡£
+Ê¶ï¿½ï¿½ï¿½ï¿½TTMS_SCU_Seat_UI_Add
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Âµï¿½ï¿½ï¿½Î»ï¿½ï¿½ï¿½Ý¡ï¿½
+ï¿½ï¿½ï¿½ï¿½Ëµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½listÎªseat_list_tï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ë£¬Ö¸ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½Í·Ö¸ï¿½ë£¬
+         ï¿½Ú¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½rowsCountÎªï¿½ï¿½ï¿½Í£ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½ï¿½ÐºÅ£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½colsCountÎªï¿½ï¿½ï¿½Í£ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½ï¿½ÐºÅ¡ï¿½
+ï¿½ï¿½ ï¿½ï¿½ Öµï¿½ï¿½ï¿½ï¿½ï¿½Í£ï¿½ï¿½ï¿½Ê¾ï¿½Ç·ï¿½É¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½Ä±ï¿½Ö¾ï¿½ï¿½
 */
-int Seat_UI_Add(seat_list_t list, int roomID, int row, int column) {  //ÊäÈëÒ»¸ö×ùÎ»
+int Seat_UI_Add(seat_list_t list, int roomID, int row, int column) {  //ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½Î»
 
 	return 0;
 }
 
 /*
-±êÊ¶·û£ºTTMS_SCU_Seat_UI_Mod 
-º¯Êý¹¦ÄÜ£ºÓÃÓÚÐÞ¸ÄÒ»¸ö×ùÎ»Êý¾Ý¡£
-²ÎÊýËµÃ÷£ºµÚÒ»¸ö²ÎÊýlistÎªseat_list_tÀàÐÍÖ¸Õë£¬Ö¸Ïò×ùÎ»Á´±íÍ·Ö¸Õë£¬µÚ¶þ¸ö²ÎÊýrowsCountÎªÕûÐÍ£¬±íÊ¾×ùÎ»ËùÔÚÐÐºÅ£¬µÚÈý¸ö²ÎÊýcolsCountÎªÕûÐÍ£¬±íÊ¾×ùÎ»ËùÔÚÁÐºÅ¡£
-·µ »Ø Öµ£ºÕûÐÍ£¬±íÊ¾ÊÇ·ñ³É¹¦ÐÞ¸ÄÁË×ùÎ»µÄ±êÖ¾¡£
+ï¿½ï¿½Ê¶ï¿½ï¿½ï¿½ï¿½TTMS_SCU_Seat_UI_Mod 
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Þ¸ï¿½Ò»ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½ï¿½Ý¡ï¿½
+ï¿½ï¿½ï¿½ï¿½Ëµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½listÎªseat_list_tï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ë£¬Ö¸ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½Í·Ö¸ï¿½ë£¬ï¿½Ú¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½rowsCountÎªï¿½ï¿½ï¿½Í£ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½ï¿½ÐºÅ£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½colsCountÎªï¿½ï¿½ï¿½Í£ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½ï¿½ÐºÅ¡ï¿½
+ï¿½ï¿½ ï¿½ï¿½ Öµï¿½ï¿½ï¿½ï¿½ï¿½Í£ï¿½ï¿½ï¿½Ê¾ï¿½Ç·ï¿½É¹ï¿½ï¿½Þ¸ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½Ä±ï¿½Ö¾ï¿½ï¿½
 */
 int Seat_UI_Modify(seat_list_t list, int row, int column) {
 
@@ -71,10 +99,10 @@ int Seat_UI_Modify(seat_list_t list, int row, int column) {
 }
 
 /*
-±êÊ¶·û£ºTTMS_SCU_Seat_UI_Del
-º¯Êý¹¦ÄÜ£ºÓÃÓÚÉ¾³ýÒ»¸ö×ùÎ»µÄÊý¾Ý¡£
-²ÎÊýËµÃ÷£ºµÚÒ»¸ö²ÎÊýlistÎªseat_list_tÀàÐÍÖ¸Õë£¬Ö¸Ïò×ùÎ»Á´±íÍ·Ö¸Õë£¬µÚ¶þ¸ö²ÎÊýrowsCountÎªÕûÐÍ£¬±íÊ¾×ùÎ»ËùÔÚÐÐºÅ£¬µÚÈý¸ö²ÎÊýcolsCountÎªÕûÐÍ£¬±íÊ¾×ùÎ»ËùÔÚÁÐºÅ¡£
-·µ »Ø Öµ£ºÕûÐÍ£¬±íÊ¾ÊÇ·ñ³É¹¦É¾³ýÁË×ùÎ»µÄ±êÖ¾¡£
+ï¿½ï¿½Ê¶ï¿½ï¿½ï¿½ï¿½TTMS_SCU_Seat_UI_Del
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü£ï¿½ï¿½ï¿½ï¿½ï¿½É¾ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½ï¿½Ý¡ï¿½
+ï¿½ï¿½ï¿½ï¿½Ëµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½listÎªseat_list_tï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ë£¬Ö¸ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½Í·Ö¸ï¿½ë£¬ï¿½Ú¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½rowsCountÎªï¿½ï¿½ï¿½Í£ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½ï¿½ÐºÅ£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½colsCountÎªï¿½ï¿½ï¿½Í£ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½ï¿½ÐºÅ¡ï¿½
+ï¿½ï¿½ ï¿½ï¿½ Öµï¿½ï¿½ï¿½ï¿½ï¿½Í£ï¿½ï¿½ï¿½Ê¾ï¿½Ç·ï¿½É¹ï¿½É¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½Ä±ï¿½Ö¾ï¿½ï¿½
 */
 int Seat_UI_Delete(seat_list_t list, int row, int column) {
 
