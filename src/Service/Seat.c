@@ -189,3 +189,19 @@ seat_node_t * Seat_Srv_FindByID(seat_list_t list, int rowID) {
        // �벹������
        return NULL;
 }
+
+void Seat_Srv_map(seat_list_t list,char *map,int col)
+{//1好２坏３过道 # * -
+       seat_list_t   p;
+       int cnt = 0;
+       List_ForEach(list,p)
+       {
+              if(p->data.status == 1)  *(map + p->data.row*col+p->data.column) = '#';
+              if(p->data.status == 2)  *(map + p->data.row*col+p->data.column) = '*';
+              if(p->data.status == 3)  *(map + p->data.row*col+p->data.column) = '-';
+              //printf("%d %d\n",p->data.row,p->data.column);
+             // printf("%c ",*(map + p->data.row*col+p->data.column));
+       }
+
+       return ;
+}

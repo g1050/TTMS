@@ -49,19 +49,74 @@ void Seat_UI_MgtEntry(int roomID) {
 		//printf("演出厅存在!\n");
 				seat_list_t list;
 				List_Init(list,seat_node_t);
-				int q = Seat_Srv_FetchByRoomID(list,roomID);
-				printf("q == %d\n",q);
-				if( q== 0)//list用于存放座位信息
+				
+				if( Seat_Srv_FetchByRoomID(list,roomID)== 0)//list用于存放座位信息
 				{//不存在座位
-					printf("调用init初始化座位!\n");
-					printf("%d %d\n",buf.colsCount,buf.rowsCount);
 					Seat_Srv_RoomInit(list,roomID,buf.rowsCount,buf.colsCount);
 					buf.seatsCount = buf.colsCount*buf.rowsCount;
 					Studio_Srv_Modify(&buf);
+					printf("座位初始化完成!\n");
+					printf("按[ENTER]继续\n");
+					setbuf(stdin,NULL);
+					getchar();
 				}
 				else
 				{
-						printf("输出座位!\n");
+						seat_list_t p;
+						char map[buf.rowsCount+5][buf.colsCount+5];
+						Seat_Srv_map(list,(char*)map,buf.colsCount);
+						//printf("输出座位!\n");
+						for(int  i =1;i<=buf.rowsCount;i++)
+						{
+							printf("第%d行 ",i);
+							for(int j = 1;j<=buf.colsCount;j++)
+							{
+								printf("%c ",*((char *)map+i*buf.colsCount+j));
+							}
+							printf("\n");
+						}
+						//printf("map[2][2] = %c",map[2][2]);
+						
+						int choice ;
+						do
+						{
+							printf(
+									"******************************************************************\n");
+							printf(
+									"[1]添加座位|[2]删除座位 |  [0]返回上层");
+							printf(
+									"\n\n\n\n==================================================================\n");
+							printf("请输入您要进行的操作:");
+							setbuf(stdin,NULL);
+							scanf("%d",&choice);
+
+
+							switch (choice)
+							{
+										case 1:
+												system("clear");
+												break;
+
+
+									case 2:
+										system("clear");
+										break;
+
+
+									case 3:
+										system("clear");
+										break;
+
+
+
+									default:
+										printf("输入有误，请重新输入!\n");
+										break;
+							}
+									
+						}while(choice != 0);
+						system("clear");
+							
 				}
 		
 	}

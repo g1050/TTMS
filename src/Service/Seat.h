@@ -116,7 +116,7 @@ seat_node_t * Seat_Srv_FindByRowCol(seat_list_t list, int row, int column);
 ���ܣ�����ID�������л�ȡ��λ����*/ 
 seat_node_t * Seat_Srv_FindByID(seat_list_t list, int seatID);
 
-
+void Seat_Srv_map(seat_list_t list,char *map,int col);
 #endif //SEAT_H_
 
 

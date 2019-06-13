@@ -74,7 +74,7 @@ int Seat_Perst_InsertBatch(seat_list_t list) {
 		
 		}
 	
-	printf("rtn = %d",rtn);
+	//printf("rtn = %d",rtn);
 	return rtn;
 }
 
@@ -144,7 +144,7 @@ int Seat_Perst_SelectByRoomID(seat_list_t list, int roomID) {
 	int recCount = 0;
 	if(access(SEAT_DATA_FILE,F_OK) == -1)//文件不存在
 	{
-		printf("SEAT_DATA_FILE文件不存在\n");
+		//printf("SEAT_DATA_FILE文件不存在\n");
 		return 0;
 	}
 	else
@@ -160,7 +160,6 @@ int Seat_Perst_SelectByRoomID(seat_list_t list, int roomID) {
 				{
 					List_AddTail(list,p);
 					recCount++;
-					printf("recCount = %d",recCount);
 				}
 				else
 				{
@@ -170,7 +169,7 @@ int Seat_Perst_SelectByRoomID(seat_list_t list, int roomID) {
 				p = (seat_list_t)malloc(sizeof(seat_node_t));
 		}
 		fclose(fp);
-		printf("recCount = %d",recCount);
+
 		return recCount;
 	}
 	
