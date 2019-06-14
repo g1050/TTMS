@@ -51,6 +51,7 @@ int Seat_Srv_Modify(seat_list_t *data){
 */
 int Seat_Srv_DeleteByID(int ID){
 	// �벹������
+       Seat_Perst_DeleteByID(ID);
        return 1;
 }
 
@@ -70,8 +71,9 @@ int Seat_Srv_FetchByID(int ID, seat_t *buf){
 �� �� ֵ�����ͣ���ʾ�Ƿ�ɹ�ɾ�����ݳ���������λ�ı�־��
 */
 inline int Seat_Srv_DeleteAllByRoomID(int roomID){
+       
 	// �벹������
-       return 0;
+       return Seat_Perst_DeleteAllByRoomID(roomID);
 }
 
 /*
@@ -207,7 +209,7 @@ void Seat_Srv_map(seat_list_t list,char *map,int col)
        {
               if(p->data.status == 1)  *(map + p->data.row*col+p->data.column) = '#';
               if(p->data.status == 2)  *(map + p->data.row*col+p->data.column) = '*';
-              if(p->data.status == 3)  *(map + p->data.row*col+p->data.column) = '-';
+              if(p->data.status == 3 ||  p->data.status == 4 )  *(map + p->data.row*col+p->data.column) = '-';
               //printf("%d %d\n",p->data.row,p->data.column);
              // printf("%c ",*(map + p->data.row*col+p->data.column));
        }

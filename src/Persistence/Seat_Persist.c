@@ -123,6 +123,44 @@ int Seat_Perst_Update(seat_list_t *seatdata) {
 */
 int Seat_Perst_DeleteByID(int ID) {
 	
+	if(rename(SEAT_DATA_FILE, SEAT_DATA_TEMP_FILE)<0){
+		printf("Cannot open file %s!\n", SEAT_DATA_FILE);
+		return 0;
+	}
+
+	FILE *fpSour, *fpTarg;
+	fpSour = fopen(SEAT_DATA_TEMP_FILE, "rb");
+	if (NULL == fpSour ){
+		printf("Cannot open file %s!\n", SEAT_DATA_FILE);
+		return 0;
+	}
+
+	fpTarg = fopen(SEAT_DATA_FILE, "wb");
+	if ( NULL == fpTarg ) {
+		printf("Cannot open file %s!\n", SEAT_DATA_TEMP_FILE);
+		return 0;
+	}
+
+
+	seat_node_t buf;
+
+	int found = 0;
+	while (!feof(fpSour)) {
+		if (fread(&buf, sizeof(seat_node_t), 1, fpSour)) {
+			if (ID == buf.data.id) {
+				found = 1;
+				continue;
+			}
+			fwrite(&buf, sizeof(seat_node_t), 1, fpTarg);
+		}
+	}
+
+	fclose(fpTarg);
+	fclose(fpSour);
+
+	//ɾ����ʱ�ļ�
+	remove(SEAT_DATA_TEMP_FILE);
+	return found;
 	return 0;
 }
 
@@ -133,8 +171,45 @@ int Seat_Perst_DeleteByID(int ID) {
 �� �� ֵ�����ͣ���ʾ�Ƿ�ɹ�ɾ������λ�ı�־��
 */ 
 int Seat_Perst_DeleteAllByRoomID(int roomID) {
+	int found = 0;
+	if(rename(SEAT_DATA_FILE, SEAT_DATA_TEMP_FILE)<0){
+		printf("Cannot open file %s!\n", SEAT_DATA_FILE);
+		return 0;
+	}
+
+	FILE *fpSour, *fpTarg;
+	fpSour = fopen(SEAT_DATA_TEMP_FILE, "rb");
+	if (NULL == fpSour ){
+		printf("Cannot open file %s!\n", SEAT_DATA_FILE);
+		return 0;
+	}
+
+	fpTarg = fopen(SEAT_DATA_FILE, "wb");
+	if ( NULL == fpTarg ) {
+		printf("Cannot open file %s!\n", SEAT_DATA_TEMP_FILE);
+		return 0;
+	}
+
+
+	seat_node_t buf;
+
 	
-	return 0;
+	while (!feof(fpSour)) {
+		if (fread(&buf, sizeof(seat_node_t), 1, fpSour)) {
+			if (roomID == buf.data.roomID) {
+				found = 1;
+				continue;
+			}
+			fwrite(&buf, sizeof(seat_node_t), 1, fpTarg);
+		}
+	}
+
+	fclose(fpTarg);
+	fclose(fpSour);
+
+	//ɾ����ʱ�ļ�
+	remove(SEAT_DATA_TEMP_FILE);
+	return found;
 }
 
 /*

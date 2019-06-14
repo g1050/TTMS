@@ -94,13 +94,59 @@ void Seat_UI_MgtEntry(int roomID) {
 							switch (choice)
 							{
 										case 1:
-												system("clear");
-												break;
+												{
+															int row,col;
+															printf("请输入要添加的座位坐标:\n");
+															printf("行号:");
+																scanf("%d",&row);
+															printf("列号:");
+																scanf("%d",&col);
+
+															Seat_UI_Add(list,row,col);//int Seat_UI_Modify(seat_list_t list, int row, int column)
+															char map[buf.rowsCount+5][buf.colsCount+5];
+															Seat_Srv_map(list,(char*)map,buf.colsCount);
+															//printf("输出座位!\n");
+															for(int  i =1;i<=buf.rowsCount;i++)
+															{
+																printf("第%d行 ",i);
+																for(int j = 1;j<=buf.colsCount;j++)
+																{
+																	printf("%c ",*((char *)map+i*buf.colsCount+j));
+																}
+																printf("\n");
+															}
+															//system("clear");
+															break;
+												}
 
 
 									case 2:
-										system("clear");
-										break;
+								
+												{
+															int row,col;
+															printf("请输入要删除的座位坐标:\n");
+															printf("行号:");
+																scanf("%d",&row);
+															printf("列号:");
+																scanf("%d",&col);
+
+															Seat_UI_Delete(list,row,col);//int Seat_UI_Modify(seat_list_t list, int row, int column)
+															char map[buf.rowsCount+5][buf.colsCount+5];
+															Seat_Srv_map(list,(char*)map,buf.colsCount);
+															//printf("输出座位!\n");
+															for(int  i =1;i<=buf.rowsCount;i++)
+															{
+																printf("第%d行 ",i);
+																for(int j = 1;j<=buf.colsCount;j++)
+																{
+																	printf("%c ",*((char *)map+i*buf.colsCount+j));
+																}
+																printf("\n");
+															}
+															//system("clear");
+															break;
+												}
+										
 
 
 									case 3:
@@ -159,8 +205,24 @@ void Seat_UI_MgtEntry(int roomID) {
          �ڶ�������rowsCountΪ���ͣ���ʾ��λ�����кţ�����������colsCountΪ���ͣ���ʾ��λ�����кš�
 �� �� ֵ�����ͣ���ʾ�Ƿ�ɹ���������λ�ı�־��
 */
-int Seat_UI_Add(seat_list_t list, int roomID, int row, int column) {  //����һ����λ
+int Seat_UI_Add(seat_list_t list, int row, int column) {  //����һ����λ
 
+	seat_list_t p;
+	List_ForEach(list,p)
+	{
+		if(p->data.row == row && p->data.column ==column && p->data.status == 4)
+		{
+			p->data.status = 1;//4删除
+		}
+		else if(p->data.row == row && p->data.column ==column && p->data.status == 2)
+		{
+			printf("座位损坏，不可添加!\n");
+		}
+		else if(p->data.row == row && p->data.column ==column && p->data.status == 3)
+		{
+			printf("该位置是过道，不可添加!\n");
+		}
+	}
 	return 0;
 }
 
@@ -216,7 +278,17 @@ int Seat_UI_Modify(seat_list_t list, int row, int column) {
 �� �� ֵ�����ͣ���ʾ�Ƿ�ɹ�ɾ������λ�ı�־��
 */
 int Seat_UI_Delete(seat_list_t list, int row, int column) {
-
+	
+	int flag = 0;
+	seat_list_t p;
+	List_ForEach(list,p)
+	{
+		if(p->data.row == row && p->data.column ==column)
+		{
+			p->data.status = 4;//4删除
+		}
+	}
+	
 	return 0;
 
 }

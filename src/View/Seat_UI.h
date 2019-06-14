@@ -27,7 +27,7 @@ seat_status_t Seat_UI_Char2Status(char statusChar);
 
 //��ʶ����TTMS_SCU_Seat_UI_Add
 //���ܣ���������λ���� 
-int Seat_UI_Add(seat_list_t list, int roomID, int rowsCount,int colsCount);
+int Seat_UI_Add(seat_list_t list,  int rowsCount,int colsCount);
 
 //��ʶ����TTMS_SCU_Seat_UI_Mod 
 //���ܣ��޸���λ����
