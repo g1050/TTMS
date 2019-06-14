@@ -77,13 +77,13 @@ void Seat_UI_MgtEntry(int roomID) {
 						}
 						//printf("map[2][2] = %c",map[2][2]);
 						
-						int choice ;
+						int choice ;             
 						do
 						{
 							printf(
 									"******************************************************************\n");
 							printf(
-									"[1]添加座位|[2]删除座位 |  [0]返回上层");
+									"[1]添加座位 | [2]删除座位 |  [3]修改座位 | [0]返回上层");
 							printf(
 									"\n\n\n\n==================================================================\n");
 							printf("请输入您要进行的操作:");
@@ -104,8 +104,31 @@ void Seat_UI_MgtEntry(int roomID) {
 
 
 									case 3:
-										system("clear");
-										break;
+										{
+											int row,col;
+											printf("请输入要管理的座位坐标:\n");
+											printf("行号:");
+												scanf("%d",&row);
+											printf("列号:");
+												scanf("%d",&col);
+
+											Seat_UI_Modify(list,row,col);//int Seat_UI_Modify(seat_list_t list, int row, int column)
+											char map[buf.rowsCount+5][buf.colsCount+5];
+											Seat_Srv_map(list,(char*)map,buf.colsCount);
+											//printf("输出座位!\n");
+											for(int  i =1;i<=buf.rowsCount;i++)
+											{
+												printf("第%d行 ",i);
+												for(int j = 1;j<=buf.colsCount;j++)
+												{
+													printf("%c ",*((char *)map+i*buf.colsCount+j));
+												}
+												printf("\n");
+											}
+											//system("clear");
+											break;
+										}
+										
 
 
 
@@ -148,7 +171,40 @@ int Seat_UI_Add(seat_list_t list, int roomID, int row, int column) {  //���
 �� �� ֵ�����ͣ���ʾ�Ƿ�ɹ��޸�����λ�ı�־��
 */
 int Seat_UI_Modify(seat_list_t list, int row, int column) {
+	int flag = 0;
+	seat_list_t p = Seat_Srv_FindByRowCol(list, row, column);
+	if( p == NULL)
+	{
+		printf("该座位不存在!\n");
+	}
+	else
+	{
+		do
+		{
+				int status = 0;
+				printf("该座位存在!\n");
+				//printf("row = %d col = %d\n",p->data.row,p->data.column);
+				printf("请输入您要修改的座位状态:\n");
+				printf("[1] 好 | [2] 坏 | [3]过道 \n");
+				setbuf(stdout,NULL);
+				setbuf(stdin,NULL);
+				scanf("%d",&status);
+				//printf("status = %d\n",status);
+				if(status >= 1 && status <= 3)
+				{
+					//printf("进入!\n");
+						p->data.status = status;
+						Seat_Srv_Modify(p);//Seat_Srv_Modify(const seat_list_t *data)
+						return 0;
+				}
+				printf("输入有误!请重新输入!\n");
 
+		} while (1);
+		
+		
+		
+	}
+	
 	return 0;
 
 }

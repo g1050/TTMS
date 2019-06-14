@@ -23,7 +23,7 @@ int Seat_Perst_InsertBatch(seat_list_t list);
 
 //��ʶ����TTMS_SCU_Seat_Perst_Update
 //���ܣ����ļ��и�����λ
-int Seat_Perst_Update(const seat_t *data);
+int Seat_Perst_Update(seat_list_t*data);
 
 
 //��ʶ����TTMS_SCU_Seat_Perst_DelByID

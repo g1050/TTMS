@@ -84,8 +84,33 @@ int Seat_Perst_InsertBatch(seat_list_t list) {
 ����˵����dataΪseat_t����ָ�룬��ʾ��Ҫ���µ���λ���ݽ�㡣
 �� �� ֵ�����ͣ���ʾ�Ƿ�ɹ���������λ�ı�־��
 */
-int Seat_Perst_Update(const seat_t *seatdata) {
+int Seat_Perst_Update(seat_list_t *seatdata) {
+	int found = 0;
 	assert(NULL!=seatdata);
+	seat_list_t p = seatdata;
+	FILE *fp = fopen(SEAT_DATA_FILE, "rb+");
+	if (NULL == fp) {
+		printf("Cannot open file %s!\n", SEAT_DATA_FILE);
+		return 0;
+	}
+	seat_node_t buf;
+	
+
+	while (!feof(fp)) {
+		if (fread(&buf, sizeof(seat_node_t), 1, fp)) {
+			if (buf.data.id == p->data.id)
+			 {
+				fseek(fp, -((int)sizeof(seat_node_t)), SEEK_CUR);
+				fwrite(seatdata, sizeof(seat_node_t), 1, fp);
+				found = 1;
+				break;
+			}
+
+		}
+	}
+	fclose(fp);
+
+	return found;
 	return 0;
 
 }

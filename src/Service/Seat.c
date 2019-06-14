@@ -38,8 +38,9 @@ int Seat_Srv_AddBatch(seat_list_t list){
 ����˵����dataΪseat_t����ָ�룬��ʾ��Ҫ�޸ĵ���λ���ݽ�㡣
 �� �� ֵ�����ͣ���ʾ�Ƿ�ɹ��޸�����λ�ı�־��
 */
-int Seat_Srv_Modify(const seat_t *data){
-	// �벹������
+int Seat_Srv_Modify(seat_list_t *data){
+	
+       Seat_Perst_Update(data);//Seat_Perst_Update(const seat_list_t *seatdata)
        return 0;
 }
 
@@ -176,7 +177,15 @@ void Seat_Srv_AddToSoftedList(seat_list_t list, seat_node_t *node) {
 �� �� ֵ��Ϊseat_node_tָ�룬��ʾ��ȡ������λ���ݡ�
 */
 seat_node_t * Seat_Srv_FindByRowCol(seat_list_t list, int row, int column) {
-       // �벹������
+       
+       seat_list_t p;
+       List_ForEach(list,p)
+       {
+              if(p->data.column == column &&  p->data.row == row)
+              {//找到该座位
+                     return p;
+              }
+       }
        return NULL;
 }
 

@@ -67,7 +67,7 @@ int Seat_Srv_AddBatch(seat_list_t list);
 ��ʶ����TTMS_SCU_Seat_ Srv_Mod 
 ���ܣ��޸���λ
 */
-int Seat_Srv_Modify(const seat_t *data);
+int Seat_Srv_Modify(seat_list_t *data);
 
 /*
 ��ʶ����TTMS_SCU_Seat_Srv_DelByID 
