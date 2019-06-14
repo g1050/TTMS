@@ -20,17 +20,21 @@ void Main_Menu(void) {
 	do { 
 		system("clear");
 		printf("\n==================================================================\n");
-		printf("**************** 剧院票务管理系统 ****************\n");
-		printf("[S]演出厅管理\n");
-		printf("[P]lay Management.\n");
-		printf("[T]icket Sale.\n");
-		printf("[R]eturn Ticket.\n");
-		printf("[Q]ueries\n");
-		printf("Ra[n]king and Statistics.\n");
-		printf("[A]ccount Management.\n");
-		printf("[E]xist.\n");
+		printf("      **************** 剧院票务管理系统 ****************\n\n");
+		printf("                       [S]演出厅管理界面\n");
+		printf("                       [P]剧目管理界面\n");
+		printf("                       [T]售票管理界面\n");
+		printf("                       [C]查询演出票\n");
+		printf("                       [R]退票界面\n");
+		printf("                       [Q]查询演出界面\n");
+		printf("                       [N]统计销售额界面\n");
+		printf("                       [A]统计票房界面\n");
+		printf("                       [F]维护个人资料\n");
+		printf("                       [F]管理系统用户\n");
+		printf("\n");
+		printf("                       [E]退出系统\n");
 		printf("\n==================================================================\n");
-		printf("Please input your choice:");
+		printf("\n请输入您要进行的操作");
 		
 		fflush(stdin);//������뻺������ֹӰ���´�����,����linux��û�취��
 		setbuf(stdin,NULL);
