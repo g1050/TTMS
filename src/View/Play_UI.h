@@ -35,11 +35,12 @@ typedef struct
 typedef struct play_node
 {
     play_t data;
-    struct Play_node *prev;
-    struct Play_node *next;
+    struct play_node *prev;
+    struct play_node *next;
 
 }play_node_t;
 
 typedef play_node_t * play_list_t;
 
 void Play_UI_MgtEntry();
+

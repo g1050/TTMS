@@ -30,7 +30,7 @@ void Play_UI_MgtEntry()
 
 	
 	//��������
-	//paging.totalRecords = Studio_Srv_FetchAll(head); printf("进入!\n");
+	paging.totalRecords = Play_Srv_FetchAll(head); printf("进入!\n");
 	Paging_Locate_FirstPage(head, paging);
    
     /* int cnt = 0; */
@@ -40,7 +40,7 @@ void Play_UI_MgtEntry()
 				"\n==================================================================\n");
 		printf(
 				"********************** 剧目信息 **********************\n");
-		printf("%5s %30s  %9s  %5d  %22s  %5d\n", "ID", "剧目名字", "出品地区",
+		printf("%5s %30s  %9s  %5s  %22s  %5s\n", "ID", "剧目名字", "出品地区",
 				"时长", "开始->结束","票价");
 		printf(
 				"------------------------------------------------------------------\n");
@@ -75,58 +75,59 @@ void Play_UI_MgtEntry()
 		fflush(stdin);
 
 
-        //����ѡ�������Ӧ�ĺ���
-		// switch (choice) {
-		// case 3:
-        //     system("clear");
-		// 	if (Studio_UI_Add()) //�����ӳɹ����������һҳ��ʾ
-		// 	{
-		// 		paging.totalRecords = Studio_Srv_FetchAll(head);
-		// 		Paging_Locate_LastPage(head, paging, studio_node_t);
-		// 	}
-		// 	break;
-		// case 4:
-        //     system("clear");
-		// 	printf("请输入要删除的演出厅ID:");
-		// 	scanf("%d", &id);
-		// 	if (Studio_UI_Delete(id)) {	//������������
-		// 		paging.totalRecords = Studio_Srv_FetchAll(head);
-		// 		List_Paging(head, paging, studio_node_t);
-		// 	}
-		// 	break;
-		// case 5:
-        //     system("clear");
-		// 	printf("请输入要修改的演出厅ID");
-		// 	scanf("%d", &id);
-		// 	if (Studio_UI_Modify(id)) {	//������������
-		// 		paging.totalRecords = Studio_Srv_FetchAll(head);
-		// 		List_Paging(head, paging, studio_node_t);
-		// 	}
-		// 	break;
-		// case 6:
-        //     system("clear");
-		// 	printf("请输入要管理座位的演出厅:");
-		// 	scanf("%d", &id);
-		// 	Seat_UI_MgtEntry(id);
-		// 	paging.totalRecords = Studio_Srv_FetchAll(head);
-		// 	List_Paging(head, paging, studio_node_t)
-		// 	;
-		// 	break;
-		// case 1:
-        //     system("clear");
-		// 	if (!Pageing_IsFirstPage(paging)) {
-		// 		Paging_Locate_OffsetPage(head, paging, -1, studio_node_t);
-		// 	}
-		// 	break;
-		// case 2:
-        //     system("clear");
-		// 	if (!Pageing_IsLastPage(paging)) {
-		// 		Paging_Locate_OffsetPage(head, paging, 1, studio_node_t);
-		// 	}
-		// 	break;
-		// }
+       
+		switch (choice) {
+		case 3:
+            system("clear");
+			// if (Play_UI_Add()) 
+			// {
+			// 	paging.totalRecords = Studio_Srv_FetchAll(head);
+			// 	Paging_Locate_LastPage(head, paging, play_node_t);
+			// }
+			break;
+		case 4:
+            system("clear");
+			printf("请输入要删除的演出厅ID:");
+			scanf("%d", &id);
+			// if (Studio_UI_Delete(id)) {	
+			// 	paging.totalRecords = Studio_Srv_FetchAll(head);
+			// 	List_Paging(head, paging, studio_node_t);
+			// }
+			break;
+		case 5:
+            system("clear");
+			printf("请输入要修改的演出厅ID");
+			scanf("%d", &id);
+			// if (Studio_UI_Modify(id)) {	
+			// 	paging.totalRecords = Studio_Srv_FetchAll(head);
+			// 	List_Paging(head, paging, studio_node_t);
+			// }
+			break;
+		case 6:
+            system("clear");
+			printf("请输入要管理座位的演出厅:");
+			scanf("%d", &id);
+			// Seat_UI_MgtEntry(id);
+			// paging.totalRecords = Studio_Srv_FetchAll(head);
+			// List_Paging(head, paging, studio_node_t)
+			// ;
+			break;
+		case 1:
+            system("clear");
+			if (!Pageing_IsFirstPage(paging)) {
+				Paging_Locate_OffsetPage(head, paging, -1, play_node_t);
+			}
+			break;
+		case 2:
+            system("clear");
+			if (!Pageing_IsLastPage(paging)) {
+				Paging_Locate_OffsetPage(head, paging, 1, play_node_t);
+			}
+			break;
+		}
 	} while (choice != 0);
 	//�ͷ������ռ�
 	// List_Destroy(head, studio_node_t);
 
 }
+
