@@ -209,7 +209,7 @@ void Seat_Srv_map(seat_list_t list,char *map,int col)
        {
               if(p->data.status == 1)  *(map + p->data.row*col+p->data.column) = '#';
               if(p->data.status == 2)  *(map + p->data.row*col+p->data.column) = '*';
-              if(p->data.status == 3 ||  p->data.status == 4 )  *(map + p->data.row*col+p->data.column) = '-';
+              if(p->data.status == 3 ||  p->data.status == 4 )  *(map + p->data.row*col+p->data.column) = ' ';
               //printf("%d %d\n",p->data.row,p->data.column);
              // printf("%c ",*(map + p->data.row*col+p->data.column));
        }

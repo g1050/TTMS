@@ -13,6 +13,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "../View/Studio_UI.h"
+#include "../View/Play_UI.h"
 
 //ϵͳ���˵� 
 void Main_Menu(void) {
@@ -48,10 +49,11 @@ void Main_Menu(void) {
             system("clear");
 			Studio_UI_MgtEntry();
 			break;
-        /* case 'P': */
-		/* case 'p': */
-			/* Play_UI_MgtEntry(0); */
-			/* break; */
+         case 'P': 
+		 case 'p':
+		 	system("clear");
+			 Play_UI_MgtEntry(); 
+			 break; 
 		/* case 'Q': */
 		/* case 'q': */
 			/* Queries_Menu(); */
