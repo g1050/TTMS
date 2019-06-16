@@ -211,7 +211,7 @@ int Studio_UI_Modify(int id) {
 	}
 
 	printf("\n=======================================================\n");
-	printf("****************  Update Projection Room  ****************\n");
+	printf("****************  修改演出厅信息  ****************\n");
 	printf("-------------------------------------------------------\n");
 	printf("Room ID:%d\n", rec.id);
 	printf("Room Name[%s]:", rec.name);

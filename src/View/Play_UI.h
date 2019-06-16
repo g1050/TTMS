@@ -11,7 +11,8 @@
 //     青少年 = 2,
 //     成人 = 3
 // }play_rating_t;
-
+#ifndef PLAY_UI_H_
+#define PLAY_UI_H_
 typedef struct 
 {
     int year;
@@ -42,5 +43,14 @@ typedef struct play_node
 
 typedef play_node_t * play_list_t;
 
+//管理界面
 void Play_UI_MgtEntry();
 
+//添加剧目
+int Play_UI_Add();
+
+//删除剧目
+int Play_UI_Delete(int id);
+
+int play_UI_ask(id);
+#endif
