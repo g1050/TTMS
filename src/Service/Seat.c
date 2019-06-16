@@ -96,8 +96,19 @@ int Seat_Srv_FetchByRoomID(seat_list_t list, int roomID){
 */
 int Seat_Srv_FetchValidByRoomID(seat_list_t list, int roomID)
 {
-       // �벹������
-       return 0;
+       Seat_Perst_SelectByRoomID(list,  roomID);
+       seat_list_t   p;
+       int cnt = 0;
+       List_ForEach(list,p)
+       {
+              if(p->data.status != 1)
+              {
+                     List_DelNode(p);
+              }
+              else cnt++;
+       }
+
+       return cnt;
 }
 
 /*

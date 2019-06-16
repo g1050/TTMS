@@ -3,6 +3,7 @@ static const int SCHEDULE_PAGE_SIZE = 5;
 
 #include "Schedule_UI.h"
 #include "../Common/List.h"
+#include "Ticket_UI.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -62,7 +63,6 @@ int schedule_UI_MgtENtry()
         setbuf(stdin,NULL);
 		scanf("%d", &choice);
 		setbuf(stdin,NULL);
-        printf("choice = %c",choice);
 		fflush(stdin);
 
 
@@ -96,12 +96,10 @@ int schedule_UI_MgtENtry()
 			break;
 		case 6:
             system("clear");
-			printf("请输入要管理座位的演出厅:");
-			scanf("%d", &id);
-			// Seat_UI_MgtEntry(id);
-			// paging.totalRecords = Studio_Srv_FetchAll(head);
-			// List_Paging(head, paging, studio_node_t)
-			// ;
+			int id;
+			printf("请选择要生成哪个演出计划的演出票(ID):");
+			scanf("%d",&id);
+			Ticket_UI_Mgtent(id);
 			break;
 		case 1:
             system("clear");
@@ -271,5 +269,6 @@ int Schedule_UI_Modify(int id)
 }
 	return rtn;
 }
+
 
     
