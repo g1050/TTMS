@@ -18,27 +18,19 @@
 #include <assert.h>
 
 
-static const char STUDIO_DATA_FILE[] = "Studio.dat"; //�ݳ����ļ������� 
-static const char STUDIO_DATA_TEMP_FILE[] = "StudioTmp.dat"; //�ݳ�����ʱ�ļ������� 
-static const char STUDIO_KEY_NAME[] = "Studio"; //�ݳ��������� 
+static const char STUDIO_DATA_FILE[] = "Studio.dat"; 
+static const char STUDIO_DATA_TEMP_FILE[] = "StudioTmp.dat"; 
+static const char STUDIO_KEY_NAME[] = "Studio"; 
 
-/*
-��ʶ����TTMS_SCU_Studio_Perst_Insert
-�������ܣ��������ļ�������һ�����ݳ������ݡ�
-����˵����dataΪstudio_t����ָ�룬����Ҫ���ӵ��ݳ������ݽ�㡣
-�� �� ֵ�����ͣ���ʾ�Ƿ�ɹ��������ݳ����ı�־��
-*/ 
+
 int Studio_Perst_Insert(studio_t *data) {	 
 	assert(NULL!=data);
 
-	////����������Ʒ����������ӵĴ���
-	////����������Ʒ����������ӵĴ���
+	
 	long key = EntKey_Perst_GetNewKeys(STUDIO_KEY_NAME, 1); //获取主键
-	if(key<=0)			//��������ʧ�ܣ�ֱ�ӷ���
+	if(key<=0)		
 		return 0;
-	data->id = key;		//�����¶�����ص�UI��
-	////����������Ʒ����������ӵĴ���
-	////����������Ʒ����������ӵĴ���
+	data->id = key;	
 
 
 
@@ -55,12 +47,7 @@ int Studio_Perst_Insert(studio_t *data) {
 	return rtn;
 }
 
-/*
-��ʶ����TTMS_SCU_Studio_Perst_Update 
-�������ܣ��������ļ��и���һ���ݳ������ݡ�
-����˵����dataΪstudio_t����ָ�룬����Ҫ���µ��ݳ������ݽ�㡣
-�� �� ֵ�����ͣ���ʾ�Ƿ�ɹ��������ݳ����ı�־��
-*/
+
 int Studio_Perst_Update(const studio_t * data) {
 	assert(NULL!=data);
 
@@ -89,17 +76,10 @@ int Studio_Perst_Update(const studio_t * data) {
 	return found;
 }
 
-/*
-��ʶ����TTMS_SCU_Studio_Perst_DeleteByID
-�������ܣ����ڴ��ļ���ɾ��һ���ݳ��������ݡ�
-����˵������һ������IDΪ���ͣ���ʾ��Ҫ�������ݵ��ݳ���ID���ڶ�������bufΪstudio_tָ�룬ָ�������ݳ������ݵ�ָ�롣
-�� �� ֵ�����ͣ���ʾ�Ƿ�ɹ�ɾ�����ݳ����ı�־��
-*/
+
 int Studio_Perst_DeleteByID(int ID) {
 
-	//��ԭʼ�ļ���������Ȼ���ȡ��������д�뵽�����ļ��У�����Ҫɾ����ʵ����˵���
-
-	//��ԭʼ�����ļ�������
+	
 	if(rename(STUDIO_DATA_FILE, STUDIO_DATA_TEMP_FILE)<0){
 		printf("Cannot open file %s!\n", STUDIO_DATA_FILE);
 		return 0;
@@ -135,17 +115,12 @@ int Studio_Perst_DeleteByID(int ID) {
 	fclose(fpTarg);
 	fclose(fpSour);
 
-	//ɾ����ʱ�ļ�
+	
 	remove(STUDIO_DATA_TEMP_FILE);
 	return found;
 }
 
-/*
-��ʶ����TTMS_SCU_Studio_Perst_SelectByID 
-�������ܣ����ڴ��ļ�������һ���ݳ��������ݡ�
-����˵������һ������IDΪ���ͣ���ʾ��Ҫ�������ݵ��ݳ���ID���ڶ�������bufΪstudio_tָ�룬ָ�������ݳ������ݵ�ָ�롣
-�� �� ֵ�����ͣ���ʾ�Ƿ�ɹ��������ݳ����ı�־��
-*/
+
 int Studio_Perst_SelectByID(int ID, studio_t *buf) {//找到返回１，找不到返回０并且将演出厅信息放在buf中
 	assert(NULL!=buf);
 
@@ -172,12 +147,7 @@ int Studio_Perst_SelectByID(int ID, studio_t *buf) {//找到返回１，找不�
 	return found;
 }
 
-/*
-��ʶ����TTMS_SCU_Studio_Perst_SelAll 
-�������ܣ����ڴ��ļ������������ݳ������ݡ�
-����˵����list��studio_list_t����ָ�룬ָ���ݳ���������ͷָ�롣
-�� �� ֵ�����ͣ���ʾ�ɹ��������ݳ����ĸ�����
-*/
+
 int Studio_Perst_SelectAll(studio_list_t list) {
 	studio_node_t *newNode;
 	studio_t data;

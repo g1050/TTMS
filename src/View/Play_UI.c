@@ -5,6 +5,7 @@
 
 #include "../Common/List.h"
 #include "../Service/Play.h"
+#include "Schedule.h"
 //#include "../Service/Seat.h"
 
 
@@ -111,6 +112,12 @@ void Play_UI_MgtEntry()
 			paging.totalRecords = Play_Srv_FetchAll(head);
 			List_Paging(head, paging, play_node_t);
 			break;
+		case 7:
+			system("clear");
+			schedule_UI_MgtENtry();
+			paging.totalRecords = Play_Srv_FetchAll(head);
+			List_Paging(head, paging, play_node_t);
+			break;
 		case 1:
             system("clear");
 			if (!Pageing_IsFirstPage(paging)) {
@@ -128,7 +135,7 @@ void Play_UI_MgtEntry()
 
 	} while (choice != 0);
 	//�ͷ������ռ�
-	// List_Destroy(head, studio_node_t);
+	 List_Destroy(head, play_node_t);
 
 }
 
@@ -349,7 +356,9 @@ int play_UI_ask(id)
 	play_t rec;
 	if (!Play_Srv_FetchByID(id, &rec)) {
 		printf("该剧目不存在!\n按 [Enter] 返回上层!\n");
+		setbuf(stdin,NULL);
 		getchar();
+		system("clear");
 		return 0;
 	}
 	else

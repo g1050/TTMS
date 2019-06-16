@@ -20,12 +20,7 @@ static const int STUDIO_PAGE_SIZE = 5;
 #include <stdio.h>
 #include <stdlib.h>
 
-/*
-��ʶ����TTMS_SCU_Studio_UI_MgtEnt 
-�������ܣ����������ݳ�������ں�������ʾ��ǰ���ݳ������ݣ����ṩ�ݳ����������ӡ��޸ļ�ɾ�����ܲ�������ڡ�
-����˵�����ޡ�
-�� �� ֵ���ޡ�
-*/
+
 void Studio_UI_MgtEntry(void) {
 	int i, id;
 	int choice;
