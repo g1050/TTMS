@@ -49,6 +49,8 @@ typedef struct schedule_node
 
 int schedule_UI_MgtENtry();
 
+int Schedule_UI_Add(void);
 
+int Schedule_UI_Delete(int id);
 
 #endif

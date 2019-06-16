@@ -22,15 +22,7 @@ int schedule_UI_MgtENtry()
 	paging.totalRecords = Schedule_Srv_FetchAll(head);
 	Paging_Locate_FirstPage(head, paging);
     
-// typedef struct 
-// {
-//     int id; //演出计划Id
-//     int play_id; //上映剧目id
-//     int studio_id;//演出厅id;
-//     ttms_data_t date;//放映日期
-//     ttms_time_t time; //放映时间
-//     int seat_count;//座位数量
-// }schedule_t;
+
 	do {
         //��ӡ��ӳ���Ļ�����Ϣ
 		printf(
@@ -74,56 +66,56 @@ int schedule_UI_MgtENtry()
 		fflush(stdin);
 
 
-        //����ѡ�������Ӧ�ĺ���
-		// switch (choice) {
-		// case 3:
-        //     system("clear");
-		// 	if (Studio_UI_Add()) //�����ӳɹ����������һҳ��ʾ
-		// 	{
-		// 		paging.totalRecords = Studio_Srv_FetchAll(head);
-		// 		Paging_Locate_LastPage(head, paging, studio_node_t);
-		// 	}
-		// 	break;
-		// case 4:
-        //     system("clear");
-		// 	printf("请输入要删除的演出厅ID:");
-		// 	scanf("%d", &id);
-		// 	if (Studio_UI_Delete(id)) {	//������������
-		// 		paging.totalRecords = Studio_Srv_FetchAll(head);
-		// 		List_Paging(head, paging, studio_node_t);
-		// 	}
-		// 	break;
-		// case 5:
-        //     system("clear");
-		// 	printf("请输入要修改的演出厅ID");
-		// 	scanf("%d", &id);
-		// 	if (Studio_UI_Modify(id)) {	//������������
-		// 		paging.totalRecords = Studio_Srv_FetchAll(head);
-		// 		List_Paging(head, paging, studio_node_t);
-		// 	}
-		// 	break;
-		// case 6:
-        //     system("clear");
-		// 	printf("请输入要管理座位的演出厅:");
-		// 	scanf("%d", &id);
-		// 	Seat_UI_MgtEntry(id);
-		// 	paging.totalRecords = Studio_Srv_FetchAll(head);
-		// 	List_Paging(head, paging, studio_node_t)
-		// 	;
-		// 	break;
-		// case 1:
-        //     system("clear");
-		// 	if (!Pageing_IsFirstPage(paging)) {
-		// 		Paging_Locate_OffsetPage(head, paging, -1, studio_node_t);
-		// 	}
-		// 	break;
-		// case 2:
-        //     system("clear");
-		// 	if (!Pageing_IsLastPage(paging)) {
-		// 		Paging_Locate_OffsetPage(head, paging, 1, studio_node_t);
-		// 	}
-		// 	break;
-		// }
+     
+		switch (choice) {
+		case 3:
+            system("clear");
+			if (Schedule_UI_Add()) 
+			{
+				paging.totalRecords = Schedule_Srv_FetchAll(head);
+				Paging_Locate_LastPage(head, paging, schedule_node_t);
+			}
+			break;
+		case 4:
+            system("clear");
+			printf("请输入要删除的演出计划ID:");
+			scanf("%d", &id);
+			if (Schedule_UI_Delete(id)) {	
+				paging.totalRecords = Schedule_Srv_FetchAll(head);
+				List_Paging(head, paging, schedule_node_t);
+			}
+			break;
+		case 5:
+            system("clear");
+			printf("请输入要修改的演出计划ID");
+			scanf("%d", &id);
+			if (Schedule_UI_Modify(id)) {	
+				paging.totalRecords = Schedule_Srv_FetchAll(head);
+				List_Paging(head, paging, schedule_node_t);
+			}
+			break;
+		case 6:
+            system("clear");
+			printf("请输入要管理座位的演出厅:");
+			scanf("%d", &id);
+			// Seat_UI_MgtEntry(id);
+			// paging.totalRecords = Studio_Srv_FetchAll(head);
+			// List_Paging(head, paging, studio_node_t)
+			// ;
+			break;
+		case 1:
+            system("clear");
+			if (!Pageing_IsFirstPage(paging)) {
+				Paging_Locate_OffsetPage(head, paging, -1, schedule_node_t);
+			}
+			break;
+		case 2:
+            system("clear");
+			if (!Pageing_IsLastPage(paging)) {
+				Paging_Locate_OffsetPage(head, paging, 1, schedule_node_t);
+			}
+			break;
+		}
 	} while (choice != 0);
 	//�ͷ������ռ�
     system("clear");
@@ -131,6 +123,153 @@ int schedule_UI_MgtENtry()
 
     return 0;
 }
+// typedef struct 
+// {
+//     int id; //演出计划Id
+//     int play_id; //上映剧目id
+//     int studio_id;//演出厅id;
+//     ttms_data_t date;//放映日期
+//     ttms_time_t time; //放映时间
+//     int seat_count;//座位数量
+// }schedule_t;
+int Schedule_UI_Add(void) {
+	schedule_t rec;
+	int newRecCount = 0;
+	char choice;
 
+	do {
+		system("clear");
+		printf("\n=======================================================\n");
+		printf("****************  添加新剧目  ****************\n");
+		printf("-------------------------------------------------------\n");
+		
+		printf("演出的剧目ID:");
+		fflush(stdin);
+		setbuf(stdin,NULL);
+		scanf("%d",&rec.play_id);
+
+		printf("演出厅ID:");
+		fflush(stdin);
+		setbuf(stdin,NULL);
+		scanf("%d",&rec.studio_id);
+		
+		printf("放映日期(年/月/日):");
+		fflush(stdin);
+		setbuf(stdin,NULL);
+		scanf("%d/%d/%d",&rec.date.year,&rec.date.month,&rec.date.day);
+
+		printf("放映时间(时/分/秒):");
+		fflush(stdin);
+		setbuf(stdin,NULL);
+		scanf("%d/%d/%d",&rec.time.hour,&rec.time.minute,&rec.time.second);
+
+		printf("座位数量:");
+		fflush(stdin);
+		setbuf(stdin,NULL);
+		scanf("%d",&rec.seat_count);
+		
+		printf("=======================================================\n");
+
+		if (Schedule_Srv_Add(&rec)) {
+			newRecCount += 1;
+			printf("新演出计划添加成功!\n");
+
+		} else
+			printf("新演出计划添加失败!\n");
+
+		printf("-------------------------------------------------------\n");
+		printf("[A]继续添加, [R]返回上层:");
+		fflush(stdin);
+
+		while (getchar() != '\n');
+		
+		scanf("%c", &choice);
+	} while ('a' == choice || 'A' == choice);
+	system("clear");
+	return newRecCount;
+}
+
+int Schedule_UI_Delete(int id)
+{
+	int rtn = 0;
+
+	if (Schedule_Srv_DeleteByID(id)) {
+		printf(
+				"成功删除该演出计划!\n按下[Enter] 返回上层!\n");
+		rtn = 1;
+	} else {
+		printf("该演出计划不存在!\n按下 [Enter] 返回上层!\n");
+	}
+	setbuf(stdin,NULL);
+	getchar();
+	return rtn;
+
+}
+
+int Schedule_UI_Modify(int id)
+{
+	int rtn = 0;
+	schedule_t rec;
+	schedule_list_t list;
+	int seatcount;
+
+	/*Load record*/
+	if (!Schedule_Srv_FetchByID(id, &rec)) {
+		printf("该演出计划不存在!\n按 [Enter] 返回上层!\n");
+		setbuf(stdin,NULL);
+		getchar();
+		return 0;
+	}
+	else
+	{
+		
+	
+	
+
+	printf("\n=======================================================\n");
+	printf("****************  修改演出计划  ****************\n");
+	printf("-------------------------------------------------------\n");
+
+		printf("演出的剧目ID:");
+		fflush(stdin);
+		setbuf(stdin,NULL);
+		scanf("%d",&rec.play_id);
+
+		printf("演出厅ID:");
+		fflush(stdin);
+		setbuf(stdin,NULL);
+		scanf("%d",&rec.studio_id);
+		
+		printf("放映日期(年/月/日):");
+		fflush(stdin);
+		setbuf(stdin,NULL);
+		scanf("%d/%d/%d",&rec.date.year,&rec.date.month,&rec.date.day);
+
+		printf("放映时间(时/分/秒):");
+		fflush(stdin);
+		setbuf(stdin,NULL);
+		scanf("%d/%d/%d",&rec.time.hour,&rec.time.minute,&rec.time.second);
+
+		printf("座位数量:");
+		fflush(stdin);
+		setbuf(stdin,NULL);
+		scanf("%d",&rec.seat_count);
+
+	
+
+	printf("-------------------------------------------------------\n");
+
+	if (Schedule_Srv_Modify(&rec)) {
+		rtn = 1;
+		printf(
+				"成功修改剧目信息!\n按下 [Enter] 返回上层!\n");
+	} else
+		printf("修改剧目信息失败!\nPress [Enter]返回上层!\n");
+
+	setbuf(stdin,NULL);
+	getchar();
+}
+	return rtn;
+}
 
     
