@@ -1,0 +1,9 @@
+{
+    "files.associations": {
+        "studio_ui.h": "c",
+        "list.h": "c",
+        "stdlib.h": "c",
+        "seat_ui.h": "c",
+        "ticket_ui.h": "c"
+    }
+}

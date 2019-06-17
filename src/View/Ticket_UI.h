@@ -1,25 +1,18 @@
 #ifndef TICKET_UI_H_
 #define TICKET_UI_H_
-#include "Schedule_UI.h"
-//票数据结构
-typedef struct 
-{
-    int id; //票id
-    int schedule_id;//演出计划id
-    int seat_id; //座位id
-    int price; //票价
-    int status;//票的状态
-}ticket_t;
+#include "../Common/List.h"
+#include "../Service/Ticket.h"
+#include "../Service/Seat.h"
+#include "../Service/Schedule.h"
 
-typedef struct ticket_node
-{
-    ticket_t data;
-    struct ticket_node *prev;
-    struct ticket_node *next;
-}ticket_node_t;
+static const int TICKET_PAGE_SIZE=8;
 
-typedef ticket_node_t* ticket_list_t;
+int Ticket_UI_MgtEntry(int schedule_id);
 
-int Ticket_UI_Mgtent(int id);
+void Ticket_UI_Query(void);
 
-#endif
+int Ticket_UI_ShowTicket (int ticket_id);
+
+
+
+#endif /* TICKET_UI_H_ */

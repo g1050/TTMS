@@ -1,122 +1,74 @@
 /*
-* Copyright(C), 2007-2008, XUPT Univ.
-* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å£ï¿½TTMS_UC_02	 
-* File name: Seat.h	  
-* Description : ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½Òµï¿½ï¿½ï¿½ß¼ï¿½ï¿½ï¿½Í·ï¿½Ä¼ï¿½	
-* Author:   XUPT  		 
-* Version:  v.1 	 
-* Date: 	2015ï¿½ï¿½4ï¿½ï¿½22ï¿½ï¿½	
-*/
-
+ * Seat.h
+ *
+ * Created on: 2015Äê4ÔÂ27ÈÕ
+ * Updated on: 2015Äê5ÔÂ23ÈÕ
+ * Author: lc
+ */
 #ifndef SEAT_H_
 #define SEAT_H_
 
-//ï¿½ï¿½Î»×´Ì¬ 
 typedef enum{
-	SEAT_NONE=0,			//ï¿½ï¿½Î»
-	SEAT_GOOD=1,			//ï¿½ï¿½ï¿½ï¿½Î»
-	SEAT_BROKEN=9			//ï¿½ð»µµï¿½ï¿½ï¿½Î»
+	SEAT_NONE=0,			//¿ÕÎ»
+	SEAT_GOOD=1,			//ÓÐ×ùÎ»
+	SEAT_BROKEN=9			//Ëð»µµÄ×ùÎ»
 }seat_status_t;
 
-//ï¿½ï¿½Î»ï¿½ï¿½ï¿½Ý½á¹¹ 
 typedef struct {
-	int id;					//ï¿½ï¿½Î»id
-	int roomID;				//ï¿½ï¿½ï¿½ï¿½ï¿½Ý³ï¿½ï¿½ï¿½id
-	int row;           		//ï¿½ï¿½Î»ï¿½Ðºï¿½
-    int column;        		//ï¿½ï¿½Î»ï¿½Ðºï¿½
-   int status;	//ï¿½ï¿½Î»ï¿½Ú¸ï¿½ï¿½Ðµï¿½×´Ì¬ï¿½ï¿½0ï¿½ï¿½Ê¾Ã»ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½1ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½Õ¹2ï¿½É±ï¿½Ê¾ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½
+	int id;					//×ùÎ»id
+	int roomID;				//ËùÔÚÑÝ³öÌüid
+	int row;           		//×ùÎ»ÐÐºÅ
+    int column;        		//×ùÎ»ÁÐºÅ
+    seat_status_t status;	//×ùÎ»ÔÚ¸ÃÐÐµÄ×´Ì¬£¬0±íÊ¾Ã»ÓÐ×ùÎ»£¬1±íÊ¾ÓÐ×ùÎ»¡£À©Õ¹2¿É±íÊ¾×ùÎ»»µÁË
 } seat_t;
 
 
-//Ë«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+//Ë«ÏòÁ´±í
 typedef struct seat_node {
 	seat_t data;
 	struct seat_node *next, *prev;
 } seat_node_t, *seat_list_t;
 
-/*
-ï¿½ï¿½Ê¶ï¿½ï¿½ï¿½ï¿½TTMS_SCU_Seat_Srv_RoomInit
-ï¿½ï¿½ï¿½Ü£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½Ý³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»
-*/ 
+
+//¸ù¾ÝÐÐ¡¢ÁÐÊý³õÊ¼»¯ÑÝ³öÌüµÄ×ùÎ»
 int Seat_Srv_RoomInit(seat_list_t list, int roomID,int rowsCount,int colsCount);
 
-/*
-ï¿½ï¿½Ê¶ï¿½ï¿½ï¿½ï¿½TTMS_SCU_Seat_Srv_SortSeatList 
-ï¿½ï¿½ï¿½Ü£ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½listï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-*/
+//¶Ô×ùÎ»Á´±ílist½øÐÐÅÅÐò
 void Seat_Srv_SortSeatList(seat_list_t list );
 
-/*
-ï¿½ï¿½Ê¶ï¿½ï¿½ï¿½ï¿½TTMS_SCU_Seat_Srv_AddSortedList
-ï¿½ï¿½ï¿½Ü£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½nodeï¿½ï¿½ï¿½ëµ½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½listï¿½ï¿½*/
+//½«½áµãnode¼ÓÈëµ½ÒÑÅÅÐòÁ´±ílistÖÐ
 void Seat_Srv_AddToSoftedList(seat_list_t list , seat_node_t *node);
 
-/*
-ï¿½ï¿½Ê¶ï¿½ï¿½ï¿½ï¿½TTMS_SCU_Seat_Srv_Add
-ï¿½ï¿½ï¿½Ü£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»
-*/
-int Seat_Srv_Add(const seat_t *data);
+/*µ¥¸öÌí¼Ó×ùÎ»*/
+int Seat_Srv_Add(seat_t *data);		////ÐÂ·½°¸½«dataÇ°ÃæµÄconstÈ¥µô
 
-/*
-ï¿½ï¿½Ê¶ï¿½ï¿½ï¿½ï¿½TTMS_SCU_Seat_Srv_AddBatch 
-ï¿½ï¿½ï¿½Ü£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»
-*/
+/*ÅúÁ¿Ìí¼Ó×ùÎ»*/
 int Seat_Srv_AddBatch(seat_list_t list);
 
-/*
-ï¿½ï¿½Ê¶ï¿½ï¿½ï¿½ï¿½TTMS_SCU_Seat_ Srv_Mod 
-ï¿½ï¿½ï¿½Ü£ï¿½ï¿½Þ¸ï¿½ï¿½ï¿½Î»
-*/
-int Seat_Srv_Modify(seat_list_t *data);
+int Seat_Srv_Modify(const seat_t *data);
 
-/*
-ï¿½ï¿½Ê¶ï¿½ï¿½ï¿½ï¿½TTMS_SCU_Seat_Srv_DelByID 
-ï¿½ï¿½ï¿½Ü£ï¿½É¾ï¿½ï¿½ï¿½ï¿½Î»
-*/
 int Seat_Srv_DeleteByID(int ID);
 
-/*
-ï¿½ï¿½Ê¶ï¿½ï¿½ï¿½ï¿½TTMS_SCU_Seat_Srv_DeleteAllByRoomID 
-ï¿½ï¿½ï¿½Ü£ï¿½ï¿½ï¿½ï¿½ï¿½É¾ï¿½ï¿½ï¿½ï¿½Î»
-*/
 int Seat_Srv_DeleteAllByRoomID(int roomID);
 
-/*
-ï¿½ï¿½Ê¶ï¿½ï¿½ï¿½ï¿½TTMS_SCU_Seat_Srv_ FetchValidByRoomID 
-ï¿½ï¿½ï¿½Ü£ï¿½ï¿½ï¿½ï¿½Ý·ï¿½Ó³ï¿½ï¿½IDï¿½ï¿½È¡ï¿½ï¿½Ð§ï¿½ï¿½ï¿½ï¿½Î»
-*/
+/*¸ù¾Ý·ÅÓ³ÌüIDÌáÈ¡ÓÐÐ§µÄ×ùÎ»*/
 int Seat_Srv_FetchValidByRoomID(seat_list_t list, int roomID);
 
-/*
-ï¿½ï¿½Ê¶ï¿½ï¿½ï¿½ï¿½TTMS_SCU_Seat_Srv_FetchByID 
-ï¿½ï¿½ï¿½Ü£ï¿½ï¿½ï¿½ï¿½ï¿½IDï¿½ï¿½È¡ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½
-*/ 
 int Seat_Srv_FetchByID(int ID, seat_t *buf);
 
-/*
-ï¿½ï¿½Ê¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¶ï¿½ï¿½ï¿½ï¿½TTMS_SCU_Seat_Srv_FetchByRoomID 
-ï¿½ï¿½ï¿½Ü£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý³ï¿½ï¿½ï¿½IDï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½
-*/
 int Seat_Srv_FetchByRoomID(seat_list_t list, int roomID);
 
-/*
-ï¿½ï¿½Ê¶ï¿½ï¿½ï¿½ï¿½TTMS_SCU_Seat_Srv_FetchByRoomID
-ï¿½ï¿½ï¿½Ü£ï¿½ï¿½ï¿½ï¿½Ý·ï¿½Ó³ï¿½ï¿½IDï¿½ï¿½È¡ï¿½ï¿½Ð§ï¿½ï¿½ï¿½ï¿½Î»
-*/
+
+
+/*¸ù¾Ý·ÅÓ³ÌüIDÌáÈ¡ÓÐÐ§µÄ×ùÎ»*/
 int Seat_Srv_FetchValidByRoomID(seat_list_t list, int roomID);
 
-/*
-ï¿½ï¿½Ê¶ï¿½ï¿½ï¿½ï¿½TTMS_SCU_Seat_Srv_FindByRC
-ï¿½ï¿½ï¿½Ü£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÐºÅ»ï¿½È¡ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½
-*/
+
 seat_node_t * Seat_Srv_FindByRowCol(seat_list_t list, int row, int column);
 
-/*
-ï¿½ï¿½Ê¶ï¿½ï¿½ï¿½ï¿½TTMS_SCU_Studio_Srv_FindByID
-ï¿½ï¿½ï¿½Ü£ï¿½ï¿½ï¿½ï¿½ï¿½IDï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð»ï¿½È¡ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½*/ 
 seat_node_t * Seat_Srv_FindByID(seat_list_t list, int seatID);
 
-void Seat_Srv_map(seat_list_t list,char *map,int col);
+
 #endif //SEAT_H_
 
 

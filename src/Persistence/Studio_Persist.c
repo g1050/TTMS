@@ -1,16 +1,13 @@
 /*
-* Copyright(C), 2007-2008, XUPT Univ.
-* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å£ï¿½TTMS_UC_01		 
-* File name: Studio_Persist.c			  
-* Description : ï¿½İ³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¾Ã»ï¿½ï¿½ï¿½	
-* Author:   XUPT  		 
-* Version:  v.1 	 
-* Date: 	2015ï¿½ï¿½4ï¿½ï¿½22ï¿½ï¿½	
-*/
+ * studioPersist.c
+ *
+ *  Created on: 2015Äê4ÔÂ21ÈÕ
+ *      Author: Administrator
+ */
 
 #include "Studio_Persist.h"
 #include "../Service/Studio.h"
-#include "EntityKey_Persist.h"	 
+#include "EntityKey_Persist.h"		
 #include "../Common/List.h"
 #include <stdlib.h>
 #include <stdio.h>
@@ -18,20 +15,19 @@
 #include <assert.h>
 
 
-static const char STUDIO_DATA_FILE[] = "Studio.dat"; 
-static const char STUDIO_DATA_TEMP_FILE[] = "StudioTmp.dat"; 
-static const char STUDIO_KEY_NAME[] = "Studio"; 
+static const char STUDIO_DATA_FILE[] = "Studio.dat";
+static const char STUDIO_DATA_TEMP_FILE[] = "StudioTmp.dat";
 
+//Ìí¼Ó¶ÔÏóÖ÷¼ü±êÊ¶Ãû³Æ
+static const char STUDIO_KEY_NAME[] = "Studio";
 
-int Studio_Perst_Insert(studio_t *data) {	 
+int Studio_Perst_Insert(studio_t *data) {	
 	assert(NULL!=data);
 
-	
-	long key = EntKey_Perst_GetNewKeys(STUDIO_KEY_NAME, 1); //è·å–ä¸»é”®
-	if(key<=0)		
+	long key = EntKey_Perst_GetNewKeys(STUDIO_KEY_NAME, 1); //ÎªĞÂÑİ³öÌü·ÖÅä»ñÈ¡
+	if(key<=0)			//Ö÷¼ü·ÖÅäÊ§°Ü£¬Ö±½Ó·µ»Ø
 		return 0;
-	data->id = key;	
-
+	data->id = key;		//¸³¸øĞÂ¶ÔÏó´ø»Øµ½UI²ã
 
 
 	FILE *fp = fopen(STUDIO_DATA_FILE, "ab");
@@ -46,7 +42,6 @@ int Studio_Perst_Insert(studio_t *data) {
 	fclose(fp);
 	return rtn;
 }
-
 
 int Studio_Perst_Update(const studio_t * data) {
 	assert(NULL!=data);
@@ -76,10 +71,11 @@ int Studio_Perst_Update(const studio_t * data) {
 	return found;
 }
 
-
 int Studio_Perst_DeleteByID(int ID) {
 
-	
+	//½«Ô­Ê¼ÎÄ¼şÖØÃüÃû£¬È»ºó¶ÁÈ¡Êı¾İÖØĞÂĞ´Èëµ½Êı¾İÎÄ¼şÖĞ£¬²¢½«ÒªÉ¾³ıµÄÊµÌå¹ıÂËµô¡£
+
+	//¶ÔÔ­Ê¼Êı¾İÎÄ¼şÖØÃüÃû
 	if(rename(STUDIO_DATA_FILE, STUDIO_DATA_TEMP_FILE)<0){
 		printf("Cannot open file %s!\n", STUDIO_DATA_FILE);
 		return 0;
@@ -115,13 +111,12 @@ int Studio_Perst_DeleteByID(int ID) {
 	fclose(fpTarg);
 	fclose(fpSour);
 
-	
+	//É¾³ıÁÙÊ±ÎÄ¼ş
 	remove(STUDIO_DATA_TEMP_FILE);
 	return found;
 }
 
-
-int Studio_Perst_SelectByID(int ID, studio_t *buf) {//æ‰¾åˆ°è¿”å›ï¼‘ï¼Œæ‰¾ä¸åˆ°è¿”å›ï¼å¹¶ä¸”å°†æ¼”å‡ºå…ä¿¡æ¯æ”¾åœ¨bufä¸­
+int Studio_Perst_SelectByID(int ID, studio_t *buf) {
 	assert(NULL!=buf);
 
 	FILE *fp = fopen(STUDIO_DATA_FILE, "rb");
@@ -147,7 +142,6 @@ int Studio_Perst_SelectByID(int ID, studio_t *buf) {//æ‰¾åˆ°è¿”å›ï¼‘ï¼Œæ‰¾ä¸åˆ
 	return found;
 }
 
-
 int Studio_Perst_SelectAll(studio_list_t list) {
 	studio_node_t *newNode;
 	studio_t data;
@@ -158,7 +152,7 @@ int Studio_Perst_SelectAll(studio_list_t list) {
 	List_Free(list, studio_node_t);
 
 	FILE *fp = fopen(STUDIO_DATA_FILE, "rb");
-	if (NULL == fp) { //ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	if (NULL == fp) { //ÎÄ¼ş²»´æÔÚ
 		return 0;
 	}
 

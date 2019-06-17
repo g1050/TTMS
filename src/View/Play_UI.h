@@ -1,56 +1,24 @@
-/*Author :Linux_sky */
-// typedef enum
-// {
-//     影片 = 1,
-//     歌剧 = 2,
-//     音乐会 = 3,
-// }play_type_t;
 
-// typedef enum{
-//     儿童 = 1,
-//     青少年 = 2,
-//     成人 = 3
-// }play_rating_t;
 #ifndef PLAY_UI_H_
 #define PLAY_UI_H_
-typedef struct 
-{
-    int year;
-    int month;
-    int day;
-}ttms_data_t;
+#include "../Common/List.h"
+#include "../Service/Play.h"
 
-typedef struct 
-{
-    int  id; //剧目ID
-    char name[31]; //剧目名称
-    int type; //剧目类型 
-    char area[9]; //出品地区
-    int dating ; //适合年龄
-    int duration ; //时长
-    ttms_data_t start_data;
-    ttms_data_t end_date;
-    int price; //票价
-}play_t;
+static const int PLAY_PAGE_SIZE=6;
 
-typedef struct play_node
-{
-    play_t data;
-    struct play_node *prev;
-    struct play_node *next;
+int Play_UI_Add(void);
 
-}play_node_t;
+int Play_UI_Modify(int id);
 
-typedef play_node_t * play_list_t;
-
-//管理界面
-void Play_UI_MgtEntry();
-
-//添加剧目
-int Play_UI_Add();
-
-//删除剧目
 int Play_UI_Delete(int id);
 
-int play_UI_ask(id);
-#endif
+int Play_UI_Query(int id);
+
+int Play_UI_Query(int id);
+
+/*���б�ģʽ��ʾ��Ŀ��Ϣ*/
+void Play_UI_ShowList(play_list_t list, Pagination_t paging);
+
+void Play_UI_MgtEntry( );
+
+#endif /* PLAY_UI_H_ */
