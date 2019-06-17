@@ -13,10 +13,10 @@
 void Seat_UI_MgtEntry(int roomID);
 
 
-//����״̬���ض�Ӧ��ʾ״̬����
+
 char Seat_UI_Status2Char(seat_status_t status);
 
-//����״̬���ŷ�����λ״̬
+
 seat_status_t Seat_UI_Char2Status(char statusChar);
 
 

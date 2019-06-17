@@ -2,6 +2,19 @@
 #define SCHEDULE_H_
 
 #include "../Common/common.h"
+typedef struct 
+{
+	int hour;
+	int minute;
+	int second;
+}ttms_time_t;
+
+typedef struct 
+{
+	int year;
+	int month;
+	int day;
+}ttms_date_t;
 
 typedef struct {
 	int id;

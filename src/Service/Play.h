@@ -2,6 +2,7 @@
 #define PLAY_H_
 
 #include "../Common/common.h"
+#include  "Schedule.h"
 
 typedef enum {
 	PLAY_TYPE_FILE=1,

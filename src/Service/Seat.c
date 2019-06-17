@@ -1,7 +1,7 @@
 /*
  *  Seat.c
  *
- *  Created on: 2015Äê6ÔÂ12ÈÕ
+ *  Created on: 2015ï¿½ï¿½6ï¿½ï¿½12ï¿½ï¿½
  *  Author: lc
  */
 #include <stdlib.h>
@@ -10,7 +10,7 @@
 #include "../Persistence/Seat_Persist.h"
 #include <stdio.h>
 
-inline int Seat_Srv_Add(seat_t *data) {	////ÐÂ·½°¸½«dataÇ°ÃæµÄconstÈ¥µô
+inline int Seat_Srv_Add(seat_t *data) {	////ï¿½Â·ï¿½ï¿½ï¿½ï¿½ï¿½dataÇ°ï¿½ï¿½ï¿½constÈ¥ï¿½ï¿½
 	return 0;
 }
 
@@ -34,33 +34,80 @@ inline int Seat_Srv_DeleteAllByRoomID(int roomID) {
 	return 0;
 }
 
-//¸ù¾ÝÑÝ³öÌüIDÔØÈë×ùÎ»
-int Seat_Srv_FetchByRoomID(seat_list_t list, int roomID) {
-	return 0;
+//ï¿½ï¿½ï¿½ï¿½ï¿½Ý³ï¿½ï¿½ï¿½IDï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»
+int Seat_Srv_FetchByRoomID(seat_list_t list, int roomID) 
+{
+	int seatCount = 0;
+	seatCount = Seat_Perst_SelectByRoomID(list,roomID);
+	//Seat_Srv_SortSeatList(list);//å¹²ä»€ä¹ˆç”¨çš„
+	return seatCount;
+	
 
 }
 
-/*¸ù¾Ý·ÅÓ³ÌüIDÌáÈ¡ÓÐÐ§µÄ×ùÎ»*/
+/*ï¿½ï¿½ï¿½Ý·ï¿½Ó³ï¿½ï¿½IDï¿½ï¿½È¡ï¿½ï¿½Ð§ï¿½ï¿½ï¿½ï¿½Î»*/
 int Seat_Srv_FetchValidByRoomID(seat_list_t list, int roomID) {
 	return 0;
 
 }
 
-//¸ù¾ÝÐÐ¡¢ÁÐÊý³õÊ¼»¯ÑÝ³öÌüµÄ×ùÎ»
-int Seat_Srv_RoomInit(seat_list_t list, int roomID, int rowsCount,
-		int colsCount) {
-	return 0;
+//ï¿½ï¿½ï¿½ï¿½ï¿½Ð¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½Ý³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»
+int Seat_Srv_RoomInit(seat_list_t list, int roomID, int rowsCount,int colsCount) 
+{
+	seat_list_t p ;   
+	for(int i = 1;i<=rowsCount;i++)
+	{
+		for(int j = 1;j<=colsCount;j++)
+		{
+			    p = (seat_list_t)malloc(sizeof(seat_node_t));
+				p->data.roomID = roomID;
+				p->data.row = i;
+				p->data.column = j;
+				p->data.status = 1;
+				List_AddTail(list,p);
+		}
+	}
+	
+	
+	return Seat_Perst_InsertBatch(list);
 
 }
 
-//¶Ô×ùÎ»Á´±ílist½øÐÐ°´×ùÎ»ÐÐºÅºÍÁÐºÅÅÅÐò
-void Seat_Srv_SortSeatList(seat_list_t list) {
-
+//ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½listï¿½ï¿½ï¿½Ð°ï¿½ï¿½ï¿½Î»ï¿½ÐºÅºï¿½ï¿½Ðºï¿½ï¿½ï¿½ï¿½ï¿½
+void Seat_Srv_SortSeatList(seat_list_t list) 
+{
+		seat_list_t listLeft,p;
+       if(list == NULL) return ;
+       list->prev->next = NULL;//æ–­å¼€å¾ªçŽ¯é“¾è¡¨
+       listLeft = list->next;
+       list->next = list->prev = list;
+       if(listLeft == NULL) return ;
+       else
+       {
+              p = listLeft;
+              listLeft = listLeft->next;
+              Seat_Srv_AddToSoftedList(list,p);
+       }
+       return ;
 }
 
-//½«½áµãnode¼ÓÈëµ½ÒÑÅÅÐòÁ´±ílistÖÐ
-void Seat_Srv_AddToSoftedList(seat_list_t list, seat_node_t *node) {
-
+//ï¿½ï¿½ï¿½ï¿½ï¿½nodeï¿½ï¿½ï¿½ëµ½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½listï¿½ï¿½
+void Seat_Srv_AddToSoftedList(seat_list_t list, seat_node_t *node)
+ {
+	 seat_list_t p  = list->next;//å¯èƒ½æœ‰é—®é¢˜
+       if(list == NULL) 
+       {
+              List_AddTail(list,node);
+       }
+       else
+       {
+              while(p!= list && (p->data.row < node->data.row || (p->data.row == node->data.row && p->data.column < node->data.column)))
+              {
+                     p = p->next;
+              }
+              List_AddHead(p,node);
+       }
+       return ;
 }
 
 inline seat_node_t * Seat_Srv_FindByRowCol(seat_list_t list, int row,

@@ -1,48 +1,48 @@
 /*
  * Seat.h
  *
- * Created on: 2015年4月27日
- * Updated on: 2015年5月23日
+ * Created on: 2015锟斤拷4锟斤拷27锟斤拷
+ * Updated on: 2015锟斤拷5锟斤拷23锟斤拷
  * Author: lc
  */
 #ifndef SEAT_H_
 #define SEAT_H_
 
 typedef enum{
-	SEAT_NONE=0,			//空位
-	SEAT_GOOD=1,			//有座位
-	SEAT_BROKEN=9			//损坏的座位
+	SEAT_NONE=0,			//锟斤拷位
+	SEAT_GOOD=1,			//锟斤拷锟斤拷位
+	SEAT_BROKEN=9			//锟金坏碉拷锟斤拷位
 }seat_status_t;
 
 typedef struct {
-	int id;					//座位id
-	int roomID;				//所在演出厅id
-	int row;           		//座位行号
-    int column;        		//座位列号
-    seat_status_t status;	//座位在该行的状态，0表示没有座位，1表示有座位。扩展2可表示座位坏了
+	int id;					//锟斤拷位id
+	int roomID;				//锟斤拷锟斤拷锟捷筹拷锟斤拷id
+	int row;           		//锟斤拷位锟叫猴拷
+    int column;        		//锟斤拷位锟叫猴拷
+    seat_status_t status;	//锟斤拷位锟节革拷锟叫碉拷状态锟斤拷0锟斤拷示没锟斤拷锟斤拷位锟斤拷1锟斤拷示锟斤拷锟斤拷位锟斤拷锟斤拷展2锟缴憋拷示锟斤拷位锟斤拷锟斤拷
 } seat_t;
 
 
-//双向链表
+//双锟斤拷锟斤拷锟斤拷
 typedef struct seat_node {
 	seat_t data;
 	struct seat_node *next, *prev;
 } seat_node_t, *seat_list_t;
 
 
-//根据行、列数初始化演出厅的座位
+//锟斤拷锟斤拷锟叫★拷锟斤拷锟斤拷锟斤拷始锟斤拷锟捷筹拷锟斤拷锟斤拷锟斤拷位
 int Seat_Srv_RoomInit(seat_list_t list, int roomID,int rowsCount,int colsCount);
 
-//对座位链表list进行排序
+//锟斤拷锟斤拷位锟斤拷锟斤拷list锟斤拷锟斤拷锟斤拷锟斤拷
 void Seat_Srv_SortSeatList(seat_list_t list );
 
-//将结点node加入到已排序链表list中
+//锟斤拷锟斤拷锟絥ode锟斤拷锟诫到锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷list锟斤拷
 void Seat_Srv_AddToSoftedList(seat_list_t list , seat_node_t *node);
 
-/*单个添加座位*/
-int Seat_Srv_Add(seat_t *data);		////新方案将data前面的const去掉
+/*锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷位*/
+int Seat_Srv_Add(seat_t *data);		////锟铰凤拷锟斤拷锟斤拷data前锟斤拷锟絚onst去锟斤拷
 
-/*批量添加座位*/
+/*锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷位*/
 int Seat_Srv_AddBatch(seat_list_t list);
 
 int Seat_Srv_Modify(const seat_t *data);
@@ -51,7 +51,7 @@ int Seat_Srv_DeleteByID(int ID);
 
 int Seat_Srv_DeleteAllByRoomID(int roomID);
 
-/*根据放映厅ID提取有效的座位*/
+/*锟斤拷锟捷凤拷映锟斤拷ID锟斤拷取锟斤拷效锟斤拷锟斤拷位*/
 int Seat_Srv_FetchValidByRoomID(seat_list_t list, int roomID);
 
 int Seat_Srv_FetchByID(int ID, seat_t *buf);
@@ -60,7 +60,7 @@ int Seat_Srv_FetchByRoomID(seat_list_t list, int roomID);
 
 
 
-/*根据放映厅ID提取有效的座位*/
+/*锟斤拷锟捷凤拷映锟斤拷ID锟斤拷取锟斤拷效锟斤拷锟斤拷位*/
 int Seat_Srv_FetchValidByRoomID(seat_list_t list, int roomID);
 
 

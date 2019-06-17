@@ -1,7 +1,7 @@
 /*
  * studio.c
  *
- *  Created on: 2015Äê6ÔÂ12ÈÕ
+ *  Created on: 2015ï¿½ï¿½6ï¿½ï¿½12ï¿½ï¿½
  *      Author: Administrator
  */
 #include "Studio.h"
@@ -31,7 +31,7 @@ inline int Studio_Srv_FetchAll(studio_list_t list) {
 	return Studio_Perst_SelectAll(list);
 }
 
-//Í¨¹ýIDÔÚlistÖÐ²éÕÒ¶ÔÓ¦·ÅÓ³Ìü½áµã
+//Í¨ï¿½ï¿½IDï¿½ï¿½listï¿½Ð²ï¿½ï¿½Ò¶ï¿½Ó¦ï¿½ï¿½Ó³ï¿½ï¿½ï¿½ï¿½ï¿½
 inline studio_node_t *Studio_Srv_FindByID(studio_list_t list, int ID){
 	assert(NULL!=list);
 	studio_node_t *ptr=list->next;

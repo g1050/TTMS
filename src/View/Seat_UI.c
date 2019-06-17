@@ -1,7 +1,7 @@
 /*
  *  Seat_UI.c
  *
- *  Created on: 2015Äê5ÔÂ23ÈÕ
+ *  Created on: 2015ï¿½ï¿½5ï¿½ï¿½23ï¿½ï¿½
  *  Author: lc
  */
 #include "Seat_UI.h"
@@ -11,22 +11,54 @@
 #include "../Common/List.h"
 #include <stdio.h>
 
-//¸ù¾İ×´Ì¬·µ»Ø¶ÔÓ¦±íÊ¾×´Ì¬·ûºÅ
+//ï¿½ï¿½ï¿½ï¿½×´Ì¬ï¿½ï¿½ï¿½Ø¶ï¿½Ó¦ï¿½ï¿½Ê¾×´Ì¬ï¿½ï¿½ï¿½ï¿½
 inline char Seat_UI_Status2Char(seat_status_t status) {
 
 	return "#";
 }
 
-//¸ù¾İ×´Ì¬·ûºÅ·µ»Ø×ÀÎ»×´Ì¬
+//ï¿½ï¿½ï¿½ï¿½×´Ì¬ï¿½ï¿½ï¿½Å·ï¿½ï¿½ï¿½ï¿½ï¿½Î»×´Ì¬
 inline seat_status_t Seat_UI_Char2Status(char statusChar) {
 	return SEAT_NONE;
 }
 
-void Seat_UI_MgtEntry(int roomID) {
-
+void Seat_UI_MgtEntry(int roomID)
+ {
+	 	studio_t buf;
+	if(Studio_Srv_FetchByID(roomID,&buf))
+	{//æ¼”å‡ºå…å­˜åœ¨
+		seat_list_t list;
+		List_Init(list,seat_node_t);
+		if(!Seat_Srv_FetchByRoomID(list,roomID))//åˆ¤æ–­åº§ä½æ˜¯å¦å­˜åœ¨
+		{//ä¸å­˜åœ¨åº§ä½
+			
+			buf.seatsCount = Seat_Srv_RoomInit(list,roomID,buf.rowsCount,buf.colsCount);
+			Studio_Srv_Modify(&buf);
+			printf("åº§ä½åˆå§‹åŒ–å®Œæˆ!\n");
+			printf("æŒ‰[ENTER]ç»§ç»­\n");
+			setbuf(stdin,NULL);
+			getchar();
+		}
+		else
+		{
+			printf("åº§ä½å­˜åœ¨!\n");
+		}
+		
+		
+	}
+	else
+	{
+		printf("æ¼”å‡ºå…ä¸å­˜åœ¨!\n");
+		printf("æŒ‰[ENTER]è¿”å›ä¸Šå±‚");
+		setbuf(stdin,NULL);
+		getchar();
+		system("clear");
+		return ;
+	}
+	return ;
 }
 
-int Seat_UI_Add(seat_list_t list, int roomID, int row, int column) {  //ÊäÈëÒ»¸ö×ùÎ»
+int Seat_UI_Add(seat_list_t list, int roomID, int row, int column) {  //ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½Î»
 
 	return 0;
 }

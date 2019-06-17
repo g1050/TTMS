@@ -1,12 +1,13 @@
 /*
  *  Seat_Persist.c
  *
- *  Created on: 2015Äê5ÔÂ23ÈÕ
+ *  Created on: 2015ï¿½ï¿½5ï¿½ï¿½23ï¿½ï¿½
  *  Author: lc
  */
 
 #include "Seat_Persist.h"
 #include "../Service/Seat.h"
+#include "EntityKey_Persist.h"
 #include "../Common/List.h"
 #include <stdlib.h>
 #include <stdio.h>
@@ -16,7 +17,7 @@
 static const char SEAT_DATA_FILE[] = "Seat.dat";
 static const char SEAT_DATA_TEMP_FILE[] = "SeatTmp.dat";
 
-//Ìí¼Ó¶ÔÏóÖ÷¼ü±êÊ¶Ãû³Æ
+//ï¿½ï¿½ï¿½Ó¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¶ï¿½ï¿½ï¿½ï¿½
 static const char SEAT_KEY_NAME[] = "Seat";
 
 
@@ -25,11 +26,45 @@ int Seat_Perst_Insert(seat_t *data) {
 	return 0;
 }
 
-int Seat_Perst_InsertBatch(seat_list_t list) {
+int Seat_Perst_InsertBatch(seat_list_t list) 
+{
+	int rtn = 0;
 	seat_node_t *p;
 	assert(NULL!=list);
 
-	return 0;
+	int len = 0;
+	List_ForEach(list,p)
+	{
+		len++;
+	}
+	int key = EntKey_Perst_GetNewKeys(SEAT_KEY_NAME,len);
+	if(key <= 0) 
+	{
+		printf("åˆ†é…ä¸»é”®å¤±è´¥!\n");
+		return 0;
+	}
+	else
+	{
+		FILE *fp = fopen(SEAT_DATA_FILE,"ab");
+		if(fp == NULL) 
+		{
+			printf("æ‰“å¼€æ–‡ä»¶å¤±è´¥%s",SEAT_DATA_FILE);
+			return 0;
+		}
+		else
+		{
+			List_ForEach(list,p)
+			{
+				p->data.id = key++;
+				fwrite(&p->data,sizeof(seat_t),1,fp);
+				rtn++;
+			}
+		}
+		
+		
+	}
+	
+	return rtn;
 }
 
 int Seat_Perst_Update(const seat_t *seatdata) {
@@ -59,7 +94,42 @@ int Seat_Perst_SelectAll(seat_list_t list) {
 	return 0;
 }
 
-int Seat_Perst_SelectByRoomID(seat_list_t list, int roomID) {
+int Seat_Perst_SelectByRoomID(seat_list_t list, int roomID) 
+{
+	int recCount = 0;
+	if(access(SEAT_DATA_FILE,F_OK) == -1)//æ–‡ä»¶ä¸å­˜åœ¨
+	{
+		printf("SEAT_DATA_FILEæ–‡ä»¶ä¸å­˜åœ¨\n");
+		return 0;
+	}
+	else
+	{
+		seat_node_t *p ;
+		p = (seat_list_t)malloc(sizeof(seat_node_t));
+		FILE *fp = fopen(SEAT_DATA_FILE,"rb");
+		seat_t q;
+		while(1)
+		{
+				
+				if(fread(&q,sizeof(seat_t),1,fp) < 1) break;
+				printf("q.roomid = %d\n",q.roomID);
+				if(q.roomID == roomID)
+				{
+					p->data = q;
+					List_AddTail(list,p);
+					recCount++;
+				}
+				else
+				{
+					free(p);
+				}
+				//ä¼˜åŒ–ä¸ç”¨å…¨éƒ¨éå†å…¶å®
+				p = (seat_list_t)malloc(sizeof(seat_node_t));
+		}
+		fclose(fp);
 
-	return 0;
+		
+	}
+	printf("recCount = %d",recCount);
+	return recCount;
 }
