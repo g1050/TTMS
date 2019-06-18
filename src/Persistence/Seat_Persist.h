@@ -1,7 +1,7 @@
 /*
  *  Seat_Persist.h
  *
- *  Created on: 2015Äê5ÔÂ23ÈÕ
+ *  Created on: 2015ï¿½ï¿½5ï¿½ï¿½23ï¿½ï¿½
  *  Author: lc
  */
 
@@ -14,7 +14,7 @@ int Seat_Perst_Insert(seat_t *data);
 
 int Seat_Perst_InsertBatch(seat_list_t list);
 
-int Seat_Perst_Update(const seat_t *data);
+int Seat_Perst_Update(seat_t *data);
 
 int Seat_Perst_DeleteByID(int ID);
 

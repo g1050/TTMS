@@ -21,9 +21,27 @@ static const char SEAT_DATA_TEMP_FILE[] = "SeatTmp.dat";
 static const char SEAT_KEY_NAME[] = "Seat";
 
 
-int Seat_Perst_Insert(seat_t *data) {   
+int Seat_Perst_Insert(seat_t *data) 
+{   
 	assert(NULL!=data);
-	return 0;
+	long key = EntKey_Perst_GetNewKeys(SEAT_KEY_NAME, 1); //Ϊ���ݳ��������ȡ
+	if(key<=0)			//��������ʧ�ܣ�ֱ�ӷ���
+		return 0;
+	data->id = key;		//�����¶�����ص�UI��
+
+
+	FILE *fp = fopen(SEAT_DATA_FILE, "ab");
+	int rtn = 0;
+	if (NULL == fp) 
+	{
+		printf("Cannot open file %s!\n", SEAT_DATA_FILE);
+		return 0;
+	}
+
+	rtn = fwrite(data, sizeof(seat_t), 1, fp);
+
+	fclose(fp);
+	return rtn;
 }
 
 int Seat_Perst_InsertBatch(seat_list_t list) 
@@ -60,6 +78,7 @@ int Seat_Perst_InsertBatch(seat_list_t list)
 				rtn++;
 			}
 		}
+		fclose(fp);
 		
 		
 	}
@@ -67,31 +86,176 @@ int Seat_Perst_InsertBatch(seat_list_t list)
 	return rtn;
 }
 
-int Seat_Perst_Update(const seat_t *seatdata) {
+int Seat_Perst_Update(seat_t *seatdata)
+ {
 	assert(NULL!=seatdata);
-	return 0;
+	FILE *fp = fopen(SEAT_DATA_FILE, "rb+");
+	if (NULL == fp) {
+		printf("Cannot open file %s!\n", SEAT_DATA_FILE);
+		return 0;
+	}
 
+	seat_t buf;
+	int found = 0;
+	seatdata->id  = (int)EntKey_Perst_GetNewKeys(SEAT_KEY_NAME, 1);
+	while (!feof(fp)) {
+		if (fread(&buf, sizeof(seat_t), 1, fp)) {
+			if (buf.row == seatdata->row && buf.column == seatdata->column)
+			 {
+				fseek(fp, -((int)sizeof(seat_t)), SEEK_CUR);
+				fwrite(seatdata, sizeof(seat_t), 1, fp);
+				found = 1;
+				break;
+			}
+
+		}
+	}
+	fclose(fp);
+	// printf("found = %d",found);
+	return found;
 }
 
-int Seat_Perst_DeleteByID(int ID) {
-	
-	return 0;
+int Seat_Perst_DeleteByID(int ID)
+ {
+	if(rename(SEAT_DATA_FILE, SEAT_DATA_TEMP_FILE)<0){
+		printf("Cannot open file %s!\n", SEAT_DATA_FILE);
+		return 0;
+	}
+
+	FILE *fpSour, *fpTarg;
+	fpSour = fopen(SEAT_DATA_TEMP_FILE, "rb");
+	if (NULL == fpSour ){
+		printf("Cannot open file %s!\n", SEAT_DATA_FILE);
+		return 0;
+	}
+
+	fpTarg = fopen(SEAT_DATA_FILE, "wb");
+	if ( NULL == fpTarg ) {
+		printf("Cannot open file %s!\n", SEAT_DATA_TEMP_FILE);
+		return 0;
+	}
+
+
+	seat_t buf;
+
+	int found = 0;
+	while (!feof(fpSour)) {
+		if (fread(&buf, sizeof(seat_t), 1, fpSour)) {
+			if (ID == buf.id) {
+				found = 1;
+				continue;
+			}
+			fwrite(&buf, sizeof(seat_t), 1, fpTarg);
+		}
+	}
+
+	fclose(fpTarg);
+	fclose(fpSour);
+
+	//ɾ����ʱ�ļ�
+	remove(SEAT_DATA_TEMP_FILE);
 }
 
 
-int Seat_Perst_DeleteAllByRoomID(int roomID) {
-	
-	return 0;
+int Seat_Perst_DeleteAllByRoomID(int roomID)//书上叫remove all
+ {
+	if(rename(SEAT_DATA_FILE, SEAT_DATA_TEMP_FILE)<0){
+		printf("Cannot open file %s!\n", SEAT_DATA_FILE);
+		return 0;
+	}
+
+	FILE *fpSour, *fpTarg;
+	fpSour = fopen(SEAT_DATA_TEMP_FILE, "rb");
+	if (NULL == fpSour ){
+		printf("Cannot open file %s!\n", SEAT_DATA_FILE);
+		return 0;
+	}
+
+	fpTarg = fopen(SEAT_DATA_FILE, "wb");
+	if ( NULL == fpTarg ) {
+		printf("Cannot open file %s!\n", SEAT_DATA_TEMP_FILE);
+		return 0;
+	}
+
+
+	seat_t buf;
+
+	int found = 0;
+	while (!feof(fpSour)) {
+		if (fread(&buf, sizeof(seat_t), 1, fpSour)) {
+			if (roomID == buf.roomID) {
+				found = 1;
+				continue;
+			}
+			fwrite(&buf, sizeof(seat_t), 1, fpTarg);
+		}
+	}
+
+	fclose(fpTarg);
+	fclose(fpSour);
+
+	//ɾ����ʱ�ļ�
+	remove(SEAT_DATA_TEMP_FILE);
+	return found;
 }
 
-int Seat_Perst_SelectByID(int ID, seat_t *buf) {
-	
-	return 0;
+int Seat_Perst_SelectByID(int ID, seat_t *buf) 
+{
+	assert(NULL!=buf);
+
+	FILE *fp = fopen(SEAT_DATA_FILE, "rb");
+	if (NULL == fp) {
+		return 0;
+	}
+
+	seat_t data;
+	int found = 0;
+
+	while (!feof(fp)) {
+		if (fread(&data, sizeof(seat_t), 1, fp)) {
+			if (ID == data.id) {
+				*buf = data;
+				found = 1;
+				break;
+			};
+
+		}
+	}
+	fclose(fp);
+
+	return found;
 }
 
-int Seat_Perst_SelectAll(seat_list_t list) {
-	
-	return 0;
+int Seat_Perst_SelectAll(seat_list_t list) //没用过
+{
+	seat_node_t *newNode;
+	seat_t data;
+	int recCount = 0;
+
+	assert(NULL!=list);
+
+	List_Free(list, seat_node_t);
+
+	FILE *fp = fopen(SEAT_DATA_FILE, "rb");
+	if (NULL == fp) { //�ļ�������
+		return 0;
+	}
+
+	while (!feof(fp)) {
+		if (fread(&data, sizeof(seat_t), 1, fp)) {
+			newNode = (seat_node_t*) malloc(sizeof(seat_node_t));
+			if (!newNode) {
+				printf(
+						"Warning, Memory OverFlow!!!\n Cannot Load more Data into memory!!!\n");
+				break;
+			}
+			newNode->data = data;
+			List_AddTail(list, newNode);
+			recCount++;
+		}
+	}
+	fclose(fp);
+	return recCount;
 }
 
 int Seat_Perst_SelectByRoomID(seat_list_t list, int roomID) 
@@ -112,7 +276,6 @@ int Seat_Perst_SelectByRoomID(seat_list_t list, int roomID)
 		{
 				
 				if(fread(&q,sizeof(seat_t),1,fp) < 1) break;
-				printf("q.roomid = %d\n",q.roomID);
 				if(q.roomID == roomID)
 				{
 					p->data = q;
@@ -130,6 +293,5 @@ int Seat_Perst_SelectByRoomID(seat_list_t list, int roomID)
 
 		
 	}
-	printf("recCount = %d",recCount);
 	return recCount;
 }

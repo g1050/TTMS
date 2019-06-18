@@ -16,7 +16,7 @@ int Play_UI_Query(int id);
 
 int Play_UI_Query(int id);
 
-/*以列表模式显示剧目信息*/
+/*锟斤拷锟叫憋拷模式锟斤拷示锟斤拷目锟斤拷息*/
 void Play_UI_ShowList(play_list_t list, Pagination_t paging);
 
 void Play_UI_MgtEntry( );

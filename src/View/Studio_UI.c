@@ -224,8 +224,8 @@ int Studio_UI_Delete(int id) {
 
 	if (Studio_Srv_DeleteByID(id)) {
 		
-		// if (Seat_Srv_DeleteAllByRoomID(id))//此函数还没写
-		// 	printf("The seats of the room deleted successfully!\n");
+		if (Seat_Srv_DeleteAllByRoomID(id))
+			printf("成功删除演出厅座位!\n");
 		printf(
 				"成功删除演出厅!\n按下 [Enter]返回上层!\n");
 		rtn = 1;

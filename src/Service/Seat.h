@@ -12,7 +12,7 @@ typedef enum{
 	SEAT_NONE=0,			//��λ
 	SEAT_GOOD=1,			//����λ
 	SEAT_BROKEN=9			//�𻵵���λ
-}seat_status_t;
+}seat_status_t;//' ' # *
 
 typedef struct {
 	int id;					//��λid

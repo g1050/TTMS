@@ -10,28 +10,35 @@
 #include "../Persistence/Seat_Persist.h"
 #include <stdio.h>
 
-inline int Seat_Srv_Add(seat_t *data) {	////�·�����dataǰ���constȥ��
+inline int Seat_Srv_Add(seat_t *data)
+ {
+
+	return Seat_Perst_Insert(data);
+}
+
+inline int Seat_Srv_AddBatch(seat_list_t list) //书上还没找到
+{
 	return 0;
 }
 
-inline int Seat_Srv_AddBatch(seat_list_t list) {
-	return 0;
+inline int Seat_Srv_Modify(const seat_t *data)
+ {
+	return Seat_Perst_Update(data);
 }
 
-inline int Seat_Srv_Modify(const seat_t *data) {
-	return 0;
+inline int Seat_Srv_DeleteByID(int ID)
+ {
+	return Seat_Perst_DeleteByID(ID);
 }
 
-inline int Seat_Srv_DeleteByID(int ID) {
-	return 0;
+inline int Seat_Srv_FetchByID(int ID, seat_t *buf) //Seat_Perst_FetchByID书上的
+{
+	return Seat_Perst_SelectByID(ID,buf);
 }
 
-inline int Seat_Srv_FetchByID(int ID, seat_t *buf) {
-	return 0;
-}
-
-inline int Seat_Srv_DeleteAllByRoomID(int roomID) {
-	return 0;
+inline int Seat_Srv_DeleteAllByRoomID(int roomID)
+ {
+	return Seat_Perst_DeleteAllByRoomID(roomID);
 }
 
 //�����ݳ���ID������λ
@@ -46,8 +53,20 @@ int Seat_Srv_FetchByRoomID(seat_list_t list, int roomID)
 }
 
 /*���ݷ�ӳ��ID��ȡ��Ч����λ*/
-int Seat_Srv_FetchValidByRoomID(seat_list_t list, int roomID) {
-	return 0;
+int Seat_Srv_FetchValidByRoomID(seat_list_t list, int roomID)//
+ {
+	 seat_node_t *p;
+	 int seatcount = Seat_Perst_SelectByRoomID(list,roomID);
+	 List_ForEach(list,p)
+	 {
+		 	if(p->data.status != 1)
+			 {
+				 	List_DelNode(p);
+					 seatcount--;
+			 } 
+	 }
+	//排序?
+	return seatcount;
 
 }
 
@@ -110,13 +129,21 @@ void Seat_Srv_AddToSoftedList(seat_list_t list, seat_node_t *node)
        return ;
 }
 
-inline seat_node_t * Seat_Srv_FindByRowCol(seat_list_t list, int row,
-		int column) {
-
+inline seat_node_t * Seat_Srv_FindByRowCol(seat_list_t list, int row,int column)
+ {
+	 seat_list_t p;
+	 List_ForEach(list,p)
+	 {
+		 if(p->data.row == row && p->data.column == column)
+		 {
+			 return p;
+		 }
+	 }
 	return NULL;
 }
 
-inline seat_node_t * Seat_Srv_FindByID(seat_list_t list, int rowID) {
+inline seat_node_t * Seat_Srv_FindByID(seat_list_t list, int rowID) //书上还没找到
+{
 
 	return NULL;
 }

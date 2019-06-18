@@ -6,6 +6,8 @@
 
 static const int SCHEDULE_PAGE_SIZE=5;
 
+int Schedule_UI_MgtEnt();
+
 int Schedule_UI_Add(int play_id);
 
 int Schedule_UI_Modify(int id);
