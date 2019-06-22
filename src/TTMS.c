@@ -22,20 +22,21 @@ int main(void) {
 	SysLogin();//用户登录
 
 	// printf(" type = %d\n",gl_CurUser.type);
-	if(gl_CurUser.type == 0 || gl_CurUser.type == 9)//系统管理员
+	if(gl_CurUser.type == 9 )//系统管理员
 	{
-		puts("菜单1");
 		Main_Menu();
 	}
 	else if(gl_CurUser.type == 1 )//售票员
 	{
-		puts("菜单2");
 		Main_Menu1();
 	}
 	else if(gl_CurUser.type == 2)//经理
 	{
-		puts("菜单3");
 		Main_Menu2();
+	}
+	else if(gl_CurUser.type == 0)//root权限
+	{
+		Main_Menu9();
 	}
 
 	return EXIT_SUCCESS;
