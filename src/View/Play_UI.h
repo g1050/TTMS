@@ -17,7 +17,7 @@ int Play_UI_Query(int id);
 int Play_UI_Query(int id);
 
 /*���б�ģʽ��ʾ��Ŀ��Ϣ*/
-void Play_UI_ShowList(play_list_t list, Pagination_t paging);
+void Play_UI_ShowList(play_list_t list, Pagination_t paging);//
 
 void Play_UI_MgtEntry( );
 

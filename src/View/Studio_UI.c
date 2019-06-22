@@ -70,7 +70,6 @@ void Studio_UI_MgtEntry(void) {
         setbuf(stdin,NULL);
 		scanf("%d", &choice);
 		setbuf(stdin,NULL);
-        printf("choice = %c",choice);
 		fflush(stdin);
 
 
@@ -156,8 +155,10 @@ int Studio_UI_Add(void) {
 		printf("-------------------------------------------------------\n");
 		printf("[A]继续添加, [R]返回上层:");
 		fflush(stdin);
+		setbuf(stdin,NULL);
 		scanf("%c", &choice);
 	} while ('a' == choice || 'A' == choice);
+	system("clear");
 	return newRecCount;
 }
 
@@ -182,6 +183,7 @@ int Studio_UI_Modify(int id) {
 	printf("演出厅ID:%d\n", rec.id);
 	printf("演出厅名字[%s]:", rec.name);
 	fflush(stdin);
+	setbuf(stdin,NULL);
 	gets(rec.name);
 
 	List_Init(list, seat_node_t);

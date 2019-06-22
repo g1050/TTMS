@@ -47,10 +47,12 @@ int Account_Srv_FetchByID(int usrID, account_t *buf);
 int Account_Srv_FetchByName(char usrName[], account_t *buf);
 
 //��ȡ����ϵͳ�û�
- int Account_Srv_FetchAll(account_list_t list);
+int Account_Srv_FetchAll(account_list_t list);
 
 //�����û�����ȡϵͳ�û�ָ��
 account_node_t * Account_Srv_FindByUsrName(account_list_t list, char usrName[]);
+
+int Account_Srv_Vertify1(char usrName[], char pwd[]);
 
 
 #endif //ACCOUNT_H_

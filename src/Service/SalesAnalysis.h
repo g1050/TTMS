@@ -1,7 +1,7 @@
 /*
  *salesanalysis.h
  *
- *  Created on: 2015Äê5ÔÂ8ÈÕ
+ *  Created on: 2015ï¿½ï¿½5ï¿½ï¿½8ï¿½ï¿½
  *      Author: Administrator
  */
 #ifndef SALESANALYSIS_H_
@@ -14,38 +14,38 @@
 #include "../Common/List.h"
 
 typedef struct {
-	int play_id; 	//¾çÄ¿±àºÅ
-	char name[31]; 	//¾çÄ¿Ãû³Æ
-	char area[9]; 	//¾çÄ¿ÇøÓò
-	int duration; 	//ÒÔ·ÖÖÓÎªµ¥Î»
-	long totaltickets; //¾çÄ¿Æ±ÏúÊÛÊýÁ¿
-	long sales; 	//µçÓ°Æ±·¿
-	int price; 		//¾çÄ¿Æ±¼Û
-	ttms_date_t start_date; 	//¾çÄ¿ÉÏÓ³ÈÕÆÚ
-	ttms_date_t end_date; 	//¾çÄ¿ÏÂÓ³ÈÕÆÚ
+	int play_id; 	//ï¿½ï¿½Ä¿ï¿½ï¿½ï¿½
+	char name[31]; 	//ï¿½ï¿½Ä¿ï¿½ï¿½ï¿½ï¿½
+	char area[9]; 	//ï¿½ï¿½Ä¿ï¿½ï¿½ï¿½ï¿½
+	int duration; 	//ï¿½Ô·ï¿½ï¿½ï¿½Îªï¿½ï¿½Î»
+	long totaltickets; //ï¿½ï¿½Ä¿Æ±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	long sales; 	//ï¿½ï¿½Ó°Æ±ï¿½ï¿½
+	int price; 		//ï¿½ï¿½Ä¿Æ±ï¿½ï¿½
+	ttms_date_t start_date; 	//ï¿½ï¿½Ä¿ï¿½ï¿½Ó³ï¿½ï¿½ï¿½ï¿½
+	ttms_date_t end_date; 	//ï¿½ï¿½Ä¿ï¿½ï¿½Ó³ï¿½ï¿½ï¿½ï¿½
 } salesanalysis_t;
 
-//Ë«ÏòÁ´±í
+//Ë«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 typedef struct salesanalysis_node {
 	salesanalysis_t data;
 	struct salesanalysis_node *next, *prev;
 } salesanalysis_node_t, *salesanalysis_list_t;
 
-//»ñÈ¡¾çÄ¿Æ±·¿
+//ï¿½ï¿½È¡ï¿½ï¿½Ä¿Æ±ï¿½ï¿½
 int SalesAnalysis_Srv_StaticSale(salesanalysis_list_t list);
 
-//¾çÄ¿Æ±·¿ÅÅÐÐ
+//ï¿½ï¿½Ä¿Æ±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 void SalesAnalysis_Srv_SortBySale(salesanalysis_list_t list);
 
-//¸ù¾Ý¾çÄ¿ID»ñÈ¡Æ±·¿
+//ï¿½ï¿½ï¿½Ý¾ï¿½Ä¿IDï¿½ï¿½È¡Æ±ï¿½ï¿½
 //int Schedule_Srv_StatRevByPlay(int play_id, int *soldCount);
-//¸ù¾ÝÑÝ³ö¼Æ»®ID»ñÈ¡Æ±·¿
+//ï¿½ï¿½ï¿½ï¿½ï¿½Ý³ï¿½ï¿½Æ»ï¿½IDï¿½ï¿½È¡Æ±ï¿½ï¿½
 int Ticket_Srv_StatRevBySchID(int schedule_id, int *soldCount);
 
-//¸ù¾ÝÑÝ³ö¼Æ»®ID»ñÈ¡Æ±µÄÊý¾Ý
+//ï¿½ï¿½ï¿½ï¿½ï¿½Ý³ï¿½ï¿½Æ»ï¿½IDï¿½ï¿½È¡Æ±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 //int Ticket_Srv_FetchBySchID(ticket_list_t list, int schedule_id);
 
-//¸ù¾ÝÆ±ID»ñÈ¡ÏúÊÛ¼ÇÂ¼
+//ï¿½ï¿½ï¿½ï¿½Æ±IDï¿½ï¿½È¡ï¿½ï¿½ï¿½Û¼ï¿½Â¼
 int Sale_Srv_FetchByTicketID(int ticket_id, sale_t *sale);
 
 #endif 

@@ -28,4 +28,6 @@ int Seat_Perst_SelectAll(seat_list_t list);
 
 int Seat_Perst_SelectByRoomID(seat_list_t list, int roomID);
 
+int  Seat_Perst_Showticket(list,schedule_id);
+
 #endif /* SEATPERSIST_H_ */

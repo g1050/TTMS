@@ -48,7 +48,6 @@ void Play_UI_MgtEntry()
 			printf("%5d %15s  %9s  %5d  %d/%d/%d->%d/%d/%d  %5d\n", pos->data.id,pos->data.name,pos->data.area,pos->data.duration
             ,pos->data.start_date.year,pos->data.start_date.month,pos->data.start_date.day,pos->data.end_date.year,pos->data.end_date.month,pos->data.end_date.day,pos->data.price);
 		}
-
 		printf(
 				"------- 共:%2d页 ----------------------- 页数 :%2d/%2d ----\n",
 				paging.totalRecords, Pageing_CurPage(paging),

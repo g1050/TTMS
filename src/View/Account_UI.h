@@ -1,7 +1,7 @@
 /*
  * Account_UI.h
  *
- *  Created on: 2015年5月8日
+ *  Created on: 2015锟斤拷5锟斤拷8锟斤拷
  *      Author: Administrator
  */
 
@@ -13,23 +13,25 @@
 
 static const int ACCOUNT_PAGE_SIZE = 3;
 
-//系统登录
+//系统锟斤拷录
 int SysLogin();
 
-//系统用户管理界面
+//系统锟矫伙拷锟斤拷锟斤拷锟斤拷锟斤拷
 void Account_UI_MgtEntry();
 
-//添加新系统用户界面
+//锟斤拷锟斤拷锟斤拷系统锟矫伙拷锟斤拷锟斤拷
 int  Account_UI_Add(account_list_t list);
 
-//修改系统用户界面
+//锟睫革拷系统锟矫伙拷锟斤拷锟斤拷
 int Account_UI_Modify(account_list_t list,char usrName[]);
 
-//删除系统用户界面
+//删锟斤拷系统锟矫伙拷锟斤拷锟斤拷
 int Account_UI_Delete(account_list_t list,char usrName[]);
 
-//查询系统用户界面
+//锟斤拷询系统锟矫伙拷锟斤拷锟斤拷
 int Account_UI_Query(account_list_t list,char usrName[]);
+
+int getch();
 
 
 #endif /* ACCOUNT_UI_H_ */

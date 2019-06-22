@@ -9,6 +9,7 @@
 #include "../Service/Seat.h"
 #include "EntityKey_Persist.h"
 #include "../Common/List.h"
+#include "../Service/Ticket.h"//?
 #include <stdlib.h>
 #include <stdio.h>
 #include<unistd.h>
@@ -19,7 +20,9 @@ static const char SEAT_DATA_TEMP_FILE[] = "SeatTmp.dat";
 
 //���Ӷ���������ʶ����
 static const char SEAT_KEY_NAME[] = "Seat";
-
+static const char TICKET_DATA_FILE[]="Ticket.dat";
+static const char TICKET_DATA_TEMP_FILE[]="TicketTemp.dat";
+static const char TICKET_KEY_NAME[]="Ticket";
 
 int Seat_Perst_Insert(seat_t *data) 
 {   
@@ -289,9 +292,51 @@ int Seat_Perst_SelectByRoomID(seat_list_t list, int roomID)
 				//优化不用全部遍历其实
 				p = (seat_list_t)malloc(sizeof(seat_node_t));
 		}
+
+
+
 		fclose(fp);
 
 		
 	}
+	return recCount;
+}
+
+int  Seat_Perst_Showticket(ticket_list_t list,int schedule_id)
+{
+	ticket_node_t *newNode;
+	ticket_t data;
+	int recCount = 0;
+
+	assert(NULL!=list);
+
+	List_Free(list, ticket_node_t);
+
+	FILE *fp = fopen(TICKET_DATA_FILE, "rb");
+	if (NULL == fp) { //�ļ�������
+		return 0;
+	}
+
+	while (!feof(fp))
+	 {
+		if (fread(&data, sizeof(ticket_t), 1, fp))
+		 {
+			newNode = (ticket_node_t*) malloc(sizeof(ticket_node_t));
+			if (!newNode)
+			 {
+				printf(
+						"Warning, Memory OverFlow!!!\n Cannot Load more Data into memory!!!\n");
+				break;
+			}
+			if(data.schedule_id == schedule_id)
+			{
+				newNode->data = data;
+				List_AddTail(list,newNode);
+				recCount++;
+			}
+			
+		}
+	}
+	fclose(fp);
 	return recCount;
 }

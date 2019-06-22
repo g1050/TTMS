@@ -11,7 +11,9 @@ int Ticket_UI_MgtEntry(int schedule_id);
 
 void Ticket_UI_Query(void);
 
-int Ticket_UI_ShowTicket (int ticket_id);
+int Ticket_UI_ShowTicket (ticket_list_t list);
+
+
 
 
 

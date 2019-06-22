@@ -6,7 +6,7 @@
 #include "EntityKey_Persist.h"
 
 
-int Ticket_Perst_Insert(int schedule_id, seat_list_t list);//Éú³ÉÑÝ³ö¼Æ»®Ê±£¬ÅúÁ¿Éú³ÉÆ±
+int Ticket_Perst_Insert(int schedule_id, seat_list_t list);//ï¿½ï¿½ï¿½ï¿½ï¿½Ý³ï¿½ï¿½Æ»ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ±
 
 int Ticket_Perst_Rem(int schedule_id);
 
@@ -19,5 +19,7 @@ int Ticket_Perst_SelectAll(ticket_list_t list) ;
 int Ticket_Perst_SelectBySchID(ticket_list_t list, int schedule_id);
 
 int Ticket_Perst_SelByID(int id, ticket_t *buf);
+
+int Ticket_Perst_Make(ticket_list_t list);
 
 #endif /* TICKETPERSIST_H_ */

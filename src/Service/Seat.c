@@ -129,7 +129,7 @@ void Seat_Srv_AddToSoftedList(seat_list_t list, seat_node_t *node)
        return ;
 }
 
-inline seat_node_t * Seat_Srv_FindByRowCol(seat_list_t list, int row,int column)
+seat_node_t * Seat_Srv_FindByRowCol(seat_list_t list, int row,int column)
  {
 	 seat_list_t p;
 	 List_ForEach(list,p)
@@ -139,6 +139,9 @@ inline seat_node_t * Seat_Srv_FindByRowCol(seat_list_t list, int row,int column)
 			 return p;
 		 }
 	 }
+	//  printf("aaa");
+	// setbuf(stdin,NULL);
+	// getchar();
 	return NULL;
 }
 

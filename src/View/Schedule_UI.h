@@ -14,7 +14,7 @@ int Schedule_UI_Modify(int id);
 
 int Schedule_UI_Delete(int id);
 
-int Schedule_UI_Query(int id);
+int Schedule_UI_Query(char *play_name);
 
 void Schedule_UI_MgtEntry(int play_id);
 

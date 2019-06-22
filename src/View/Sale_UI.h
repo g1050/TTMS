@@ -8,17 +8,22 @@
 #include "../Service/Ticket.h"
 
 
-//¸ù¾Ý¾çÄ¿IDÏÔÊ¾ÑÝ³ö¼Æ»®
+//ï¿½ï¿½ï¿½Ý¾ï¿½Ä¿IDï¿½ï¿½Ê¾ï¿½Ý³ï¿½ï¿½Æ»ï¿½
 void Sale_UI_ShowScheduler(int playID);
 
+void Sale_UI_ShowScheduler1(int playID);
+//ï¿½ï¿½Æ±ï¿½ï¿½ï¿½ï¿½
+int Sale_UI_SellTicket(ticket_list_t tickList, seat_list_t seatList);
 
-//ÊÛÆ±½çÃæ
-inline int Sale_UI_SellTicket(ticket_list_t tickList, seat_list_t seatList);
-
-//¹ÜÀíÊÛÆ±µÄÖ÷½çÃæ
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 void Sale_UI_MgtEntry(void);
 
-//ÍËÆ±
+//ï¿½ï¿½Æ±
 void Sale_UI_RetfundTicket();
 
+void Sale_UI_ShowTicket(int schedule_id);
+
+void Sale_UI_ShowTicket1(int schedule_id);
+
+int Sale_UI_SellTicket1(ticket_list_t tickList,seat_list_t seatList);
 #endif

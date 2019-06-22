@@ -4,18 +4,20 @@
 #include "../Service/Sale.h"
 #include "../Common/common.h"
 
-//´æ´¢ĞÂ¶©µ¥
+//ï¿½æ´¢ï¿½Â¶ï¿½ï¿½ï¿½
 int Sale_Perst_Insert (sale_t *data);
-//¸üĞÂÆ±×´Ì¬
+//ï¿½ï¿½ï¿½ï¿½Æ±×´Ì¬
 int Ticket_Perst_Update (const ticket_t *data);
 
-//¸ù¾İÑİ³ö¼Æ»®IDÔØÈëÆ±µÄÊı¾İ
+//ï¿½ï¿½ï¿½ï¿½ï¿½İ³ï¿½ï¿½Æ»ï¿½IDï¿½ï¿½ï¿½ï¿½Æ±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 int Ticket_Srv_SelBySchID(int id, ticket_list_t list);
 
-//¸ù¾İÆ±IDÔØÈëÏúÊÛ¼ÇÂ¼
+//ï¿½ï¿½ï¿½ï¿½Æ±IDï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Û¼ï¿½Â¼
 int Sale_Perst_SelByTicketID (int ticket_id, sale_t *sale);
 
-//¸ù¾İIDÔØÈëÏúÊÛ¼ÇÂ¼
+//ï¿½ï¿½ï¿½ï¿½IDï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Û¼ï¿½Â¼
 int Sale_Perst_SelByID (sale_list_t list, int usrID);
 
+int Sale_Perst_SelectAll(sale_list_t list);
+int Sale_Perst_SelByTicketID (int ticket_id, sale_t *sale);
 #endif

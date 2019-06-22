@@ -52,8 +52,9 @@ int Play_Srv_Modify(play_t *buf)
 
 
 //未写
-int Play_Srv_FetchByName(play_list_t list, char condt[]){
-	return 0;
+int Play_Srv_FetchByName(play_list_t list, char condt[])
+{
+	return Play_Perst_SelectByName(list, condt);;
 
 }
 int Play_Srv_FilterByName(play_list_t list, char filter[]){

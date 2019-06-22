@@ -3,46 +3,50 @@
 #include "../Common/common.h"
 #include "Account.h"
 #include "Ticket.h"
+#include "Schedule.h"
 
-//½»Ò×ÀàÐÍ£¬ÎªÊÛÆ±»òÍËÆ±
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í£ï¿½Îªï¿½ï¿½Æ±ï¿½ï¿½ï¿½ï¿½Æ±
 typedef enum{
-	SALE_SELL=1,	//ÂòÆ±
-	SALE_RETURN=-1	//ÍËÆ±
+	SALE_SELL=1,	//ï¿½ï¿½Æ±
+	SALE_RETURN=-1	//ï¿½ï¿½Æ±
 }sale_type_t;
 
 
 typedef struct {
-	long id;      		//ÏúÊÛ¼ÇÂ¼ID
-	int user_id;		//ÊÛÆ±Ô±ID
+	long id;      		//ï¿½ï¿½ï¿½Û¼ï¿½Â¼ID
+	int user_id;		//ï¿½ï¿½Æ±Ô±ID
 	int ticket_id;		//Æ±ID
-	ttms_date_t date ;	//´¦ÀíÈÕÆÚ
-	ttms_time_t time;	//´¦ÀíÊ±¼ä
-	int value;			//Æ±¼Û
-	sale_type_t type; //½»Ò×ÀàÐÍ
+	ttms_date_t date ;	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	ttms_time_t time;	//ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+	int value;			//Æ±ï¿½ï¿½
+	sale_type_t type; //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 }sale_t;
 
-//Ë«ÏòÁ´±í
+//Ë«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 typedef struct sale_node {
 	sale_t data;
 	struct sale_node *next, *prev;
 } sale_node_t, *sale_list_t;
 
-//Ìí¼ÓÐÂ¶©µ¥ÐÅÏ¢
+//ï¿½ï¿½ï¿½ï¿½ï¿½Â¶ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
 int Sale_Srv_Add(sale_t *data);
-//ÐÞ¸ÄÆ±×´Ì¬
+//ï¿½Þ¸ï¿½Æ±×´Ì¬
 int Ticket_Srv_Modify (const ticket_t *data);
 
-//¸ù¾ÝÑÝ³ö¼Æ»®ID»ñÈ¡Æ±µÄÊý¾Ý
+//ï¿½ï¿½ï¿½ï¿½ï¿½Ý³ï¿½ï¿½Æ»ï¿½IDï¿½ï¿½È¡Æ±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 //int Ticket_Srv_FetchBySchID(ticket_list_t list, int schedule_id);
 
-//¸ù¾ÝÑÝ³ö¼Æ»®ID»ñÈ¡Æ±µÄÊý¾Ý
+//ï¿½ï¿½ï¿½ï¿½ï¿½Ý³ï¿½ï¿½Æ»ï¿½IDï¿½ï¿½È¡Æ±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 int Ticket_Srv_FetchBySchID(ticket_list_t list, int schedule_id);
 
-//¸ù¾ÝÑÝ³ö¼Æ»®ID»ñÈ¡Æ±µÄÊý¾Ý
+//ï¿½ï¿½ï¿½ï¿½ï¿½Ý³ï¿½ï¿½Æ»ï¿½IDï¿½ï¿½È¡Æ±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 //int Ticket_Srv_FetchBySchID(int ID, ticket_list_t list);
 
-//¸ù¾ÝID»ñÈ¡Æ±
+//ï¿½ï¿½ï¿½ï¿½IDï¿½ï¿½È¡Æ±
 ticket_node_t * Ticket_Srv_FetchBySeatID (ticket_list_t list, int seat_id);
 
+int Sale_Srv_FetchAll(sale_list_t list);
+
+int Sale_Srv_FetchByticket(int schedule_id,sale_t *sale);
 #endif //SALE_H_
 

@@ -1,7 +1,7 @@
 /*
  * account.c
  *
- *  Created on: 2015Äê6ÔÂ12ÈÕ
+ *  Created on: 2015ï¿½ï¿½6ï¿½ï¿½12ï¿½ï¿½
  *      Author: Administrator
  */
 #include "Account.h"
@@ -11,53 +11,173 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-extern account_t gl_CurUser;
+static const char ACCOUNT_KEY_NAME[]="Account";
 
-//´´½¨ÏµÍ³³õÊ¼»¯ÕËºÅadmin
+account_t gl_CurUser;
+
+//ï¿½ï¿½ï¿½ï¿½ÏµÍ³ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½Ëºï¿½admin
 void Account_Srv_InitSys(){
+	if(Account_Perst_CheckAccFile())//ç”¨æˆ·æ–‡ä»¶ä¸å­˜åœ¨
+	{
+		return;
+	}
+	else
+	{
+		printf("åˆå§‹åŒ–ï¼š\n");
+		account_t data_admin;
+		printf("è¯·è¾“å…¥ä½ çš„å§“åï¼š");
+		scanf("%s",data_admin.username);
+		// printf("\nè¯·è¾“å…¥ä½ çš„idï¼š");
+		// scanf("%d",&data_admin.id);
+		long key = EntKey_Perst_GetNewKeys(ACCOUNT_KEY_NAME, 1); //è·å–ä¸»é”®
+		if(key<=0)			
+			return 0;
+		data_admin.id = key;
+
+
+
+		printf("\nè¯·è¾“å…¥ä½ çš„å¯†ç ï¼š");
+		scanf("%s",data_admin.password);
+		// printf("\nè¯·è¾“å…¥ä½ çš„ç±»å‹ï¼š");
+		data_admin.type=0;
+
+		// printf("å“ˆå“ˆ");
+		// setbuf(stdin,NULL);
+		// getchar();
+		// fflush(stdin);
+
+		Account_Srv_Add(&data_admin);
+	}
+	return;
 
 }
 
-//ÑéÖ¤µÇÂ¼ÕËºÅÊÇ·ñÒÑ´æÔÚ£¬´æÔÚ£¬±£´æµÇÂ¼ÓÃ»§ĞÅÏ¢µ½È«¾Ö±äÁ¿gl_CurUser£¬return 1£»·ñÔòreturn 0
-inline int Account_Srv_Verify(char usrName[], char pwd[]){
+//ï¿½ï¿½Ö¤ï¿½ï¿½Â¼ï¿½Ëºï¿½ï¿½Ç·ï¿½ï¿½Ñ´ï¿½ï¿½Ú£ï¿½ï¿½ï¿½ï¿½Ú£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â¼ï¿½Ã»ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½È«ï¿½Ö±ï¿½ï¿½ï¿½gl_CurUserï¿½ï¿½return 1ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½return 0
+int Account_Srv_Vertify(char usrName[], char pwd[]){
+	account_t usr;
+	int t;
+	t=Account_Perst_SelByName(usrName,&usr);
+	if(t==1)
+	{
+		gl_CurUser=usr;
+		// printf(" type = %d\n",gl_CurUser.type);
 		return 1;
+	}
+	// printf(" type = %d\n",gl_CurUser.type);
+		
+	return 0;
+}
+int Account_Srv_Vertify1(char usrName[], char pwd[])
+{
+	account_t usr;
+	Account_Perst_SelByName(usrName,&usr);
+	if(strcmp(usr.password,pwd)==0)
+	{
+		gl_CurUser=usr;
+		return 1;
+	}
+	else
+	{
+		return 0;
+	}	
 }
 
 
-//ÑéÖ¤ÓÃ»§ÃûÊÇ·ñ´æÔÚ£¬±éÀúlist£¬Èô´æÔÚ£¬·µ»Ø¶ÔÓ¦½áµãÖ¸Õë£»·ñÔò£¬·µ»Ønull
+
+//ï¿½ï¿½Ö¤ï¿½Ã»ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½Ú£ï¿½ï¿½ï¿½ï¿½ï¿½listï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú£ï¿½ï¿½ï¿½ï¿½Ø¶ï¿½Ó¦ï¿½ï¿½ï¿½Ö¸ï¿½ë£»ï¿½ï¿½ï¿½ò£¬·ï¿½ï¿½ï¿½null
 account_node_t * Account_Srv_FindByUsrName(account_list_t list, char usrName[]) {
+
+	account_node_t *pos;
+	pos=(account_list_t)malloc(sizeof(account_node_t));
+	List_ForEach(list,pos)
+	{
+		if(strcmp(pos->data.username,usrName)==0)
+		{
+			return pos;
+		}
+	}
 
 	return NULL ;
 }
 
-//Ìí¼ÓÒ»¸öÓÃ»§ÕËºÅ£¬Í¨¹ıµ÷ÓÃAccount_Perst_Insert(data)º¯ÊıÊµÏÖ
-inline int Account_Srv_Add(const account_t *data){
-	 return 1;
+//ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ËºÅ£ï¿½Í¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Account_Perst_Insert(data)ï¿½ï¿½ï¿½ï¿½Êµï¿½ï¿½
+int Account_Srv_Add(const account_t *data){
+	int i;
+
+	i=Account_Perst_Insert(data);
+
+	// printf("å•Šå“ˆ");
+	// 	setbuf(stdin,NULL);
+	// 	getchar();
+		
+	if(i==1){
+		printf("æ·»åŠ æˆåŠŸ!\n");
+		return 1;
+	}
+	else
+	{
+		printf("æ·»åŠ å¤±è´¥ï¼\n");
+		return 0;
+	}
 }
 
-//ĞŞ¸ÄÒ»¸öÓÃ»§ÕËºÅ£¬Í¨¹ıµ÷ÓÃAccount_Perst_Update(data)º¯ÊıÊµÏÖ
-inline int Account_Srv_Modify(const account_t *data){
-	return 1;
+//ï¿½Ş¸ï¿½Ò»ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ËºÅ£ï¿½Í¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Account_Perst_Update(data)ï¿½ï¿½ï¿½ï¿½Êµï¿½ï¿½
+int Account_Srv_Modify(const account_t *data){
+	int i;
+	i=Account_Perst_Update(data);
+	// printf("å•Šå“ˆ");
+	// 	setbuf(stdin,NULL);
+	// 	getchar();
+		
+	if(i==0)
+	{
+		printf("ä¿®æ”¹å¯†ç å¤±è´¥ï¼");
+	}
+	else
+	{
+		printf("ä¿®æ”¹å¯†ç æˆåŠŸï¼");
+	}
+	// printf("å•Šå“ˆ");
+	// 	setbuf(stdin,NULL);
+	// 	getchar();
 }
 
-//É¾³ıÒ»¸öÓÃ»§ÕËºÅ£¬Í¨¹ıµ÷ÓÃAccount_Perst_DeleteByID(usrID)º¯ÊıÊµÏÖ
+//É¾ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ËºÅ£ï¿½Í¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Account_Perst_DeleteByID(usrID)ï¿½ï¿½ï¿½ï¿½Êµï¿½ï¿½
 inline int Account_Srv_DeleteByID(int usrID){
-	return 1;
+	int i;
+	i=Account_Perst_DeleteByID(usrID);
+	// printf("å•Šå“ˆ");
+	// 	setbuf(stdin,NULL);
+	// 	getchar();
+	if(i==1)
+	{
+		printf("åˆ é™¤ç”¨æˆ·æˆåŠŸï¼");
+		return 1;
+	}
+	else
+	{
+		printf("åˆ é™¤å¤±è´¥ï¼");
+		return 0;
+	}
+	
+
 }
 
-//ÌáÈ¡usrID¶ÔÓ¦µÄÓÃ»§ÕËºÅĞÅÏ¢£¬Í¨¹ıµ÷ÓÃAccount_Perst_SelectByID(usrID, buf)º¯ÊıÊµÏÖ
+//ï¿½ï¿½È¡usrIDï¿½ï¿½Ó¦ï¿½ï¿½ï¿½Ã»ï¿½ï¿½Ëºï¿½ï¿½ï¿½Ï¢ï¿½ï¿½Í¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Account_Perst_SelectByID(usrID, buf)ï¿½ï¿½ï¿½ï¿½Êµï¿½ï¿½
 inline int Account_Srv_FetchByID(int usrID, account_t *buf){
 	return 1;
 }
 
-//ÌáÈ¡usrName¶ÔÓ¦µÄÓÃ»§ÕËºÅĞÅÏ¢£¬Í¨¹ıµ÷ÓÃAccount_Perst_SelByName(usrName, buf)º¯ÊıÊµÏÖ
-inline int Account_Srv_FetchByName(char usrName[], account_t *buf){
-	return 1;
+//ï¿½ï¿½È¡usrNameï¿½ï¿½Ó¦ï¿½ï¿½ï¿½Ã»ï¿½ï¿½Ëºï¿½ï¿½ï¿½Ï¢ï¿½ï¿½Í¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Account_Perst_SelByName(usrName, buf)ï¿½ï¿½ï¿½ï¿½Êµï¿½ï¿½
+int Account_Srv_FetchByName(char usrName[], account_t *buf){
+	return Account_Perst_SelByName(usrName,buf);
 }
 
-//ÌáÈ¡ËùÓĞÓÃ»§ÕËºÅĞÅÏ¢£¬±£´æµ½listÁ´±íÖĞ£¬Í¨¹ıµ÷ÓÃAccount_Perst_SelectAll(list)º¯ÊıÊµÏÖ
-inline int Account_Srv_FetchAll(account_list_t list){
-	return 1;
+//ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½Ëºï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½æµ½listï¿½ï¿½ï¿½ï¿½ï¿½Ğ£ï¿½Í¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Account_Perst_SelectAll(list)ï¿½ï¿½ï¿½ï¿½Êµï¿½ï¿½
+int Account_Srv_FetchAll(account_list_t list){
+	int i;
+	i=Account_Perst_SelectAll(list);
+	return i;
 }
 
 

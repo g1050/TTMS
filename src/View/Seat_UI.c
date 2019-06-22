@@ -298,4 +298,7 @@ int Seat_UI_Delete(seat_list_t list, int row, int column)
 	return 0;
 
 }
-
+int Seat_UI_ShowTicket(ticket_list_t list,int schedule_id)
+{
+	return Seat_Perst_Showticket(list,schedule_id);
+}

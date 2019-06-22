@@ -4,6 +4,15 @@
         "list.h": "c",
         "stdlib.h": "c",
         "seat_ui.h": "c",
-        "ticket_ui.h": "c"
+        "ticket_ui.h": "c",
+        "schedule_ui.h": "c",
+        "schedule_persist.h": "c",
+        "ticket_persist.h": "c",
+        "stdio.h": "c",
+        "sale_persist.h": "c",
+        "account.h": "c",
+        "account_ui.h": "c",
+        "stasales.h": "c",
+        "stasales_ui.h": "c"
     }
 }

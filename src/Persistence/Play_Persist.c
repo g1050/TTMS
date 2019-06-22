@@ -170,6 +170,36 @@ int Play_Perst_SelectAll(play_list_t list)
 //未写
 int Play_Perst_SelectByName(play_list_t list, char condt[]) 
 {
-	return 0;
+	assert(NULL!=list);
+
+	FILE *fp = fopen(PLAY_DATA_FILE, "rb");
+	if (NULL == fp) {
+		return 0;
+	}
+
+	play_t data;
+	int found = 0;
+	play_list_t p;
+	while (!feof(fp)) 
+	{
+		p = (play_list_t)malloc(sizeof(play_node_t));
+		if (fread(&data, sizeof(play_t), 1, fp)) {
+			if (!strcmp(condt,data.name))
+			 {
+				p->data = data;
+				found++;
+				List_AddTail(list,p);
+			}
+			else
+			{
+				free(p);
+			}
+			
+
+		}
+	}
+	fclose(fp);
+
+	return found;
 }
 

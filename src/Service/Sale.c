@@ -1,25 +1,39 @@
 #include "../Persistence/Sale_Persist.h"
-
-//Ìí¼ÓÐÂ¶©µ¥ÐÅÏ¢
+#include "../Persistence/Ticket_Persist.h"
+//ï¿½ï¿½ï¿½ï¿½ï¿½Â¶ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
 int Sale_Srv_Add(sale_t *data){
-	return 0;
+	return Sale_Perst_Insert(data);
+
 }
 
-//ÐÞ¸ÄÆ±×´Ì¬
+//ï¿½Þ¸ï¿½Æ±×´Ì¬
 int Ticket_Srv_Modify (const ticket_t *data){
-	return 0;
+
+	return Ticket_Perst_Update(data);
 }
 
 
-//¸ù¾ÝÑÝ³ö¼Æ»®ID»ñÈ¡Æ±µÄÊý¾Ý
-int Ticket_Srv_FetchBySchID(ticket_list_t list, int schedule_id){
-	return 0;
+//ï¿½ï¿½ï¿½ï¿½ï¿½Ý³ï¿½ï¿½Æ»ï¿½IDï¿½ï¿½È¡Æ±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+int Ticket_Srv_FetchBySchID(ticket_list_t list, int schedule_id)
+{
+	return Ticket_Perst_SelectBySchID(list,schedule_id);
 
 }
 
 
-//¸ù¾ÝID»ñÈ¡Æ±
+//ï¿½ï¿½ï¿½ï¿½IDï¿½ï¿½È¡Æ±
 ticket_node_t * Ticket_Srv_FetchBySeatID (ticket_list_t list, int seat_id){
 	return 0;
 }
 
+int Sale_Srv_FetchAll(sale_list_t list){
+	int i;
+	i=Sale_Perst_SelectAll(list);
+	return i;
+}
+
+int Sale_Srv_FetchByticket(int ticket_id,sale_t *sale)//+
+{
+	// return 0;
+	return Sale_Perst_SelByTicketID(ticket_id,sale);
+}

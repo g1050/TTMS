@@ -9,7 +9,7 @@
 #define SEAT_UI_H_
 #include "../Common/List.h"
 #include "../Service/Seat.h"
-
+#include "../Service/Ticket.h"//?
 void Seat_UI_MgtEntry(int roomID);
 
 
@@ -26,6 +26,6 @@ int Seat_UI_Modify(seat_list_t list, int rowsCount, int colsCount);
 
 int Seat_UI_Delete(seat_list_t list, int rowsCount, int colsCount);
 
-
+int Seat_UI_ShowTicket(ticket_list_t list,int schedule_id);
 
 #endif /* SEAT_UI_H_ */

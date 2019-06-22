@@ -1,7 +1,7 @@
 /*
  * salesanalysis.c
  *
- *  Created on: 2015Äê6ÔÂ12ÈÕ
+ *  Created on: 2015ï¿½ï¿½6ï¿½ï¿½12ï¿½ï¿½
  *      Author: Administrator
  */
 #include <string.h>
@@ -13,26 +13,85 @@
 #include "Schedule.h"
 #include "../Common/List.h"
 
-//»ñÈ¡¾çÄ¿Æ±·¿
-int SalesAnalysis_Srv_StaticSale(salesanalysis_list_t list){
-	return 0;
+//ï¿½ï¿½È¡ï¿½ï¿½Ä¿Æ±ï¿½ï¿½
+int SalesAnalysis_Srv_StaticSale(salesanalysis_list_t list)
+{
+	int cnt = 0;
+	assert(NULL!=list);
+	play_list_t playlist;
+	play_node_t *pos;
+	int sold;//å­˜å‚¨å·²å”®æœ‰æ•ˆç¥¨æ•°
+	salesanalysis_list_t p;
+	List_Free(list,salesanalysis_node_t);
+	List_Init(playlist,play_node_t);
+	Play_Srv_FetchAll(playlist);
+	List_ForEach(playlist,pos)
+	{
+		p  =   (salesanalysis_list_t)malloc(sizeof(salesanalysis_node_t));
+		strcpy(p->data.area,pos->data.area);
+		p->data.duration = pos->data.duration;
+		p->data.end_date = pos->data.end_date;
+		strcpy(p->data.name,pos->data.name);
+		p->data.play_id = pos->data.id;
+		p->data.price = pos->data.price;
+		p->data.start_date = pos->data.start_date;
+		
+		p->data.sales = Schedule_Srv_StatRevByPlay(pos->data.id,&sold);//ç¥¨æˆ¿
+		p->data.totaltickets = sold;//ä¸Šåº§
+
+		List_AddTail(list,p);
+		// printf("å‰§ç›®id :%d\n",pos->data.id);
+	}
+	return cnt;
 
 }
 
-//¾çÄ¿Æ±·¿ÅÅÐÐ
-void SalesAnalysis_Srv_SortBySale(salesanalysis_list_t list){
+// //ï¿½ï¿½Ä¿Æ±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+// void SalesAnalysis_Srv_SortBySale(salesanalysis_list_t list){
 
-}
+// }
 
-//¸ù¾ÝÑÝ³ö¼Æ»®ID»ñÈ¡Æ±·¿
+//ï¿½ï¿½ï¿½ï¿½ï¿½Ý³ï¿½ï¿½Æ»ï¿½IDï¿½ï¿½È¡Æ±ï¿½ï¿½
 int Ticket_Srv_StatRevBySchID(int schedule_id, int *soldCount){
 	return 0;
 
 }
 
 
-//¸ù¾ÝÆ±ID»ñÈ¡ÏúÊÛ¼ÇÂ¼
+//ï¿½ï¿½ï¿½ï¿½Æ±IDï¿½ï¿½È¡ï¿½ï¿½ï¿½Û¼ï¿½Â¼
 int Sale_Srv_FetchByTicketID(int ticket_id, sale_t *sale){
 	return 0;
 
 }
+void SalesAnalysis_Srv_SortBySale(salesanalysis_list_t list)
+ { 
+	salesanalysis_node_t *p;    
+  	if(list == NULL) return ;   
+    list->prev->next = NULL;//å°†å¾ªçŽ¯æ–­å¼€     
+	salesanalysis_list_t listleft =  list->next;//listleftæŒ‡å‘ç¬¬ä¸€ä¸ªæ•°æ®èŠ‚ç‚¹ 
+	list->next = list->prev = list;//å°†ï½Œï½‰ï½“ï½”é“¾è¡¨ç½®ä¸ºç©º  
+	while(listleft != NULL)    
+	{   
+		       p = listleft;     
+			    listleft = listleft->next;       
+    SalesAnalysis_Srv_addnode(list,p);//+    
+	}     
+	return ; 
+} 
+void SalesAnalysis_Srv_addnode(salesanalysis_list_t list,salesanalysis_node_t *p)
+{ 	salesanalysis_node_t *cur;   
+   if(list == NULL)  
+    {         List_AddTail(list,p);     }     
+	  
+   else   
+  	{        
+	   cur = list->next;       
+	     while(cur != list)      
+		    {            
+				 if(p->data.sales > cur->data.sales) break;  
+				            cur = cur->next;      
+		   }      
+		      List_InsertBefore(cur,p);    
+	}   
+	  return ;
+ }

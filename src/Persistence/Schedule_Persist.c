@@ -181,16 +181,23 @@ int Schedule_Perst_SelectByPlay(schedule_list_t buf, int play_id)
 
 	schedule_t data;
 	int found = 0;
-
+	schedule_list_t p;
 	while (!feof(fp)) {
-		if (fread(&data, sizeof(schedule_t), 1, fp)) {
+		p = (schedule_list_t)malloc(sizeof(schedule_node_t));
+		if (fread(&data, sizeof(schedule_t), 1, fp))
+		 {
 			if (play_id == data.play_id) {
 				
 
-				// *buf = data;
-				found = 1;
-				break;
-			};
+				p->data = data;
+				List_AddTail(buf,p);
+				found++;
+			}
+			else
+			{
+				free(p);
+			}
+			
 
 		}
 	}

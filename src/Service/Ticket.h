@@ -2,9 +2,9 @@
 #define TICKET_H_
 
 typedef enum{
-	TICKET_AVL=0,		//´ýÊÛ
-	TICKET_SOLD=1,		//ÒÑÊÛ
-	TICKET_RESV=9		//Ô¤Áô
+	TICKET_AVL=0,		//ï¿½ï¿½ï¿½ï¿½æœªå”®
+	TICKET_SOLD=1,		//ï¿½ï¿½ï¿½ï¿½å·²å”®
+	TICKET_RESV=9		//Ô¤ï¿½ï¿½é¢„å®š
 }ticket_status_t;
 
 typedef struct {
@@ -15,7 +15,7 @@ typedef struct {
 	ticket_status_t status;
 } ticket_t;
 
-//Ë«ÏòÁ´±í
+//Ë«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 typedef struct ticket_node {
 	ticket_t data;
 	struct ticket_node *next, *prev;
@@ -25,7 +25,13 @@ int Ticket_Srv_GenBatch(int schedule_id, int studio_id);
 
 int Ticket_Srv_DeleteBatch(int schedule_id);
 
-int Ticket_Srv_FetchByID (int id, ticket_t *buf);
+ticket_list_t Ticket_Srv_FetchByID (int id,ticket_list_t buf);
 
+int Ticket_Srv_Make(ticket_list_t list);
 
+int Ticket_Srv_FetchAll(ticket_list_t ticket_list);
+
+ticket_list_t Ticket_Srv_FetchByTicketID(int x,ticket_list_t list);
+
+int Ticket_Srv_StatRevSchID(int schedule_id,int *soldCount);
 #endif //TICKET_H_
