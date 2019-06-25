@@ -41,6 +41,7 @@ int SalesAnalysis_Srv_StaticSale(salesanalysis_list_t list)
 
 		List_AddTail(list,p);
 		// printf("剧目id :%d\n",pos->data.id);
+		cnt++;
 	}
 	return cnt;
 

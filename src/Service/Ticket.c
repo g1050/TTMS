@@ -78,10 +78,11 @@ int Ticket_Srv_StatRevSchID(int schedule_id,int *soldCount)
 	List_Init(list,ticket_node_t);
 	*soldCount = 0;//有效售票室数量
 	// *soldCount = Ticket_Srv_FetchBySchID(list,schedule_id);//+
-	Ticket_Srv_FetchBySchID(list,schedule_id);
+	Ticket_Srv_FetchBySchID2(list,schedule_id);
 	List_ForEach(list,p)
 	{
 		Sale_Srv_FetchByticket(p->data.id,&sale);//+
+		//sale.type = 1;
 		if(sale.type == 1 && p->data.status == 1)//确认为买票状态，再确认为已售
 		{
 			*soldCount++;

@@ -11,18 +11,23 @@ extern account_t gl_CurUser;
 
 void StaSales_UI_MgtEntry ()
 {
+
     if(gl_CurUser.type==USR_CLERK)//售票员
     {
         StaSales_UI_Self();//统计个人销售额
     }
-    else if(gl_CurUser.type==USR_MANG)//经理
+    else if(gl_CurUser.type==USR_MANG ||gl_CurUser.type== 0  )//经理
     {
         StaSales_UI_Clerk();//统计售票员销售额
     }
     else
     {
         printf("账号没有权限！");
+        printf("按{ENTER}返回上层!\n");
+        getchar();
+        
     }
+    system("clear");
     return ;
 }
 
@@ -55,6 +60,7 @@ void StaSales_UI_Self(){
     int choice;
     do
     {
+        system("clear");
     printf("=======================================\n");
     printf("[1]当日销售额 | [2]当月销售额 | [0]返回\n");
     printf("---------------------------------------\n");
@@ -97,7 +103,7 @@ void StaSales_UI_Clerk()
     char username[100];
     ttms_date_t startdate;
     ttms_date_t enddate;
-
+    system("clear");
     printf("请输入售票员姓名：");
     setbuf(stdin,NULL);
     scanf("%s",username);
@@ -129,11 +135,12 @@ void StaSales_UI_Clerk()
     //  printf("青山！");
     // setbuf(stdin,NULL);
     // getchar();
+    printf("\n\n\n\n");
     printf("===========================================\n");
     printf("%5s  %5s  %5s","ID","类型","姓名\n");
     printf("%5d  %5d  %5s\n",user.id,user.type,user.username);
     printf("销售总额为：%5d\n",count);
-    printf("******************************************\n");
+    printf("*******************************************\n");
     setbuf(stdin,NULL);
     getchar();
 

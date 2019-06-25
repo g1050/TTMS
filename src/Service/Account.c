@@ -135,7 +135,7 @@ int Account_Srv_Modify(const account_t *data){
 	}
 	else
 	{
-		printf("修改密码成功！");
+		printf("\n\n\n\n修改密码成功！按任意键返回。");
 	}
 	// printf("啊哈");
 	// 	setbuf(stdin,NULL);

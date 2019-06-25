@@ -35,33 +35,33 @@ void Studio_UI_MgtEntry(void) {
 	do {
         //��ӡ��ӳ���Ļ�����Ϣ
 		printf(
-				"\n\n\n\n\n\n\n\n\n\t\t\t\t\t\t\t==================================================================\n\n");
+				"\n\n==================================================================\n\n");
 		printf(
-				"\t\t\t\t\t\t\t********************** 演出厅信息 ********************************\n\n");
-		printf("\t\t\t\t\t\t\t%5s              %10s      %5s      %5s      %5s\n", "ID", "名字", "行",
+				"********************** 演出厅信息 ********************************\n\n");
+		printf("%5s %20s %2s %2s %5s\n", "ID", "名字", "行",
 				"列", "座位数量\n");
 		printf(
-				"\t\t\t\t\t\t\t------------------------------------------------------------------\n\n");
+				"------------------------------------------------------------------\n\n");
 		    //��ʾ����
 		Paging_ViewPage_ForEach(head, paging, studio_node_t, pos, i){
-			printf("\t\t\t\t\t\t\t%5d              %10s      %5d      %5d      %5d\n\n", pos->data.id,
+			printf("%5d %20s %2d %2d %5d\n\n", pos->data.id,
 					pos->data.name, pos->data.rowsCount, pos->data.colsCount,
 					pos->data.seatsCount);
 		}
 
 		printf(
-				"\t\t\t\t\t\t\t------- 共:%2d条 ----------------------- 页数 :%2d/%2d --------------\n",
+				"------- 共:%2d条 ----------------------- 页数 :%2d/%2d --------------\n",
 				paging.totalRecords, Pageing_CurPage(paging),
 				Pageing_TotalPages(paging));
 		 
         
         //��ʾ������ӳ���µĿ�ѡ��
-        printf("\t\t\t\t\t\t\t******************************************************************\n\n");
+        printf("******************************************************************\n\n");
 		printf(
-				"\t\t\t\t\t\t\t[1]上一页　　            [2]下一页　　            [3]添加演出厅\n\n\t\t\t\t\t\t\t[4]删除演出厅            [5]修改演出厅             [6]座位管理 \n\n\t\t\t\t\t\t\t[0]返回上层");
+				"[1]上一页　　            [2]下一页　　            [3]添加演出厅\n\n[4]删除演出厅            [5]修改演出厅             [6]座位管理 \n\n[0]返回上层");
 		printf(
-				"\n\n\t\t\t\t\t\t\t==================================================================\n");
-        printf("\n\t\t\t\t\t\t\t请输入您要进行的操作:");//ѡ��
+				"\n\nt==================================================================\n");
+        printf("\n请输入您要进行的操作:");//ѡ��
 		fflush(stdin);
         setbuf(stdin,NULL);
 		scanf("%d", &choice);
@@ -207,9 +207,9 @@ int Studio_UI_Modify(int id) {
 	if (Studio_Srv_Modify(&rec)) {
 		rtn = 1;
 		printf(
-				"成功修改演出厅信息!\nPress [Enter] key to return!\n");
+				"成功修改演出厅信息!\n按下[Enter]返回上层!\n");
 	} else
-		printf("修改演出厅信息失败!\nPress [Enter] key to return!\n");
+		printf("修改演出厅信息失败!\n按下[Enter]返回上层!\n");
 
 	setbuf(stdin,NULL);
 	getchar();

@@ -27,21 +27,21 @@ int Schedule_UI_MgtEnt()
 		printf(
 				"\n==================================================================\n");
 		printf(
-				"********************** 演出计划信息 **********************\n");
-		printf("%8s %8s  %8s  %8s  %8s %8s\n", "演出计划ID", "上映剧目ID", "演出厅ID",
+				"************************** 演出计划信息 ************************\n");
+		printf("%8s %8s  %8s  %8s    %8s      %8s\n", "演出计划ID", "上映剧目ID", "演出厅ID",
 				"放映日期", "放映时间","座位数");
 		printf(
 				"------------------------------------------------------------------\n");
 		
 		Paging_ViewPage_ForEach(head, paging, schedule_node_t, pos, i){
-			printf("%8d %8d  %8d  %d/%d/%d  %d/%d/%d %8d \n", pos->data.id,
+			printf("%6d   %8d  %8d      %d/%d/%d    %d:%d:%d %8d \n", pos->data.id,
 					pos->data.play_id, pos->data.studio_id, pos->data.date.year,
 					pos->data.date.month,pos->data.date.day,pos->data.time.hour,
 					pos->data.time.minute,pos->data.time.second,pos->data.seat_count);
 		}
 
 		printf(
-				"------- 共:%2d页 ----------------------- 页数 :%2d/%2d ----\n",
+				"--------------- 共:%2d页 ----------------------- 页数 :%2d/%2d -----\n",
 				paging.totalRecords, Pageing_CurPage(paging),
 				Pageing_TotalPages(paging));
 		
@@ -53,7 +53,7 @@ int Schedule_UI_MgtEnt()
         printf(
 				"******************************************************************\n");
 		printf(
-				"[1]上一页|[2]下一页 | [3]添加演出计划|[4]删除演出计划|[5]修改演出计划 | [6]生成演出票| [0]返回上层");
+				"[1]上一页         |   [2]下一页         |   [3]添加演出计划   |\n[4]删除演出计划   |   [5]修改演出计划   |   [6]生成演出票     |\n[0]返回上层       |");
 		printf(
 				"\n\n\n\n==================================================================\n");
         printf("请输入您要进行的操作:");
@@ -140,13 +140,13 @@ void Schedule_UI_ListAll(void)
 	do {
         //��ӡ��ӳ���Ļ�����Ϣ
 		printf(
-				"\n==================================================================\n");
+				"\n==========================================================\n");
 		printf(
 				"********************** 演出计划信息 **********************\n");
 		printf("%8s %8s  %8s  %8s  %8s %8s\n", "演出计划ID", "上映剧目ID", "演出厅ID",
 				"放映日期", "放映时间","座位数");
 		printf(
-				"------------------------------------------------------------------\n");
+				"----------------------------------------------------------\n");
 		
 		Paging_ViewPage_ForEach(head, paging, schedule_node_t, pos, i){
 			printf("%8d %8d  %8d  %d/%d/%d  %d/%d/%d %8d \n", pos->data.id,
@@ -156,7 +156,7 @@ void Schedule_UI_ListAll(void)
 		}
 
 		printf(
-				"------- 共:%2d页 ----------------------- 页数 :%2d/%2d ----\n",
+				"------- 共:%2d页 ------------------------- 页数 :%2d/%2d ----\n",
 				paging.totalRecords, Pageing_CurPage(paging),
 				Pageing_TotalPages(paging));
 		
@@ -166,11 +166,11 @@ void Schedule_UI_ListAll(void)
         
         
         printf(
-				"******************************************************************\n");
+				"**********************************************************\n");
 		printf(
-				"[1]上一页 | [2]下一页 | [3] 根据名字筛选演出计划 | [0]返回上层");
+				"[1]上一页    |   [2]下一页   |   [3] 根据名字筛选演出计划\n[0]返回上层  |");
 		printf(
-				"\n\n\n\n==================================================================\n");
+				"\n\n\n\n==========================================================\n");
         printf("请输入您要进行的操作:");
 		fflush(stdin);
         setbuf(stdin,NULL);
@@ -401,6 +401,7 @@ int Schedule_UI_Delete(int id)
 	}
 	setbuf(stdin,NULL);
 	getchar();
+	system("clear");
 	return rtn;
 }
 int Schedule_UI_Query(char *play_name) 

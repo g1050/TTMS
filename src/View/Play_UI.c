@@ -37,19 +37,19 @@ void Play_UI_MgtEntry()
 		printf(
 				"\n==================================================================\n");
 		printf(
-				"********************** 剧目信息 **********************\n");
-		printf("%5s %30s  %9s  %5s  %22s  %5s\n", "ID", "剧目名字", "出品地区",
+				"************************* 剧目信息 *******************************\n");
+		printf("%2s   %20s   %10s   %5s  %18s       %5s\n", "ID", "剧目名字", "出品地区",
 				"时长", "开始->结束","票价");
 		printf(
 				"------------------------------------------------------------------\n");
 		    //��ʾ����
 		Paging_ViewPage_ForEach(head, paging, play_node_t, pos, i)
         {
-			printf("%5d %15s  %9s  %5d  %d/%d/%d->%d/%d/%d  %5d\n", pos->data.id,pos->data.name,pos->data.area,pos->data.duration
+			printf("%2d %20s  %10s  %5d  %4d/%02d/%02d->%4d/%02d/%02d  %5d\n", pos->data.id,pos->data.name,pos->data.area,pos->data.duration
             ,pos->data.start_date.year,pos->data.start_date.month,pos->data.start_date.day,pos->data.end_date.year,pos->data.end_date.month,pos->data.end_date.day,pos->data.price);
 		}
 		printf(
-				"------- 共:%2d页 ----------------------- 页数 :%2d/%2d ----\n",
+				"--------------- 共:%2d条 ----------------------- 页数 :%2d/%2d ------\n",
 				paging.totalRecords, Pageing_CurPage(paging),
 				Pageing_TotalPages(paging));
 		
@@ -61,8 +61,8 @@ void Play_UI_MgtEntry()
         printf(
 				"******************************************************************\n");
 		printf(
-				"[1]上一页|[2]下一页 | [3]添加新剧目|[4]删除剧目| [5]修改剧目 | [6] 查询剧目 | [7]安排演出 | [0]返回上层");
-		printf(
+				"[1]上一页     |   [2]下一页      |   [3]添加新剧目 |   [4]删除剧目\n[5]修改剧目   |   [6]查询剧目    |   [7]安排演出   |   [0]返回上层");
+		printf(    
 				"\n\n\n\n==================================================================\n");
         printf("请输入您要进行的操作:");//ѡ��
 		fflush(stdin);
@@ -85,6 +85,9 @@ void Play_UI_MgtEntry()
 		case 4:
             system("clear");
 			printf("请输入要删除的剧目ID:");
+
+
+
 			scanf("%d", &id);
 			if (Play_UI_Delete(id)) {	
 				paging.totalRecords = Play_Srv_FetchAll(head);
@@ -102,7 +105,7 @@ void Play_UI_MgtEntry()
 			break;
 		case 6:
             system("clear");
-			printf("请输入要查询的剧目:");
+			printf("请输入要查询的剧目ID:");
 			scanf("%d", &id);
 			Play_UI_Query(id);
 			paging.totalRecords = Play_Srv_FetchAll(head);
@@ -143,7 +146,7 @@ int Play_UI_Add(void)
 	do {
 		system("clear");
 		printf("\n=======================================================\n");
-		printf("****************  添加新剧目  ****************\n");
+		printf("****************      添加新剧目      ****************\n");
 		printf("-------------------------------------------------------\n");
 		//ѯ�ʷ�ӳ����Ϣ
 		printf("新剧目名称:");
@@ -167,7 +170,7 @@ int Play_UI_Add(void)
 		setbuf(stdin,NULL);
 		scanf("%s", &(rec.area));
 
-		printf("\n适合年龄: [1].儿童 | [2].青少年 | [3].成人");
+		printf("\n适合年龄: [1].儿童 | [2].青少年 | [3].成人:");
 		setbuf(stdin,NULL);
 		scanf("%d", &(rec.rating));
 		while(!(rec.rating == 1 || rec.rating == 2  || rec.rating == 3))
@@ -313,6 +316,7 @@ int Play_UI_Modify(int id)
 
 	setbuf(stdin,NULL);
 	getchar();
+	 system("clear");
 	return rtn;
 }
 
@@ -329,6 +333,7 @@ int Play_UI_Delete(int id)
 	}
 	setbuf(stdin,NULL);
 	getchar();
+	 system("clear");
 	return rtn;
 }
 

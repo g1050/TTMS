@@ -50,7 +50,7 @@ void Sale_UI_ShowScheduler(int playID)
 		printf(
 				"\n==================================================================\n");
 		printf(
-				"********************** 演出计划信息 **********************\n");
+				"************************** 演出计划信息 **************************\n");
 		printf("%8s %8s  %8s  %8s  %8s %8s\n", "演出计划ID", "上映剧目ID", "演出厅ID",
 				"放映日期", "放映时间","座位数");
 		printf(
@@ -63,7 +63,7 @@ void Sale_UI_ShowScheduler(int playID)
 					pos->data.time.minute,pos->data.time.second,pos->data.seat_count);}
 
 		printf(
-				"------- 共:%2d页 ----------------------- 页数 :%2d/%2d ----\n",
+				"------- 共:%2d页 -------------------------------- 页数 :%2d/%2d ----\n",
 				paging.totalRecords, Pageing_CurPage(paging),
 				Pageing_TotalPages(paging));
 		
@@ -71,9 +71,9 @@ void Sale_UI_ShowScheduler(int playID)
         printf(
 				"******************************************************************\n");
 
-		printf("===================================================================\n");
-		printf("[1]上一页 | [2]下一页 |[3]显示演出票|[0]返回");
-		printf("===================================================================\n");
+		printf("==================================================================\n");
+		printf("[1]上一页   |   [2]下一页   |  [3]显示演出票   |   [0]返回\n");
+		printf("==================================================================\n");
 		
 		fflush(stdin);
 		printf("请输入：");
@@ -116,21 +116,23 @@ int Sale_UI_SellTicket(ticket_list_t tickList, seat_list_t seatList){
 	scanf("%d",&x);
 	printf("输入列号：");
 	scanf("%d",&y);
+	printf("\n");
 	ticket_list_t q;
 	int cnt2 = 1;
 
 
-	seat_list_t buf;
-	buf=Seat_Srv_FindByRowCol(seatList,x,y);//传入行列，找到座位信息，，buf储存座位信息链表节点
-	if(buf == NULL) 
+	seat_list_t b;
+	b=Seat_Srv_FindByRowCol(seatList,x,y);//传入行列，找到座位信息，，buf储存座位信息链表节点
+
+	if(b == NULL) 
 	{
 		printf("该座位不存在!");
 		return;
 	}
 	ticket_list_t flag;
 	int i;
-	flag=Ticket_Srv_FetchByID(buf->data.id,tickList);//根据座位id，找到票的信息，，flag存储票信息链表节点
-	
+	flag=Ticket_Srv_FetchByID(b->data.id,tickList);//根据座位id，找到票的信息，，flag存储票信息链表节点
+	// printf("tticket_id =%d\n",flag->data.id);
 
 	if(flag == NULL){
 		printf("该票不存在！\n");
@@ -156,17 +158,25 @@ int Sale_UI_SellTicket(ticket_list_t tickList, seat_list_t seatList){
 		if(key<=0)			
 			return 0;
 		buf.id = key;	
-
+		printf("\n");
 		printf("输入你的id");
 		scanf("%d",&buf.user_id);
-		buf.ticket_id==flag->data.id;
+
+		buf.ticket_id=flag->data.id;
+		// printf("tticket_id =%d\n",flag->data.id);
+		// printf("tticket_id =%d\n",buf.ticket_id);
+
 		buf.value==flag->data.price;
-		printf("输入销售记录的日期：");
+
+		printf("输入销售记录的日期(x/y/z)：");
 		scanf("%d/%d/%d",&buf.date.year,&buf.date.month,&buf.date.day);
-		printf("输入销售记录的时间：");
-		scanf("%d/%d/%d",&buf.time.hour,&buf.time.minute,&buf.time.second);
+
+		printf("输入销售记录的时间(x-y-z)：");
+		scanf("%d-%d-%d",&buf.time.hour,&buf.time.minute,&buf.time.second);
 		buf.type=1;//买票
 
+	// printf("tticket_id =%d\n",buf.ticket_id);
+	
 		Sale_Srv_Add(&buf);//讲小书记卢写入文件中
 
 
@@ -213,18 +223,18 @@ void Sale_UI_MgtEntry(void)
 		printf(
 				"\n==================================================================\n");
 		printf(
-				"********************** 剧目信息 **********************\n");
-		printf("%5s %30s  %9s  %5s  %22s  %5s\n", "ID", "剧目名字", "出品地区",
+				"***************************** 剧目信息 ***************************\n");
+		printf("%5s %15s  %9s  %5s  %20s     %10s\n", "ID", "剧目名字", "出品地区",
 				"时长", "开始->结束","票价");
 		printf(
 				"------------------------------------------------------------------\n");
 		Paging_ViewPage_ForEach(head, paging, play_node_t, pos, i)
         {
-			printf("%5d %15s  %9s  %5d  %d/%d/%d->%d/%d/%d  %5d\n", pos->data.id,pos->data.name,pos->data.area,pos->data.duration
+			printf("%5d %8s  %9s  %5d  %d/%d/%d->%d/%d/%d  %5d\n", pos->data.id,pos->data.name,pos->data.area,pos->data.duration
             ,pos->data.start_date.year,pos->data.start_date.month,pos->data.start_date.day,pos->data.end_date.year,pos->data.end_date.month,pos->data.end_date.day,pos->data.price);
 		}
 		printf(
-				"------- 共:%2d页 ----------------------- 页数 :%2d/%2d ----\n",
+				"------- 共:%2d页 --------------------------------- 页数 :%2d/%2d ----\n",
 				paging.totalRecords, Pageing_CurPage(paging),
 				Pageing_TotalPages(paging));
 		
@@ -233,11 +243,11 @@ void Sale_UI_MgtEntry(void)
         printf("\n\n\n\n"); 
 		
 
-		printf("-----------------总计:%2d ----------------------- Page %2d/%2d -------------------------\n",
+		printf("-------------总计:%2d -------------- Page %2d/%2d --------------------\n",
 				paging.totalRecords, Pageing_CurPage(paging),Pageing_TotalPages(paging));
-		printf("**********************************************************\n");
-		printf("[1]上一页|[2]下一页 | [3]查询演出计划|[4]查询剧目名字|[5]根据名称筛选剧目 | [0]eturn");
-		printf("\n=================================================================\n");
+		printf("*******************************************************************\n");
+		printf("[1]上一页  |   [2]下一页    |  [3]根据ID筛选演出计划  | [4]根据名字筛选演出计划  |   [0]返回");
+		printf("\n===================================================================\n");
 
 		fflush(stdin);
 		printf("请输入：");
@@ -245,7 +255,7 @@ void Sale_UI_MgtEntry(void)
 		scanf("%d", &choice);
 		fflush(stdin);
 		system("clear");
-
+		char name[64];
 		switch (choice)
 		 {
 			int id;
@@ -255,7 +265,13 @@ void Sale_UI_MgtEntry(void)
 			Sale_UI_ShowScheduler(id); 
 			break;
 		
-
+			case 4:
+			
+            system("clear");
+			printf("请输入要查询的剧目名字:");
+			scanf("%s", name);
+			Schedule_UI_Query(name);
+			break;
 
 		// case 4:system("clear");
 		// 	printf("请输入要删除的用户名：");
@@ -277,12 +293,12 @@ void Sale_UI_MgtEntry(void)
 
 		case 1:system("clear");
 			if (!Pageing_IsFirstPage(paging)) {
-				Paging_Locate_OffsetPage(head, paging, -1, sale_node_t);
+				Paging_Locate_OffsetPage(head, paging, -1, play_node_t);
 			}
 			break;
 		case 2:system("clear");
 			if (!Pageing_IsLastPage(paging)) {
-				Paging_Locate_OffsetPage(head, paging, 1, sale_node_t);
+				Paging_Locate_OffsetPage(head, paging, 1, play_node_t);
 			}
 			break;
 		 }
@@ -318,18 +334,18 @@ void Sale_UI_RetfundTicket(){
 		printf(
 				"\n==================================================================\n");
 		printf(
-				"********************** 剧目信息 **********************\n");
-		printf("%5s %30s  %9s  %5s  %22s  %5s\n", "ID", "剧目名字", "出品地区",
+				"***************************** 剧目信息 ***************************\n");
+		printf("%5s %15s  %9s  %5s  %20s     %10s\n", "ID", "剧目名字", "出品地区",
 				"时长", "开始->结束","票价");
 		printf(
 				"------------------------------------------------------------------\n");
 		Paging_ViewPage_ForEach(head, paging, play_node_t, pos, i)
         {
-			printf("%5d %15s  %9s  %5d  %d/%d/%d->%d/%d/%d  %5d\n", pos->data.id,pos->data.name,pos->data.area,pos->data.duration
+			printf("%5d %8s  %9s  %5d  %d/%d/%d->%d/%d/%d  %5d\n", pos->data.id,pos->data.name,pos->data.area,pos->data.duration
             ,pos->data.start_date.year,pos->data.start_date.month,pos->data.start_date.day,pos->data.end_date.year,pos->data.end_date.month,pos->data.end_date.day,pos->data.price);
 		}
 		printf(
-				"------- 共:%2d页 ----------------------- 页数 :%2d/%2d ----\n",
+				"------- 共:%2d页 --------------------------------- 页数 :%2d/%2d ----\n",
 				paging.totalRecords, Pageing_CurPage(paging),
 				Pageing_TotalPages(paging));
 		
@@ -338,11 +354,11 @@ void Sale_UI_RetfundTicket(){
         printf("\n\n\n\n"); 
 		
 
-		printf("-----------------总计:%2d ----------------------- Page %2d/%2d -------------------------\n",
+		printf("-------------总计:%2d -------------- Page %2d/%2d --------------------\n",
 				paging.totalRecords, Pageing_CurPage(paging),Pageing_TotalPages(paging));
-		printf("**********************************************************\n");
-		printf("[1]上一页|[2]下一页 | [3]查询演出计划|[4]查询剧目名字|[5]根据名称筛选剧目 | [0]eturn");
-		printf("\n=================================================================\n");
+		printf("*******************************************************************\n");
+		printf("[1]上一页         |   [2]下一页             |   [3]查询演出计划\n[4]查询剧目名字   |   [5]根据名称筛选剧目   |   [0]返回");
+		printf("\n===================================================================\n");
 
 		fflush(stdin);
 		printf("请输入：");
@@ -458,19 +474,19 @@ void Sale_UI_ShowTicket(int schedule_id)
 	do {
 		
 		printf(
-				"\n==================================================================\n");
+				"\n=======================================================\n");
 		printf(
-				"********************** 票的信息 **********************\n");
-		printf("%5s  %5s  %5s %5s %5s","票id","演出计划id","座位id","价格","状态");
+				"********************** 票的信息 ***********************\n");
+		printf("%5s  %5s  %5s %5s %5s","票id","演出计划id","座位id","价格","状态\n");
 		printf(
-				"------------------------------------------------------------------\n");
+				"-------------------------------------------------------\n");
 		Paging_ViewPage_ForEach(buf, paging, ticket_node_t, pos, i){
 				printf("%5d  %5d  %5d  %5d  %5d\n",pos->data.id,pos->data.schedule_id,pos->data.seat_id,pos->data.price,pos->data.status);			
 		}
 	
 
 		printf(
-				"------- 共:%2d条 ----------------------- 页数 :%2d/%2d ----\n",
+				"------- 共:%2d条 --------------------- 页数 :%2d/%2d ----\n",
 				paging.totalRecords, Pageing_CurPage(paging),
 				Pageing_TotalPages(paging));
 		
@@ -479,9 +495,9 @@ void Sale_UI_ShowTicket(int schedule_id)
         printf("\n\n\n\n"); 
         
         printf(
-				"******************************************************************\n");
-		printf("[1]买票|[0]返回|[3]上一页|[4]下一页");
-		printf("===================================================================\n");
+				"*******************************************************\n");
+		printf("[1]买票|[0]返回|[3]上一页|[4]下一页\n");
+		printf("=======================================================\n");
 		
 		
 
@@ -555,7 +571,7 @@ void Sale_UI_ShowScheduler1(int playID)
 		printf(
 				"\n==================================================================\n");
 		printf(
-				"********************** 演出计划信息 **********************\n");
+				"************************** 演出计划信息 **************************\n");
 		printf("%8s %8s  %8s  %8s  %8s %8s\n", "演出计划ID", "上映剧目ID", "演出厅ID",
 				"放映日期", "放映时间","座位数");
 		printf(
@@ -568,7 +584,7 @@ void Sale_UI_ShowScheduler1(int playID)
 					pos->data.time.minute,pos->data.time.second,pos->data.seat_count);}
 
 		printf(
-				"------- 共:%2d页 ----------------------- 页数 :%2d/%2d ----\n",
+				"------- 共:%2d页 -------------------------------- 页数 :%2d/%2d ----\n",
 				paging.totalRecords, Pageing_CurPage(paging),
 				Pageing_TotalPages(paging));
 		
@@ -576,9 +592,9 @@ void Sale_UI_ShowScheduler1(int playID)
         printf(
 				"******************************************************************\n");
 
-		printf("===================================================================\n");
-		printf("[1]上一页 | [2]下一页 |[3]显示演出票|[0]返回");
-		printf("===================================================================\n");
+		printf("==================================================================\n");
+		printf("[1]上一页   |   [2]下一页   |  [3]显示演出票   |   [0]返回\n");
+		printf("==================================================================\n");
 		
 		fflush(stdin);
 		printf("请输入：");
@@ -640,19 +656,19 @@ void Sale_UI_ShowTicket1(int schedule_id)
 	do {
 		
 		printf(
-				"\n==================================================================\n");
+				"\n=======================================================\n");
 		printf(
-				"********************** 票的信息 **********************\n");
-		printf("%5s  %5s  %5s %5s %5s","票id","演出计划id","座位id","价格","状态");
+				"********************** 票的信息 ***********************\n");
+		printf("%5s  %5s  %5s %5s %5s","票id","演出计划id","座位id","价格","状态\n");
 		printf(
-				"------------------------------------------------------------------\n");
+				"-------------------------------------------------------\n");
 		Paging_ViewPage_ForEach(buf, paging, ticket_node_t, pos, i){
 				printf("%5d  %5d  %5d  %5d  %5d\n",pos->data.id,pos->data.schedule_id,pos->data.seat_id,pos->data.price,pos->data.status);			
 		}
 	
 
 		printf(
-				"------- 共:%2d条 ----------------------- 页数 :%2d/%2d ----\n",
+				"------- 共:%2d条 --------------------- 页数 :%2d/%2d ----\n",
 				paging.totalRecords, Pageing_CurPage(paging),
 				Pageing_TotalPages(paging));
 		
@@ -661,9 +677,9 @@ void Sale_UI_ShowTicket1(int schedule_id)
         printf("\n\n\n\n"); 
         
         printf(
-				"******************************************************************\n");
-		printf("[1]退票|[0]返回|[3]上一页|[4]下一页");
-		printf("===================================================================\n");
+				"*******************************************************\n");
+		printf("[1]退/售票 |[0]返回|[3]上一页|[4]下一页\n");
+		printf("=======================================================\n");
 		
 		
 

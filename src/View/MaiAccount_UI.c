@@ -96,7 +96,6 @@ while(1)
 
     strcpy(data.password,passwd);
     Account_Srv_Modify(&data);
-	printf("\n密码修改成功,按[ENTER]返回上层!\n");
 	getchar();
 	return ;
 }
